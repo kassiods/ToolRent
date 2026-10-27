@@ -42,10 +42,12 @@ toolrent:
   # Confirmar com a equipe antes da Sprint 6.
   # ----------------------------------------------------------
   calculo:
-    # Criterio de contagem de diarias: DIARIA_INICIADA ou PERIODO_24H
+    # PENDENTE #3 — valor NAO decidido. Opcoes: DIARIA_INICIADA | PERIODO_24H.
+    # Nao implemente UC12 assumindo este valor; resolva #3 primeiro.
     criterio-diaria: DIARIA_INICIADA
     diarias-minimas: 1
-    # Percentual da tarifa diaria cobrado por diaria de atraso
+    # PENDENTE #4 — percentual NAO decidido, nem quem aprova cobranca por dano.
+    # Nao implemente RN05/RN06 assumindo este valor; resolva #4 primeiro.
     percentual-multa-atraso: 0.20
     escala-monetaria: 2
     arredondamento: HALF_UP
