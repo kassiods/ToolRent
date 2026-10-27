@@ -1,0 +1,14 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    # Regra de negócio não pode existir no app (ver ADR 0004).
+    # Mantemos o analisador rigoroso para pegar descuido cedo.
+    todo: ignore
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_final_locals
+    - avoid_print
+    - require_trailing_commas

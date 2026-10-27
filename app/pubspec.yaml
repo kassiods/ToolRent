@@ -1,0 +1,37 @@
+name: toolrent_app
+description: ToolRent — aplicativo de locação de ferramentas (Flutter).
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # ---------------------------------------------------------------
+  # Dependências planejadas, ainda NÃO adicionadas.
+  # Entram na sprint indicada, junto da história correspondente.
+  # Não descomente sem a Issue aberta — ver CONTRIBUTING.md.
+  #
+  #   Sprint 3 (US01) — autenticação e chamadas à API
+  #   supabase_flutter: ^2.8.0      Supabase Auth
+  #   http: ^1.2.0                  cliente HTTP para a API Java
+  #   flutter_dotenv: ^5.2.0        leitura do .env
+  #
+  #   Sprint 4 (US03–US06) — gerenciamento de estado
+  #   flutter_riverpod: ^2.5.0      estado da aplicação
+  #   intl: ^0.19.0                 formatação de data e moeda pt-BR
+  # ---------------------------------------------------------------
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  # assets:
+  #   - .env
