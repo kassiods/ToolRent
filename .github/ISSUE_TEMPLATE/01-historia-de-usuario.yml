@@ -1,0 +1,99 @@
+name: "📘 História de usuário"
+description: "Uma história do Product Backlog (US01 a US16, ou nova)"
+title: "[USxx] "
+labels: ["historia"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use o ID da história no título: `[US07] Solicitar reserva`.
+        **IDs nunca são renumerados** — documentação, diagramas e commits dependem deles.
+
+        Antes de criar, confira se a história já existe em [`docs/backlog.md`](../../blob/main/docs/backlog.md).
+
+  - type: input
+    id: historia
+    attributes:
+      label: História
+      description: "No formato: Como… quero… para…"
+      placeholder: "Como cliente, quero solicitar uma reserva para tentar garantir uma ferramenta em determinado período."
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Descrição e contexto
+      description: "O que alguém que não participou da conversa precisa saber para implementar isso?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Critérios de aceite
+      description: "Objetivos e verificáveis. Se você não consegue escrever o teste a partir do critério, ele não está pronto."
+      value: |
+        - [ ]
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: input
+    id: casos-de-uso
+    attributes:
+      label: Caso(s) de uso
+      placeholder: "UC07 (inclui UC05)"
+    validations:
+      required: true
+
+  - type: input
+    id: regras
+    attributes:
+      label: Regras de negócio
+      placeholder: "RN01, RN02, RN03, RN08"
+    validations:
+      required: true
+
+  - type: input
+    id: diagramas
+    attributes:
+      label: Diagrama(s) afetado(s)
+      placeholder: "casos-de-uso.puml, estados-reserva.puml"
+
+  - type: dropdown
+    id: prioridade
+    attributes:
+      label: Prioridade
+      options:
+        - "P0 — necessária para a primeira fatia funcional"
+        - "P1 — importante, entra após o fluxo principal"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: estimativa
+    attributes:
+      label: Estimativa (pontos)
+      options: ["1", "2", "3", "5", "8", "13"]
+    validations:
+      required: true
+
+  - type: textarea
+    id: tarefas
+    attributes:
+      label: Tarefas técnicas
+      value: |
+        - [ ] API —
+        - [ ] App —
+        - [ ] Banco —
+        - [ ] Testes —
+        - [ ] Documentação e diagrama —
+
+  - type: textarea
+    id: pendencias
+    attributes:
+      label: Depende de decisão pendente?
+      description: "Se sim, qual? Uma história que depende de decisão em aberto NÃO entra na sprint."
+      placeholder: "Nenhuma / Decisão #3 — critério de contagem de diárias"

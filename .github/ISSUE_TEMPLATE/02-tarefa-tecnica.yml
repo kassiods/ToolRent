@@ -1,0 +1,59 @@
+name: "🔧 Tarefa técnica"
+description: "Trabalho que não é história de usuário: infraestrutura, documentação, diagrama, configuração"
+title: "[TEC] "
+labels: ["tarefa-tecnica"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use para trabalho que não entrega valor direto ao usuário, mas é necessário:
+        configurar ambiente, escrever diagrama, ajustar CI, atualizar documentação.
+
+        Se entrega valor a um ator do sistema, é uma **história**, não uma tarefa técnica.
+
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: Objetivo
+      description: "O que precisa ser feito e por quê?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: conclusao
+    attributes:
+      label: Critério de conclusão
+      description: "Como saberemos que terminou? Seja específico."
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - "app (Flutter)"
+        - "api (Java)"
+        - "supabase (banco)"
+        - "docs (documentação)"
+        - "diagramas (UML)"
+        - "infraestrutura / CI"
+        - "outro"
+    validations:
+      required: true
+
+  - type: input
+    id: relacionada
+    attributes:
+      label: História relacionada
+      description: "Se esta tarefa destrava uma história, qual?"
+      placeholder: "US12 / nenhuma"
+
+  - type: dropdown
+    id: estimativa
+    attributes:
+      label: Estimativa (pontos)
+      options: ["1", "2", "3", "5", "8"]

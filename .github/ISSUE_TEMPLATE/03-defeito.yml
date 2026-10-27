@@ -1,0 +1,68 @@
+name: "🐞 Defeito"
+description: "Algo não funciona como o caso de uso ou a regra de negócio especifica"
+title: "[BUG] "
+labels: ["defeito"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Antes de abrir: confirme no documento o que **deveria** acontecer.
+        Um comportamento diferente do esperado por você, mas igual ao especificado,
+        não é defeito — é pedido de mudança.
+
+  - type: textarea
+    id: esperado
+    attributes:
+      label: O que deveria acontecer
+      description: "Cite o caso de uso ou a regra de negócio que define o comportamento correto."
+      placeholder: "Conforme UC05 / RN01, data inicial igual à final deve ser rejeitada."
+    validations:
+      required: true
+
+  - type: textarea
+    id: ocorrido
+    attributes:
+      label: O que acontece
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducao
+    attributes:
+      label: Como reproduzir
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: onde
+    attributes:
+      label: Onde ocorre
+      options:
+        - "app (Flutter)"
+        - "api (Java)"
+        - "supabase (banco)"
+        - "não sei"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: gravidade
+    attributes:
+      label: Gravidade
+      options:
+        - "Crítica — bloqueia o uso ou corrompe dado"
+        - "Alta — regra de negócio sendo violada"
+        - "Média — comportamento errado com contorno possível"
+        - "Baixa — cosmético"
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidencia
+    attributes:
+      label: Evidência
+      description: "Mensagem de erro, print, trecho de log. Remova qualquer credencial antes de colar."

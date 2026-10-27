@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  api:
+    name: API (Java 21)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: temurin
+          cache: maven
+
+      - name: Compilar e testar
+        working-directory: api
+        run: mvn --batch-mode clean verify
+
+  app:
+    name: App (Flutter)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.9"
+          channel: stable
+          cache: true
+
+      - name: Baixar dependencias
+        working-directory: app
+        run: flutter pub get
+
+      - name: Analisar
+        working-directory: app
+        run: flutter analyze
+
+      - name: Testar
+        working-directory: app
+        run: flutter test
+
+  segredos:
+    name: Verificacao de segredos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Nenhum .env commitado
+        run: |
+          if git ls-files | grep -E '(^|/)\.env$|(^|/)\.env\.' | grep -v '\.env\.example'; then
+            echo "::error::Arquivo .env encontrado no repositorio. Remova e REVOGUE as chaves."
+            exit 1
+          fi
+          echo "OK: nenhum .env versionado."
+
+      - name: Nenhum artefato de build commitado
+        run: |
+          if git ls-files | grep -E '^(api/target/|app/build/)'; then
+            echo "::error::Artefato de build versionado. Confira o .gitignore."
+            exit 1
+          fi
+          echo "OK: nenhum artefato de build versionado."
