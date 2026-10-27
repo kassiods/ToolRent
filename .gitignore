@@ -1,0 +1,94 @@
+# ============================================================
+# ToolRent — .gitignore
+# Regra de ouro: NENHUMA credencial entra no repositorio.
+# Veja CONTRIBUTING.md > "Seguranca antes do commit".
+# ============================================================
+
+# ---------- SEGREDOS E CREDENCIAIS (NUNCA COMITAR) ----------
+.env
+.env.*
+!.env.example
+*.env
+secrets/
+*.pem
+*.key
+*.p8
+*.p12
+*.keystore
+*.jks
+
+# Chaves e configuracao do Supabase
+supabase/.temp/
+supabase/.branches/
+.supabase/
+supabase-service-role*
+**/supabase_keys*
+
+# Configuracao e credenciais do GitHub CLI / tokens
+.gh/
+gh-token*
+.netrc
+.git-credentials
+
+# ---------- FLUTTER / DART (app/) ----------
+app/.dart_tool/
+app/.packages
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/build/
+app/.pub-cache/
+app/.pub/
+app/pubspec.lock
+app/android/key.properties
+app/android/.gradle/
+app/android/app/debug/
+app/android/app/release/
+app/ios/Pods/
+app/ios/Flutter/flutter_export_environment.sh
+app/windows/flutter/ephemeral/
+app/linux/flutter/ephemeral/
+app/macos/Flutter/ephemeral/
+**/doc/api/
+*.iml
+
+# ---------- JAVA / MAVEN (api/) ----------
+api/target/
+target/
+*.class
+*.jar
+*.war
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+dependency-reduced-pom.xml
+
+# ---------- IDEs ----------
+.idea/
+*.ipr
+*.iws
+.vscode/*
+!.vscode/extensions.json
+.settings/
+.project
+.classpath
+.metadata/
+
+# ---------- SISTEMA OPERACIONAL ----------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# ---------- LOGS E TEMPORARIOS ----------
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*~
