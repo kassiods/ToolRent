@@ -1,0 +1,56 @@
+# ============================================================
+# ToolRent API — configuracao
+#
+# Valores sensiveis vem de variaveis de ambiente (.env), NUNCA
+# ficam neste arquivo. Ver CONTRIBUTING.md > Seguranca.
+# ============================================================
+
+spring:
+  application:
+    name: toolrent-api
+
+  datasource:
+    # Credenciais do Supabase vem do ambiente.
+    # Sem elas a API sobe, mas falha ao acessar o banco.
+    url: ${SUPABASE_DB_URL:}
+    username: ${SUPABASE_DB_USER:}
+    password: ${SUPABASE_DB_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+
+  jackson:
+    default-property-inclusion: non_null
+    # Datas em ISO-8601, sempre. Conversao para o fuso local
+    # acontece na apresentacao, nunca aqui (RN12).
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: ${API_PORT:8080}
+  error:
+    # Nunca expor stack trace ao cliente.
+    include-stacktrace: never
+    include-message: always
+
+toolrent:
+  # ----------------------------------------------------------
+  # Parametros de negocio.
+  # Centralizados aqui para que nenhuma taxa apareca literal no
+  # meio de um metodo (RN05, RN12).
+  #
+  # ATENCAO: os valores abaixo sao PROVISORIOS. Dependem das
+  # decisoes pendentes #3 e #4 — ver docs/regras-de-negocio.md.
+  # Confirmar com a equipe antes da Sprint 6.
+  # ----------------------------------------------------------
+  calculo:
+    # Criterio de contagem de diarias: DIARIA_INICIADA ou PERIODO_24H
+    criterio-diaria: DIARIA_INICIADA
+    diarias-minimas: 1
+    # Percentual da tarifa diaria cobrado por diaria de atraso
+    percentual-multa-atraso: 0.20
+    escala-monetaria: 2
+    arredondamento: HALF_UP
+
+logging:
+  level:
+    root: INFO
+    br.edu.toolrent: DEBUG
