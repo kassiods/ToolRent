@@ -13,7 +13,9 @@ Criar a estrutura do repositório a partir de dois documentos já produzidos pel
 
 ## O que foi feito
 
-Repositório criado em `C:\Users\lardo\ToolRent`, publicado em `kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas`.
+Repositório criado em `C:\Users\lardo\ToolRent`, publicado em `kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas`
+(o repositório foi renomeado depois para `kassiods/ToolRent` — o nome acima
+é o que valia nesta data).
 
 | Área | Conteúdo |
 |---|---|

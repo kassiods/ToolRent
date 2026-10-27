@@ -7,8 +7,8 @@
 ## 1. Antes de começar
 
 ```bash
-git clone https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas.git
-cd ToolRent-Sistema-de-Loca-o-de-Ferramentas
+git clone https://github.com/kassiods/ToolRent.git
+cd ToolRent
 ```
 
 Confira o ambiente:
