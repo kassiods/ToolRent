@@ -1,0 +1,114 @@
+@startuml casos-de-uso-toolrent
+' =====================================================================
+' ToolRent - Diagrama de Casos de Uso
+' Documento correspondente: docs/casos-de-uso.md (versao 2.0)
+'
+' ATENCAO: este arquivo e a FONTE do diagrama. Ao alterar, gere o PNG
+' novamente e atualize docs/casos-de-uso.md na mesma Issue/PR.
+'
+' Gerar imagem:
+'   plantuml -tpng casos-de-uso.puml
+' ou cole o conteudo em https://www.plantuml.com/plantuml
+' =====================================================================
+
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam ArrowColor #475569
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 12
+
+skinparam actor {
+  BorderColor #1E3A8A
+  BackgroundColor #DBEAFE
+  FontColor #1E3A8A
+  FontStyle bold
+}
+
+skinparam usecase {
+  BorderColor #1E40AF
+  BackgroundColor #FFFFFF
+  FontColor #0F172A
+  ArrowColor #475569
+}
+
+skinparam rectangle {
+  BorderColor #1E40AF
+  BackgroundColor #F8FAFC
+  FontColor #1E3A8A
+  FontStyle bold
+  FontSize 15
+}
+
+title ToolRent — Sistema de Locação de Ferramentas
+
+' ---------------------------- ATORES ---------------------------------
+' 3 atores. O ator "Tecnico de manutencao" foi removido do escopo.
+' Justificativa: docs/decisoes/0002-remocao-do-ator-tecnico.md
+
+actor "Administrador" as ADM
+actor "Atendente"     as ATD
+actor "Cliente"       as CLI
+
+' ----------------------- FRONTEIRA DO SISTEMA ------------------------
+rectangle "ToolRent" {
+
+  usecase "UC01\nAutenticar usuário"                     as UC01
+  usecase "UC02\nGerenciar usuários e perfis"            as UC02
+  usecase "UC03\nGerenciar clientes"                     as UC03
+  usecase "UC04\nGerenciar ferramentas e categorias"     as UC04
+  usecase "UC05\nConsultar disponibilidade por período"  as UC05 #FEF3C7
+  usecase "UC06\nConsultar catálogo e preços"            as UC06
+  usecase "UC07\nSolicitar reserva"                      as UC07
+  usecase "UC08\nAnalisar solicitação de reserva"        as UC08
+  usecase "UC09\nFormalizar locação"                     as UC09
+  usecase "UC10\nRegistrar retirada"                     as UC10
+  usecase "UC11\nRegistrar devolução e avaliar condição" as UC11
+  usecase "UC12\nCalcular valores e encargos"            as UC12 #FEF3C7
+  usecase "UC13\nRegistrar pagamento"                    as UC13
+  usecase "UC14\nGerenciar manutenção"                   as UC14
+  usecase "UC15\nConsultar relatórios"                   as UC15
+  usecase "UC16\nConsultar histórico de locações"        as UC16
+}
+
+' ------------------------- ASSOCIAÇÕES -------------------------------
+
+' Administrador
+ADM --> UC01
+ADM --> UC02
+ADM --> UC15
+
+' Atendente
+ATD --> UC01
+ATD --> UC03
+ATD --> UC04
+ATD --> UC05
+ATD --> UC08
+ATD --> UC09
+ATD --> UC10
+ATD --> UC11
+ATD --> UC12
+ATD --> UC13
+ATD --> UC14
+ATD --> UC16
+
+' Cliente
+CLI --> UC06
+CLI --> UC07
+
+' --------------------------- RELAÇÕES --------------------------------
+' Apenas relacoes reais sao declaradas. Nao ha <<extend>> no escopo.
+
+UC07 ..> UC05 : <<include>>
+UC09 ..> UC05 : <<include>>
+UC09 ..> UC12 : <<include>>
+UC11 ..> UC12 : <<include>>
+
+legend right
+  |= Elemento |= Significado |
+  | <back:#FEF3C7>   </back> | Caso de uso incluído por outros |
+  | ..> <<include>> | Comportamento sempre executado |
+  Atores: 3  |  Casos de uso: 16  |  CRUD puro: 3
+endlegend
+
+@enduml
