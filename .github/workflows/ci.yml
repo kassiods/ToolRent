@@ -6,12 +6,15 @@ on:
   pull_request:
     branches: [main]
 
+# O runner e fixado em ubuntu-24.04 de proposito: ubuntu-latest migrou
+# para o Ubuntu 26 em 19/10/2026 e trocaria de imagem no meio do
+# projeto. Suba o pin de forma deliberada, nao por acidente.
 jobs:
   api:
     name: API (Java 21)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Configurar JDK 21
         uses: actions/setup-java@v4
@@ -26,9 +29,9 @@ jobs:
 
   app:
     name: App (Flutter)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Configurar Flutter
         uses: subosito/flutter-action@v2
@@ -51,9 +54,9 @@ jobs:
 
   segredos:
     name: Verificacao de segredos
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Nenhum .env commitado
         run: |
