@@ -31,12 +31,12 @@ Professor: Anthony Irlan Marques Luz
 
 ## 📑 Índice
 
-| | | |
-|---|---|---|
-| [1. Sobre o projeto](#1-sobre-o-projeto) | [5. Estrutura do repositório](#5-estrutura-do-repositório) | [9. Convenções de Git](#9-convenções-de-git) |
-| [2. Atores e perfis](#2-atores-e-perfis) | [6. Como executar](#6-como-executar) | [10. Segurança e credenciais](#10-segurança-e-credenciais) |
-| [3. Arquitetura](#3-arquitetura) | [7. Documentação](#7-documentação) | [11. Equipe](#11-equipe) |
-| [4. Stack](#4-stack) | [8. Metodologia ágil](#8-metodologia-ágil) | [12. Roadmap](#12-roadmap) |
+| | |
+|---|---|
+| [1. Sobre o projeto](#1-sobre-o-projeto) | [5. Estrutura do repositório](#5-estrutura-do-repositório) |
+| [2. Atores e perfis](#2-atores-e-perfis) | [6. Como executar](#6-como-executar) |
+| [3. Arquitetura](#3-arquitetura) | [7. Documentação](#7-documentação) |
+| [4. Stack](#4-stack) | |
 
 ---
 
@@ -287,120 +287,6 @@ flutter run -d chrome          # ou: -d windows / -d android
 | [📄 Glossário](docs/glossario.md) | Vocabulário do domínio: reserva, locação, diária faturável |
 | [📁 Decisões (ADRs)](docs/decisoes/) | Toda decisão relevante, com data e alternativas descartadas |
 | [📁 Diagramas](docs/diagramas/) | Fontes PlantUML e imagens geradas |
-
----
-
-## 8. Metodologia ágil
-
-Trabalhamos em **sprints semanais**, com o backlog no GitHub Issues e o quadro no GitHub Projects.
-
-```mermaid
-flowchart LR
-    BL["📋 Backlog<br/><i>16 histórias</i>"] --> SP["🎯 Sprint<br/><i>selecionadas</i>"]
-    SP --> DEV["⌨️ Em desenvolvimento<br/><i>1 branch por Issue</i>"]
-    DEV --> PR["🔍 Em revisão<br/><i>Pull Request</i>"]
-    PR --> DONE["✅ Concluído<br/><i>DoD satisfeita</i>"]
-    PR -. "mudanças pedidas" .-> DEV
-
-    style BL fill:#64748b,color:#fff
-    style SP fill:#2563eb,color:#fff
-    style DEV fill:#d97706,color:#fff
-    style PR fill:#7c3aed,color:#fff
-    style DONE fill:#16a34a,color:#fff
-```
-
-### Rastreabilidade
-
-Todo trabalho tem uma linha contínua de origem — exigência da disciplina e a melhor defesa numa apresentação:
-
-```
-História (US) → Caso de uso (UC) → Issue → Branch → Commit → Pull Request → Diagrama
-```
-
-A matriz completa está em [`docs/agil/rastreabilidade.md`](docs/agil/rastreabilidade.md).
-
-### Pronto quer dizer pronto
-
-Código escrito **não é** história concluída. Os critérios estão em [`docs/agil/definition-of-done.md`](docs/agil/definition-of-done.md) — em resumo: critérios de aceite satisfeitos, build passando, testes executados, regra na camada certa, documentação e diagramas atualizados, e rastreabilidade registrada.
-
-| Artefato | Onde |
-|---|---|
-| Definition of Ready | [`docs/agil/definition-of-ready.md`](docs/agil/definition-of-ready.md) |
-| Definition of Done | [`docs/agil/definition-of-done.md`](docs/agil/definition-of-done.md) |
-| Plano de sprints | [`docs/agil/sprints.md`](docs/agil/sprints.md) |
-| Matriz de rastreabilidade | [`docs/agil/rastreabilidade.md`](docs/agil/rastreabilidade.md) |
-
----
-
-## 9. Convenções de Git
-
-**Branches** — uma por Issue, nomeada pela história ou caso de uso:
-
-```
-feat/US07-solicitar-reserva
-fix/UC11-devolucao-parcial
-docs/UC04-especificacao
-```
-
-**Commits** — [Conventional Commits](https://www.conventionalcommits.org/pt-br/), escritos em português:
-
-```
-feat: adiciona consulta de disponibilidade por período
-fix: impede reserva com período conflitante
-docs: documenta atores e casos de uso
-test: cobre cálculo de multa por atraso
-refactor: move regra de locação do controller para o service
-```
-
-Fluxo completo, checklist de revisão e cuidados de merge: [`CONTRIBUTING.md`](CONTRIBUTING.md).
-
----
-
-## 10. Segurança e credenciais
-
-> [!CAUTION]
-> **Nenhuma credencial entra no repositório.** Chave do Supabase, token do GitHub, senha de banco, arquivo `.env` — nada disso. Um segredo commitado continua no histórico do Git mesmo depois de removido do arquivo.
-
-| Regra | Como cumprir |
-|---|---|
-| Configuração fica em `.env` | Cada integrante cria o seu a partir do `.env.example` |
-| `.env` está no `.gitignore` | Já configurado — não remova |
-| Antes de todo commit | `git status` e `git diff` — leia o que está indo |
-| A chave `service_role` do Supabase | Só na API, **nunca** no app Flutter |
-| Senha nunca em texto puro | O Supabase Auth cuida do hash (RN10) |
-
-Se um segredo vazar: **revogue a chave imediatamente** no painel do Supabase ou do GitHub e avise a equipe. Trocar a chave é o que resolve — apagar o arquivo não.
-
----
-
-## 11. Equipe
-
-| Integrante | GitHub |
-|---|---|
-| Kassio de Sousa Dias | [@kassiods](https://github.com/kassiods) |
-| Lincoln Gustavo de Brito Soares | [@Lincoln16yyy](https://github.com/Lincoln16yyy) |
-| Victor Rennan Alves Sátiro | [@Rennan-aex](https://github.com/Rennan-aex) |
-| Nailan Lucas dos Santos Nobre | [@Nailan-Nobre](https://github.com/Nailan-Nobre) |
-
-**Professor:** Anthony Irlan Marques Luz
-
----
-
-## 12. Roadmap
-
-| Sprint | Entrega | Status |
-|---|---|---|
-| **0** | Repositório, estrutura, README e documentação base | ✅ Concluído |
-| **1** | Casos de uso, diagrama de casos de uso e backlog no GitHub | 🟡 Em andamento |
-| **2** | Diagrama de classes e modelo de dados no Supabase | ⬜ Planejado |
-| **3** | Autenticação, perfis e autorização (UC01, UC02) | ⬜ Planejado |
-| **4** | Catálogo, clientes e disponibilidade (UC03–UC06) | ⬜ Planejado |
-| **5** | Reservas e locação (UC07–UC10) | ⬜ Planejado |
-| **6** | Devolução, cálculos e pagamentos (UC11–UC13) | ⬜ Planejado |
-| **7** | Manutenção, relatórios e histórico (UC14–UC16) | ⬜ Planejado |
-| **8** | Testes de integração, revisão de diagramas e entrega final | ⬜ Planejado |
-
-Detalhamento em [`docs/agil/sprints.md`](docs/agil/sprints.md).
 
 ---
 
