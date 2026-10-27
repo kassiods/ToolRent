@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: 📚 Documentação do projeto
-    url: https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/tree/main/docs
+    url: https://github.com/kassiods/ToolRent/tree/main/docs
     about: Casos de uso, regras de negócio, arquitetura e backlog
   - name: 🤝 Como contribuir
-    url: https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/blob/main/CONTRIBUTING.md
+    url: https://github.com/kassiods/ToolRent/blob/main/CONTRIBUTING.md
     about: Fluxo de trabalho, padrões de código e checklist de revisão

@@ -86,4 +86,4 @@ docs/
 
 **8 decisões pendentes** aguardam a equipe — listadas em [Casos de uso § 6](casos-de-uso.md#6-decisões-pendentes).
 
-O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues): `#1` a `#16` correspondem a US01–US16. A matriz em [`agil/rastreabilidade.md`](agil/rastreabilidade.md) liga cada uma ao seu caso de uso.
+O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent/issues): `#1` a `#16` correspondem a US01–US16. A matriz em [`agil/rastreabilidade.md`](agil/rastreabilidade.md) liga cada uma ao seu caso de uso.

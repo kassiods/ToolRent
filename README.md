@@ -252,8 +252,8 @@ Depois, aponte o `JAVA_HOME` para a pasta instalada e reabra o terminal.
 ### 1️⃣ Clonar
 
 ```bash
-git clone https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas.git
-cd ToolRent-Sistema-de-Loca-o-de-Ferramentas
+git clone https://github.com/kassiods/ToolRent.git
+cd ToolRent
 ```
 
 ### 2️⃣ Configurar o Supabase
@@ -308,7 +308,7 @@ flutter run -d chrome          # ou: -d windows / -d android
 
 **Professor:** Anthony Irlan Marques Luz
 
-O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues) — uma Issue por história, de `#1` (US01) a `#16` (US16). O fluxo de trabalho, as convenções de branch e commit e o checklist de revisão estão em [`CONTRIBUTING.md`](CONTRIBUTING.md).
+O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent/issues) — uma Issue por história, de `#1` (US01) a `#16` (US16). O fluxo de trabalho, as convenções de branch e commit e o checklist de revisão estão em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 
