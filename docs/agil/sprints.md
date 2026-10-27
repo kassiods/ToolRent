@@ -72,7 +72,7 @@ gantt
 | Adicionar integrantes e professor como colaboradores | ✅ |
 | Aprovação do professor para a mudança de stack | ✅ ADR 0001 |
 | Revisar os 16 casos de uso com a equipe | ⬜ |
-| Gerar o PNG do diagrama a partir do `.puml` | ⬜ |
+| Gerar a imagem do diagrama a partir do `.puml` | ✅ [`casos-de-uso.jpg`](../diagramas/casos-de-uso.jpg) |
 | Configurar o GitHub Project com as colunas do fluxo | ⬜ |
 | **Resolver as decisões pendentes #1, #2 e #5** | ⬜ |
 | Revisar o documento antes da entrega | ⬜ |
