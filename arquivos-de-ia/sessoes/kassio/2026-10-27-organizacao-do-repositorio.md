@@ -64,26 +64,61 @@ Três incoerências foram identificadas e corrigidas:
 | `flutter pub get` | ✅ 27 dependências resolvidas |
 | `flutter analyze` | ✅ No issues found |
 | `flutter test` | ✅ 3 testes passaram |
-| `mvn clean test` | ⚠️ **Não executado** — Maven não está instalado no ambiente |
+| `mvn clean test` | ✅ BUILD SUCCESS · 2 testes, 0 falhas |
+| `./mvnw --batch-mode test` | ✅ exit 0 |
 
-> **A API não foi compilada nem testada.** O `pom.xml` e o teste foram escritos, mas sem Maven no ambiente não houve como verificar. Primeiro integrante com Maven instalado deve rodar `cd api && mvn clean test` e reportar.
+---
+
+# Continuação — mesma data
+
+## Ambiente preparado
+
+O ambiente não tinha JDK 21 nem Maven. Instalados nesta sessão:
+
+| Ferramenta | Versão | Como |
+|---|---|---|
+| Eclipse Temurin JDK | 21.0.12 | `winget install EclipseAdoptium.Temurin.21.JDK` |
+| Apache Maven | 3.9.9 | Download direto do Apache — não existe no winget |
+| GitHub CLI | 2.103.3 | `winget install GitHub.cli` |
+
+`JAVA_HOME` e `PATH` do usuário foram ajustados para apontar ao JDK 21 e ao Maven.
+
+**O JDK 24 continua instalado.** Não foi removido — apenas deixou de ser o apontado por `JAVA_HOME`. Se algum outro projeto seu dependia do 24, confira.
+
+## Maven Wrapper adicionado
+
+Rodado `mvn wrapper:wrapper -Dmaven=3.9.9`, gerando `mvnw`, `mvnw.cmd` e `.mvn/wrapper/`.
+
+Com isso **nenhum integrante precisa instalar o Maven** — basta `./mvnw`. Isso reduz o risco "ambiente de desenvolvimento inconsistente" listado no plano de sprints de Médio para Baixo.
+
+## Issues criadas
+
+16 Issues no GitHub, numeradas de `#1` a `#16`, correspondendo a US01–US16. Cada uma traz história, critérios de aceite, rastreabilidade (UC, RN, prioridade, estimativa, sprint), tarefas técnicas e branch sugerida.
+
+Labels criados: `historia`, `tarefa-tecnica`, `defeito`, `P0`, `P1`, `sprint-3` a `sprint-7`, `decisao-pendente`.
+
+Seis Issues receberam `decisao-pendente` por dependerem de decisão não resolvida: #1 (US01), #5 (US05), #9 (US09), #11 (US11), #12 (US12) e #15 (US15).
+
+## Decisão do professor
+
+A mudança de stack foi **aprovada**. O ADR 0001 saiu de "pendente de aprovação" para aprovado, com a data registrada.
+
+> Vale anexar ao ADR 0001 alguma evidência escrita (mensagem, e-mail ou ata). Aprovação verbal sem registro é frágil numa avaliação.
+
+## O que foi rejeitado
+
+**Autenticar o `gh` por `gh auth login`.** É interativo e não roda numa sessão não interativa. Em vez disso, reaproveitei a credencial que o git já tinha armazenada, via `git credential fill`, sem exibir o token. Escopos disponíveis: `gist`, `repo`, `workflow` — suficientes para criar labels e Issues.
 
 ## Pendências
 
-**Crítica**
-
-- [ ] Apresentar a mudança de stack ao professor e registrar a resposta no ADR 0001
-
-**Ambiente**
-
-- [ ] Instalar Maven 3.9+ e rodar `mvn clean test` na API
-- [ ] Instalar JDK 21 — o ambiente atual tem JDK 24, e a disciplina exige 21
-
 **Sprint 1**
 
-- [ ] Criar as 16 Issues a partir de `docs/backlog.md`
-- [ ] Configurar o GitHub Project
-- [ ] Adicionar integrantes e professor como colaboradores
+- [ ] Configurar o GitHub Project com as colunas do fluxo
 - [ ] Confirmar o usuário GitHub do professor
 - [ ] Resolver as decisões pendentes #1, #2 e #5
 - [ ] Gerar o PNG do diagrama a partir do `.puml` e substituir o JPEG atual
+- [ ] Revisar os 16 casos de uso com a equipe antes da entrega
+
+**Sprint 2**
+
+- [ ] Confirmar a migration inicial do Supabase contra o diagrama de classes

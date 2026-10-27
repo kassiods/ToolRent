@@ -15,9 +15,10 @@ Confira o ambiente:
 
 ```bash
 java -version      # precisa ser 21
-mvn -version       # 3.9 ou superior
 flutter --version  # 3.44 ou superior
 ```
+
+O Maven **não** precisa ser instalado: use `./mvnw` (ou `mvnw.cmd` no Windows).
 
 Leia, nesta ordem: [visão do produto](docs/visao-do-produto.md) → [glossário](docs/glossario.md) → o [caso de uso](docs/casos-de-uso.md) da sua história.
 
@@ -86,7 +87,7 @@ git commit -m "docs: atualiza diagrama de estados da reserva"
 ### 4 · Testar
 
 ```bash
-cd api && mvn clean test
+cd api && ./mvnw clean test
 cd app && flutter test && flutter analyze
 ```
 

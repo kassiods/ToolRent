@@ -10,7 +10,7 @@ Um **ADR** (*Architecture Decision Record*) registra uma decisão relevante: o c
 
 | # | Decisão | Data | Status |
 |---|---|---|---|
-| [0001](0001-stack-flutter-java-supabase.md) | Stack: Flutter + Java/Spring Boot + Supabase | 27/10/2026 | ✅ Aceita · ⛔ **pendente de aprovação do professor** |
+| [0001](0001-stack-flutter-java-supabase.md) | Stack: Flutter + Java/Spring Boot + Supabase | 27/10/2026 | ✅ Aceita · aprovada pelo professor |
 | [0002](0002-remocao-do-ator-tecnico.md) | Remoção do ator "Técnico de manutenção" | 27/10/2026 | ✅ Aceita |
 | [0003](0003-estado-atrasada-derivado.md) | `ATRASADA` como estado derivado | 27/10/2026 | ✅ Aceita |
 | [0004](0004-regra-de-negocio-na-api.md) | Regra de negócio exclusivamente na API | 27/10/2026 | ✅ Aceita |

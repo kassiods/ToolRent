@@ -1,8 +1,8 @@
 # ADR 0001 — Stack: Flutter + Java/Spring Boot + Supabase
 
 - **Data:** 27/10/2026
-- **Status:** ✅ Aceita
-- **Decidido por:** equipe
+- **Status:** ✅ Aceita — **aprovada pelo professor em 27/10/2026**
+- **Decidido por:** equipe, com aprovação do professor Anthony Irlan Marques Luz
 
 ---
 
@@ -71,20 +71,21 @@ Era o plano original e o que o enunciado descreve literalmente.
 
 **Riscos**
 
-- ⚠️ **Divergência com o enunciado.** O enunciado da disciplina descreve JavaFX, SQLite e `mvn javafx:run`. Esta decisão se afasta disso em três pontos: interface, banco e execução.
+- A divergência com o texto original do enunciado (JavaFX, SQLite, `mvn javafx:run`) deixou de ser risco após a aprovação registrada abaixo.
+- Permanece a dependência de um serviço externo: sem internet, não há como desenvolver nem demonstrar.
 
-## ⛔ Pendência crítica
+## ✅ Aprovação do professor
 
-> **Esta decisão precisa ser aprovada pelo professor Anthony Irlan Marques Luz antes da próxima entrega.**
->
-> O guia mestre do projeto é explícito: *"Não presumir que haverá aplicativo web, aplicativo móvel, nuvem, API remota... Essas integrações só entram se a equipe e o professor aprovarem explicitamente."*
->
-> **Ação necessária:** apresentar a mudança ao professor e registrar a resposta neste ADR.
->
-> **Se a mudança não for aprovada:** o plano B é o ADR 0001-A, mantendo JavaFX e SQLite. A documentação de requisitos (casos de uso, backlog, regras de negócio) **não muda** nesse cenário — ela descreve comportamento, não tecnologia. Só mudam `app/`, `api/` e `supabase/`.
+O guia mestre do projeto é explícito: *"Não presumir que haverá aplicativo web, aplicativo móvel, nuvem, API remota... Essas integrações só entram se a equipe e o professor aprovarem explicitamente."*
+
+A aprovação foi obtida.
 
 | Campo | Valor |
 |---|---|
-| Apresentado ao professor em | _a preencher_ |
-| Resposta | _a preencher_ |
-| Registrado por | _a preencher_ |
+| Apresentado ao professor em | 27/10/2026 |
+| Resposta | Aprovado |
+| Registrado por | Kassio de Sousa Dias (@kassiods) |
+
+Com isso, Flutter, Spring Boot e Supabase passam a ser a stack oficial do projeto. O Java 21 e o Maven, exigidos pelo enunciado, permanecem no módulo `api/`.
+
+> Se o professor pedir evidência escrita da aprovação (mensagem, e-mail ou ata de aula), anexe a referência nesta tabela. Aprovação verbal não registrada é difícil de sustentar numa avaliação.

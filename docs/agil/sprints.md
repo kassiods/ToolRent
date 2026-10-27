@@ -57,7 +57,7 @@ gantt
 | Documentação base (visão, casos de uso, backlog, regras, arquitetura, glossário) | ✅ |
 | Templates de Issue e PR | ✅ |
 | Esqueleto do app Flutter (analisado e testado) | ✅ |
-| Esqueleto da API Java | 🟡 escrito, **não compilado** — falta Maven no ambiente |
+| Esqueleto da API Java (build verificado, 2 testes) | ✅ |
 | Migration inicial do Supabase | 🟡 rascunho, a confirmar na Sprint 2 |
 
 ---
@@ -66,15 +66,16 @@ gantt
 
 **Objetivo:** entregar a documentação de requisitos exigida na primeira entrega da disciplina.
 
-| Tarefa | Responsável |
+| Tarefa | Status |
 |---|---|
-| Revisar os 16 casos de uso com a equipe | Todos |
-| Gerar o PNG do diagrama a partir do `.puml` | — |
-| Criar as 16 Issues no GitHub a partir do backlog | — |
-| Configurar o GitHub Project com as colunas do fluxo | — |
-| Adicionar integrantes e professor como colaboradores | Kassio |
-| **Resolver as decisões pendentes #1, #2 e #5** | Todos |
-| Revisar o documento antes da entrega | Todos |
+| Criar as 16 Issues no GitHub a partir do backlog | ✅ #1 a #16 |
+| Adicionar integrantes e professor como colaboradores | ✅ |
+| Aprovação do professor para a mudança de stack | ✅ ADR 0001 |
+| Revisar os 16 casos de uso com a equipe | ⬜ |
+| Gerar o PNG do diagrama a partir do `.puml` | ⬜ |
+| Configurar o GitHub Project com as colunas do fluxo | ⬜ |
+| **Resolver as decisões pendentes #1, #2 e #5** | ⬜ |
+| Revisar o documento antes da entrega | ⬜ |
 
 **Critério de conclusão:** documento e diagrama coerentes entre si, 16 Issues criadas, colaboradores adicionados.
 
@@ -183,5 +184,5 @@ gantt
 | US12 ser maior que o estimado | Alto | Quebrar em 3+ histórias antes de começar |
 | Sprints 4, 5 e 6 acima da capacidade | Médio | Medir velocidade real nas Sprints 2 e 3 e replanejar |
 | Diagrama divergir do código | Alto | Atualizar o diagrama **no mesmo PR** da implementação |
-| Ambiente de desenvolvimento inconsistente | Médio | Conferir JDK 21, Maven e Flutter em cada máquina na Sprint 1 |
+| Ambiente de desenvolvimento inconsistente | Baixo | Maven Wrapper (`./mvnw`) elimina a instalação do Maven; resta conferir JDK 21 e Flutter em cada máquina |
 | Credencial do Supabase vazar em commit | Alto | `.gitignore` configurado e `git diff` antes de cada commit |

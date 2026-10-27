@@ -36,7 +36,7 @@ Professor: Anthony Irlan Marques Luz
 | [1. Sobre o projeto](#1-sobre-o-projeto) | [5. Estrutura do repositório](#5-estrutura-do-repositório) |
 | [2. Atores e perfis](#2-atores-e-perfis) | [6. Como executar](#6-como-executar) |
 | [3. Arquitetura](#3-arquitetura) | [7. Documentação](#7-documentação) |
-| [4. Stack](#4-stack) | |
+| [4. Stack](#4-stack) | [8. Equipe](#8-equipe) |
 
 ---
 
@@ -223,8 +223,10 @@ ToolRent/
 |---|---|---|
 | Flutter SDK | 3.44 | `flutter --version` |
 | JDK | **21** | `java -version` |
-| Maven | 3.9 | `mvn -version` |
 | Conta Supabase | — | [supabase.com](https://supabase.com) |
+
+> [!TIP]
+> **Maven não precisa ser instalado.** O repositório traz o Maven Wrapper: use `./mvnw` (ou `mvnw.cmd` no Windows) e a versão correta do Maven é baixada automaticamente na primeira execução.
 
 > [!WARNING]
 > **A API exige JDK 21.** Versões mais novas podem compilar com `--release 21`, mas não são o ambiente alvo da disciplina. Se `java -version` não reportar 21, instale o [Temurin 21](https://adoptium.net/temurin/releases/?version=21) e aponte o `JAVA_HOME` para ele.
@@ -234,11 +236,16 @@ ToolRent/
 
 ```powershell
 java -version      # precisa reportar 21
-mvn -version       # se "não é reconhecido", o Maven não está no PATH
 flutter doctor     # resolva o que aparecer com ✗
 ```
 
-Se o Maven não estiver instalado: baixe em [maven.apache.org](https://maven.apache.org/download.cgi), extraia a pasta e adicione o subdiretório `bin` ao `Path` nas variáveis de ambiente do Windows.
+Instalando o JDK 21 pelo winget:
+
+```powershell
+winget install --id EclipseAdoptium.Temurin.21.JDK
+```
+
+Depois, aponte o `JAVA_HOME` para a pasta instalada e reabra o terminal.
 
 </details>
 
@@ -258,8 +265,8 @@ Crie um projeto em [supabase.com](https://supabase.com), aplique as migrations d
 ```bash
 cd api
 cp .env.example .env          # preencha com as credenciais do SEU projeto Supabase
-mvn clean install
-mvn spring-boot:run
+./mvnw clean install          # Windows: mvnw.cmd clean install
+./mvnw spring-boot:run
 ```
 
 A API sobe em `http://localhost:8080`. Para testar: `curl http://localhost:8080/api/health`
@@ -287,6 +294,21 @@ flutter run -d chrome          # ou: -d windows / -d android
 | [📄 Glossário](docs/glossario.md) | Vocabulário do domínio: reserva, locação, diária faturável |
 | [📁 Decisões (ADRs)](docs/decisoes/) | Toda decisão relevante, com data e alternativas descartadas |
 | [📁 Diagramas](docs/diagramas/) | Fontes PlantUML e imagens geradas |
+
+---
+
+## 8. Equipe
+
+| Integrante | GitHub |
+|---|---|
+| Kassio de Sousa Dias | [@kassiods](https://github.com/kassiods) |
+| Lincoln Gustavo de Brito Soares | [@Lincoln16yyy](https://github.com/Lincoln16yyy) |
+| Victor Rennan Alves Sátiro | [@Rennan-aex](https://github.com/Rennan-aex) |
+| Nailan Lucas dos Santos Nobre | [@Nailan-Nobre](https://github.com/Nailan-Nobre) |
+
+**Professor:** Anthony Irlan Marques Luz
+
+O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues) — uma Issue por história, de `#1` (US01) a `#16` (US16). O fluxo de trabalho, as convenções de branch e commit e o checklist de revisão estão em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 

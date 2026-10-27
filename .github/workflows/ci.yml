@@ -22,7 +22,7 @@ jobs:
 
       - name: Compilar e testar
         working-directory: api
-        run: mvn --batch-mode clean verify
+        run: ./mvnw --batch-mode clean verify
 
   app:
     name: App (Flutter)

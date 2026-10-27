@@ -32,22 +32,22 @@ Preencha as colunas de Issue e PR conforme o trabalho avança.
 
 | US | Caso de uso | Regras | Sprint | Issue | Branch | PR | Diagrama | Status |
 |---|---|---|---|---|---|---|---|---|
-| US01 | UC01 | RN09, RN10 | 3 | — | `feat/US01-autenticar-usuario` | — | Casos de uso, Classes | ⬜ |
-| US02 | UC02 | RN09, RN10, RN11 | 3 | — | `feat/US02-gerenciar-usuarios` | — | Casos de uso, Classes | ⬜ |
-| US03 | UC03 | RN09, RN11 | 4 | — | `feat/US03-gerenciar-clientes` | — | Casos de uso, Classes | ⬜ |
-| US04 | UC04 | RN04, RN09, RN11, RN12 | 4 | — | `feat/US04-gerenciar-ferramentas` | — | Casos de uso, Classes | ⬜ |
-| US05 | UC05 | RN01, RN02, RN03 | 4 | — | `feat/US05-consultar-disponibilidade` | — | Casos de uso, Sequência | ⬜ |
-| US06 | UC06 | RN09 | 4 | — | `feat/US06-consultar-catalogo` | — | Casos de uso | ⬜ |
-| US07 | UC07 | RN01, RN02, RN03, RN08 | 5 | — | `feat/US07-solicitar-reserva` | — | Casos de uso, Estados | ⬜ |
-| US08 | UC08 | RN02, RN03, RN08, RN09 | 5 | — | `feat/US08-analisar-reserva` | — | Casos de uso, Estados | ⬜ |
-| US09 | UC09 | RN01–04, RN08, RN11, RN12 | 5 | — | `feat/US09-formalizar-locacao` | — | Casos de uso, Estados, Sequência | ⬜ |
-| US10 | UC10 | RN03, RN08, RN09 | 5 | — | `feat/US10-registrar-retirada` | — | Casos de uso, Estados | ⬜ |
-| US11 | UC11 | RN04–06, RN08, RN11, RN12 | 6 | — | `feat/US11-registrar-devolucao` | — | Casos de uso, Estados | ⬜ |
-| US12 | UC09, UC11, UC12 | RN04, RN05, RN06, RN12 | 6 | — | `feat/US12-calcular-valores` | — | Casos de uso, Classes | ⬜ |
-| US13 | UC13 | RN07, RN09, RN11, RN12 | 6 | — | `feat/US13-registrar-pagamento` | — | Casos de uso, Classes | ⬜ |
-| US14 | UC14 | RN03, RN08, RN09, RN11 | 7 | — | `feat/US14-gerenciar-manutencao` | — | Casos de uso, Estados | ⬜ |
-| US15 | UC15 | RN01, RN09, RN12 | 7 | — | `feat/US15-consultar-relatorios` | — | Casos de uso | ⬜ |
-| US16 | UC16 | RN09 | 7 | — | `feat/US16-historico-cliente` | — | Casos de uso | ⬜ |
+| US01 | UC01 | RN09, RN10 | 3 | [#1](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/1) | `feat/US01-autenticar-usuario` | — | Casos de uso, Classes | ⬜ |
+| US02 | UC02 | RN09, RN10, RN11 | 3 | [#2](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/2) | `feat/US02-gerenciar-usuarios` | — | Casos de uso, Classes | ⬜ |
+| US03 | UC03 | RN09, RN11 | 4 | [#3](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/3) | `feat/US03-gerenciar-clientes` | — | Casos de uso, Classes | ⬜ |
+| US04 | UC04 | RN04, RN09, RN11, RN12 | 4 | [#4](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/4) | `feat/US04-gerenciar-ferramentas` | — | Casos de uso, Classes | ⬜ |
+| US05 | UC05 | RN01, RN02, RN03 | 4 | [#5](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/5) | `feat/US05-consultar-disponibilidade` | — | Casos de uso, Sequência | ⬜ |
+| US06 | UC06 | RN09 | 4 | [#6](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/6) | `feat/US06-consultar-catalogo` | — | Casos de uso | ⬜ |
+| US07 | UC07 | RN01, RN02, RN03, RN08 | 5 | [#7](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/7) | `feat/US07-solicitar-reserva` | — | Casos de uso, Estados | ⬜ |
+| US08 | UC08 | RN02, RN03, RN08, RN09 | 5 | [#8](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/8) | `feat/US08-analisar-reserva` | — | Casos de uso, Estados | ⬜ |
+| US09 | UC09 | RN01–04, RN08, RN11, RN12 | 5 | [#9](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/9) | `feat/US09-formalizar-locacao` | — | Casos de uso, Estados, Sequência | ⬜ |
+| US10 | UC10 | RN03, RN08, RN09 | 5 | [#10](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/10) | `feat/US10-registrar-retirada` | — | Casos de uso, Estados | ⬜ |
+| US11 | UC11 | RN04–06, RN08, RN11, RN12 | 6 | [#11](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/11) | `feat/US11-registrar-devolucao` | — | Casos de uso, Estados | ⬜ |
+| US12 | UC09, UC11, UC12 | RN04, RN05, RN06, RN12 | 6 | [#12](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/12) | `feat/US12-calcular-valores` | — | Casos de uso, Classes | ⬜ |
+| US13 | UC13 | RN07, RN09, RN11, RN12 | 6 | [#13](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/13) | `feat/US13-registrar-pagamento` | — | Casos de uso, Classes | ⬜ |
+| US14 | UC14 | RN03, RN08, RN09, RN11 | 7 | [#14](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/14) | `feat/US14-gerenciar-manutencao` | — | Casos de uso, Estados | ⬜ |
+| US15 | UC15 | RN01, RN09, RN12 | 7 | [#15](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/15) | `feat/US15-consultar-relatorios` | — | Casos de uso | ⬜ |
+| US16 | UC16 | RN09 | 7 | [#16](https://github.com/kassiods/ToolRent-Sistema-de-Loca-o-de-Ferramentas/issues/16) | `feat/US16-historico-cliente` | — | Casos de uso | ⬜ |
 
 **Legenda:** ⬜ não iniciado · 🟡 em andamento · 🔍 em revisão · ✅ concluído
 

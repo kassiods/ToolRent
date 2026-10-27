@@ -6,10 +6,12 @@ Camada de negócio do ToolRent. **Aqui moram todas as regras do sistema.**
 
 ## Executar
 
+**Não é necessário instalar o Maven** — o repositório traz o Maven Wrapper, que baixa a versão correta na primeira execução.
+
 ```bash
 cp .env.example .env     # preencha com as credenciais do Supabase
-mvn clean install
-mvn spring-boot:run
+./mvnw clean install     # Windows: mvnw.cmd clean install
+./mvnw spring-boot:run
 ```
 
 A API sobe em `http://localhost:8080`.
@@ -21,8 +23,10 @@ curl http://localhost:8080/api/health
 Verificar antes de abrir um PR:
 
 ```bash
-mvn clean test
+./mvnw clean test
 ```
+
+> Requer **JDK 21**. Se `java -version` não reportar 21, instale o [Temurin 21](https://adoptium.net/temurin/releases/?version=21) e aponte o `JAVA_HOME` para ele.
 
 ---
 
@@ -80,12 +84,11 @@ Sprint 0: esqueleto com o endpoint de verificação.
 
 As dependências de segurança (OAuth2 Resource Server) entram na Sprint 3, junto da US01.
 
-## ⚠️ Verificação pendente
+## Verificação executada
+
+Em 27/10/2026, com JDK 21.0.12 (Temurin) e Maven 3.9.9:
 
 | Comando | Resultado |
 |---|---|
-| `mvn clean test` | ⚠️ **Não executado** — Maven ausente no ambiente onde o esqueleto foi criado |
-
-**O primeiro integrante com Maven instalado deve rodar `mvn clean test` e reportar o resultado.** O `pom.xml`, a classe principal, o controller e o teste foram escritos, mas nunca compilados.
-
-Requisitos: **JDK 21** e Maven 3.9+.
+| `mvn clean test` | ✅ BUILD SUCCESS · 2 testes, 0 falhas |
+| `./mvnw --batch-mode test` | ✅ exit 0 — o wrapper funciona sem Maven instalado |

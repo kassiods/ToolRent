@@ -111,8 +111,12 @@ Quando pedirem apenas análise, **não altere arquivos**.
 | Sprint | 1 — casos de uso e backlog |
 | Documentação | ✅ completa para a entrega atual |
 | App Flutter | 🟡 esqueleto; tela de boas-vindas, sem autenticação |
-| API Java | 🟡 esqueleto; só o endpoint de verificação |
+| API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
 | Banco | 🟡 migration inicial em **rascunho**, a confirmar na Sprint 2 |
 | Classes de domínio | ⬜ Sprint 2 |
 
-> ⚠️ **Pendência crítica:** a mudança de stack (JavaFX → Flutter + API + Supabase) ainda **não foi aprovada pelo professor**. Ver [ADR 0001](docs/decisoes/0001-stack-flutter-java-supabase.md).
+O backlog está no GitHub Issues: `#1` a `#16` correspondem a US01–US16.
+
+A mudança de stack foi **aprovada pelo professor** em 27/10/2026 — ver [ADR 0001](docs/decisoes/0001-stack-flutter-java-supabase.md).
+
+Para compilar a API use `./mvnw` (Maven Wrapper); não é preciso instalar o Maven.
