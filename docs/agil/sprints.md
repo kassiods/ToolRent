@@ -73,8 +73,8 @@ gantt
 | Aprovação do professor para a mudança de stack | ✅ ADR 0001 |
 | Revisar os 16 casos de uso com a equipe | ⬜ |
 | Gerar a imagem do diagrama a partir do `.puml` | ✅ [`casos-de-uso.jpg`](../diagramas/casos-de-uso.jpg) |
-| Configurar o GitHub Project com as colunas do fluxo | ⬜ |
-| **Resolver as decisões pendentes #1, #2 e #5** | ⬜ |
+| Configurar o GitHub Project com as colunas do fluxo | ✅ [Project #2](https://github.com/users/kassiods/projects/2) |
+| **Resolver as decisões pendentes #1, #2 e #5** | 🟡 propostas em [ADR 0005](../decisoes/0005-login-proprio-do-cliente.md), [0006](../decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md) e [0007](../decisoes/0007-locacao-presencial-sem-reserva.md) — aguardam aprovação |
 | Revisar o documento antes da entrega | ⬜ |
 
 **Critério de conclusão:** documento e diagrama coerentes entre si, 16 Issues criadas, colaboradores adicionados.

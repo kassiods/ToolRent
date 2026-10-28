@@ -284,4 +284,9 @@ Operações que alteram várias tabelas rodam em **transação**: ou tudo é gra
 | 4 | Fórmula da multa e alçada de aprovação de danos | RN05, RN06 | Percentual da diária; alçada a definir |
 | — | Política para pagamento acima do saldo | RN07 | Rejeitar na primeira versão |
 
-**Nenhuma pendência bloqueia as Sprints 1 a 4.** Todas precisam estar resolvidas antes da Sprint 6 (cálculos e devolução).
+**A pendência #2 bloqueia a Sprint 4:** ela define quais registros entram na consulta de
+sobreposição de UC05 (US05, 8 pontos). As pendências #3 e #4 precisam estar resolvidas antes da
+Sprint 6 (cálculos e devolução).
+
+> A frase anterior deste parágrafo afirmava que nenhuma pendência bloqueava as Sprints 1 a 4.
+> Estava errada: #2 afeta RN02 e UC05, que são Sprint 4.

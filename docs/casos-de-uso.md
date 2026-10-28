@@ -610,15 +610,19 @@ Cada caso de uso tem origem em pelo menos uma história de usuário. A matriz co
 
 Estes pontos ainda precisam de validação da equipe e, quando aplicável, do professor. Nenhum deles bloqueia a entrega atual, mas todos afetam a implementação.
 
-| # | Questão | Afeta |
-|---|---|---|
-| 1 | O Cliente terá login próprio ou o Atendente registra as solicitações em seu nome? | UC01, UC06, UC07 |
-| 2 | Uma reserva `SOLICITADA` bloqueia a disponibilidade ou só após aprovação? | RN02, UC05, UC07 |
-| 3 | Como contar diárias: períodos exatos de 24h ou diárias iniciadas? | RN04, UC12 |
-| 4 | Qual a fórmula exata do atraso e quem aprova cobranças por dano? | RN05, RN06, UC11, UC12 |
-| 5 | Locação presencial direta, sem reserva prévia, é permitida? | UC09 |
-| 6 | Devolução parcial de itens do mesmo contrato é permitida? | UC11 |
-| 7 | Quais relatórios são obrigatórios na primeira versão? | UC15 |
-| 8 | O professor exige um modelo específico de especificação textual visto em aula? | Este documento |
+| # | Questão | Afeta | Proposta registrada |
+|---|---|---|---|
+| 1 | O Cliente terá login próprio ou o Atendente registra as solicitações em seu nome? | UC01, UC06, UC07 | 🟡 [ADR 0005](decisoes/0005-login-proprio-do-cliente.md) |
+| 2 | Uma reserva `SOLICITADA` bloqueia a disponibilidade ou só após aprovação? | RN02, UC05, UC07 | 🟡 [ADR 0006](decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md) |
+| 3 | Como contar diárias: períodos exatos de 24h ou diárias iniciadas? | RN04, UC12 | recomendação em [RN04](regras-de-negocio.md) |
+| 4 | Qual a fórmula exata do atraso e quem aprova cobranças por dano? | RN05, RN06, UC11, UC12 | recomendação parcial em [RN05](regras-de-negocio.md) |
+| 5 | Locação presencial direta, sem reserva prévia, é permitida? | UC09 | 🟡 [ADR 0007](decisoes/0007-locacao-presencial-sem-reserva.md) |
+| 6 | Devolução parcial de itens do mesmo contrato é permitida? | UC11 | — |
+| 7 | Quais relatórios são obrigatórios na primeira versão? | UC15 | — |
+| 8 | O professor exige um modelo específico de especificação textual visto em aula? | Este documento | — |
+
+> As questões **1, 2 e 5** têm ADR em status 🟡 **Proposta**: o texto está escrito, com
+> alternativas e consequências, aguardando só a aprovação da equipe. **Proposta não vale** —
+> enquanto o status não virar ✅ Aceita, não implemente como decidido.
 
 Ver também [`decisoes/`](decisoes/) para as decisões já tomadas.
