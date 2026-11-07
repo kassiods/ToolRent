@@ -24,9 +24,10 @@ Isso resolve o problema que o PlantUML tinha aqui: antes, a fonte `.puml` e a im
 | Diagrama | Arquivo | Status | Sprint |
 |---|---|---|---|
 | Casos de uso | [`casos-de-uso.md`](casos-de-uso.md) | ✅ | 1 |
-| Classes de domínio | `classes.md` | ⬜ | 2 |
-| Estados da Locação | `estados-locacao.md` | ⬜ | 2 |
-| Estados da Reserva | `estados-reserva.md` | ⬜ | 2 |
+| Classes de domínio | [`classes.md`](classes.md) | ✅ | 2 |
+| Estados da Locação | [`estados-locacao.md`](estados-locacao.md) | ✅ | 2 |
+| Estados da Reserva | [`estados-reserva.md`](estados-reserva.md) | ✅ | 2 |
+| Sequência — Consultar disponibilidade | `sequencia-uc05.md` | ⬜ | 4 |
 | Sequência — Formalizar locação | `sequencia-uc09.md` | ⬜ | 5 |
 
 ---
