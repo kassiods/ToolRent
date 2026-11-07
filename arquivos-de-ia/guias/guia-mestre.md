@@ -93,7 +93,7 @@ De acordo com o enunciado da disciplina compartilhado pela equipe:
 - SQLite via `sqlite-jdbc`, com arquivo local criado pelo próprio sistema na primeira execução.
 - JDBC para persistência.
 - Maven, com execução por `mvn javafx:run`.
-- Git e GitHub; Issues ou GitHub Projects como Product Backlog.
+- Git e GitHub; Issues ou GitHub Projects como Product Backlog. *(Hoje: Issues + quadro no Trello — ADR 0009.)*
 - A cada semana, entregar diagrama UML e código que implementa exatamente o que o diagrama especifica.
 - Cada commit de entrega deve ser rastreável até um elemento de diagrama.
 - Entrega da semana 1: repositório, documento de casos de uso e diagrama de casos de uso.
@@ -371,7 +371,7 @@ toolrent/
 │   ├── backlog.md
 │   ├── decisoes/
 │   └── diagramas/
-│       ├── casos-de-uso.puml
+│       ├── casos-de-uso.puml        (hoje: casos-de-uso.md, Mermaid — ADR 0008)
 │       ├── casos-de-uso.png
 │       ├── classes.puml
 │       ├── estados-locacao.puml
