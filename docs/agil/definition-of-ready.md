@@ -18,7 +18,7 @@ Uma Issue só entra na sprint se todos os itens estiverem satisfeitos.
 - [ ] Tem critérios de aceite objetivos e verificáveis
 - [ ] Referencia o(s) caso(s) de uso relacionados
 - [ ] Referencia as regras de negócio envolvidas
-- [ ] Indica qual diagrama será afetado
+- [ ] Indica **qual diagrama especifica** o comportamento (classes, estados ou sequência)
 - [ ] Está estimada em pontos
 - [ ] Não depende de decisão pendente ainda em aberto
 - [ ] Não depende de outra história não concluída (ou a dependência está explícita)
@@ -40,6 +40,18 @@ Um critério de aceite precisa ter resposta **sim ou não**, sem interpretação
 | "Calcular certo" | "Locação de 3 diárias com tarifa 50,00 e quantidade 2 resulta em 300,00" |
 
 Se você não consegue escrever o teste a partir do critério, o critério não está pronto.
+
+---
+
+## O diagrama não é item de checklist: é a etapa seguinte
+
+A DoR cumprida **não** libera a implementação. Libera o **desenho do diagrama**.
+
+O cartão sai de 🎯 Pronto para a sprint para 📐 Diagrama, e só depois de o PR do diagrama ser
+mergeado vai para 🔨 Em andamento. Ver [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md).
+
+Por isso o item da checklist pede para **identificar** o diagrama, não para tê-lo pronto: quem
+identifica na DoR é quem vai desenhar em seguida.
 
 ---
 
