@@ -24,23 +24,31 @@ Isso resolve o problema que o PlantUML tinha aqui: antes, a fonte `.puml` e a im
 ```
 docs/diagramas/
 ├── sprint-1/     casos de uso — a fronteira do sistema
-├── sprint-2/     classes de domínio e ciclos de vida
+├── sprint-2/     navegação das telas iniciais · classes de domínio · ciclos de vida
 ├── sprint-4/     (a criar) sequência de UC05
 └── sprint-5/     (a criar) sequência de UC09
 ```
 
 **Toda sprint tem os seus diagramas, e a implementação da sprint segue o que eles especificam.**
-A pasta diz em que entrega o diagrama nasceu; um diagrama continua valendo depois da sprint dele
-— o de casos de uso, da Sprint 1, é referência até o fim do projeto.
+A pasta diz em que entrega o diagrama **nasceu**, não em que sprint ele é implementado; um
+diagrama continua valendo depois da sprint dele — o de casos de uso, da Sprint 1, é referência até
+o fim do projeto.
 
-| Sprint | Diagrama | Arquivo | Status |
-|---|---|---|---|
-| 1 | Casos de uso | [`sprint-1/casos-de-uso.md`](sprint-1/casos-de-uso.md) | ✅ |
-| 2 | Classes de domínio | [`sprint-2/classes.md`](sprint-2/classes.md) | ✅ |
-| 2 | Estados da Reserva | [`sprint-2/estados-reserva.md`](sprint-2/estados-reserva.md) | ✅ |
-| 2 | Estados da Locação | [`sprint-2/estados-locacao.md`](sprint-2/estados-locacao.md) | ✅ |
-| 4 | Sequência — Consultar disponibilidade | `sprint-4/sequencia-uc05.md` | ⬜ |
-| 5 | Sequência — Formalizar locação | `sprint-5/sequencia-uc09.md` | ⬜ |
+| Nasceu na | Diagrama | Arquivo | Implementado em | Status |
+|---|---|---|---|---|
+| 1 | Casos de uso | [`sprint-1/casos-de-uso.md`](sprint-1/casos-de-uso.md) | referência permanente | ✅ |
+| 2 | Navegação — tela inicial do Administrador | [`sprint-2/navegacao-administrador.md`](sprint-2/navegacao-administrador.md) | Sprint 2 | ✅ |
+| 2 | Navegação — tela inicial do Atendente | [`sprint-2/navegacao-atendente.md`](sprint-2/navegacao-atendente.md) | Sprint 2 | ✅ |
+| 2 | Navegação — tela inicial do Cliente | [`sprint-2/navegacao-cliente.md`](sprint-2/navegacao-cliente.md) | Sprint 2 | ✅ |
+| 2 | Classes de domínio | [`sprint-2/classes.md`](sprint-2/classes.md) | **Sprint 3** | ✅ |
+| 2 | Estados da Reserva | [`sprint-2/estados-reserva.md`](sprint-2/estados-reserva.md) | **Sprint 3** | ✅ |
+| 2 | Estados da Locação | [`sprint-2/estados-locacao.md`](sprint-2/estados-locacao.md) | **Sprint 3** | ✅ |
+| 4 | Sequência — Consultar disponibilidade | `sprint-4/sequencia-uc05.md` | Sprint 4 | ⬜ |
+| 5 | Sequência — Formalizar locação | `sprint-5/sequencia-uc09.md` | Sprint 5 | ⬜ |
+
+> Os três diagramas de domínio nasceram na Sprint 2 e continuam nesta pasta, mas a implementação
+> deles passou para a Sprint 3 quando a Sprint 2 foi redefinida como entrega de front-end — ver
+> [`../sprints/sprint-2.md`](../sprints/sprint-2.md). O diagrama não se move de pasta por isso.
 
 ### Ao abrir uma sprint nova
 
@@ -56,6 +64,7 @@ A pasta diz em que entrega o diagrama nasceu; um diagrama continua valendo depoi
 | Casos de uso | `flowchart LR` com `subgraph` como fronteira | [flowchart](https://mermaid.js.org/syntax/flowchart.html) |
 | Classes | `classDiagram` | [classDiagram](https://mermaid.js.org/syntax/classDiagram.html) |
 | Estados | `stateDiagram-v2` | [stateDiagram](https://mermaid.js.org/syntax/stateDiagram.html) |
+| Navegação entre telas | `stateDiagram-v2` — cada estado é uma tela, cada transição um toque | [stateDiagram](https://mermaid.js.org/syntax/stateDiagram.html) |
 | Sequência | `sequenceDiagram` | [sequenceDiagram](https://mermaid.js.org/syntax/sequenceDiagram.html) |
 | Entidade-relacionamento | `erDiagram` | [erDiagram](https://mermaid.js.org/syntax/entityRelationshipDiagram.html) |
 
@@ -87,6 +96,10 @@ Não é preciso Java, nem PlantUML, nem gerar PNG.
 - Apenas relações reais — `«include»` e `«extend»` não são enfeite
 - Legenda como tabela Markdown **fora** do bloco (Mermaid não tem legenda)
 - Cores por `classDef`, nunca literais espalhados pelos nós
+- **Sem acento nem caractere especial dentro do bloco Mermaid** — rótulo e nota em ASCII, como
+  nos diagramas já entregues. O texto acentuado vai nas tabelas de fora, onde é Markdown comum
+- Em `stateDiagram-v2`, **um nível de aninhamento** e nenhuma transição saindo de um estado que
+  está dentro de um composto: as duas coisas são o que costuma falhar na renderização do GitHub
 
 **`«include»` vs `«extend»`:**
 
