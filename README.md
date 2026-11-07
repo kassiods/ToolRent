@@ -35,8 +35,9 @@ Professor: Anthony Irlan Marques Luz
 |---|---|
 | [1. Sobre o projeto](#1-sobre-o-projeto) | [5. Estrutura do repositório](#5-estrutura-do-repositório) |
 | [2. Atores e perfis](#2-atores-e-perfis) | [6. Como executar](#6-como-executar) |
-| [3. Arquitetura](#3-arquitetura) | [7. Documentação](#7-documentação) |
-| [4. Stack](#4-stack) | [8. Equipe](#8-equipe) |
+| [3. Arquitetura](#3-arquitetura) | [7. Fluxo de trabalho](#7-fluxo-de-trabalho) |
+| [4. Stack](#4-stack) | [8. Documentação](#8-documentação) |
+| | [9. Equipe](#9-equipe) |
 
 ---
 
@@ -94,9 +95,11 @@ graph LR
 
 ### Diagrama de casos de uso
 
-![Diagrama de casos de uso do ToolRent](docs/diagramas/casos-de-uso.jpg)
+O diagrama é escrito em **Mermaid** e renderizado pelo próprio GitHub — abra
+**[`docs/diagramas/casos-de-uso.md`](docs/diagramas/casos-de-uso.md)** e ele aparece na página,
+sem imagem a baixar.
 
-📎 Fonte versionada: [`docs/diagramas/casos-de-uso.puml`](docs/diagramas/casos-de-uso.puml) · especificação: [`docs/casos-de-uso.md`](docs/casos-de-uso.md)
+📎 Especificação textual dos 16 casos de uso: [`docs/casos-de-uso.md`](docs/casos-de-uso.md) · notação: [ADR 0008](docs/decisoes/0008-mermaid-no-lugar-do-plantuml.md)
 
 ---
 
@@ -158,7 +161,7 @@ O app **pode** validar o mesmo campo para dar retorno imediato ao usuário. Mas 
 | Banco | **Supabase (PostgreSQL)** | 15 | Persistência, integridade referencial e RLS |
 | Autenticação | **Supabase Auth** | — | Identidade, sessão e emissão de JWT |
 | Versionamento | **Git + GitHub** | — | Código, Issues e Projects |
-| Diagramas | **PlantUML** | — | Fonte versionada dos diagramas UML |
+| Diagramas | **Mermaid** | — | Diagramas UML em texto, renderizados pelo GitHub |
 
 ---
 
@@ -201,7 +204,7 @@ ToolRent/
 │   ├── glossario.md
 │   ├── agil/                    DoR, DoD, sprints e rastreabilidade
 │   ├── decisoes/                ADRs — decisões com data e justificativa
-│   └── diagramas/               fontes .puml e imagens
+│   └── diagramas/               diagramas UML em Mermaid (.md)
 │
 ├── 🤖 arquivos-de-ia/           USO DE IA NO PROJETO
 │   ├── guias/                   guia mestre e prompts reutilizáveis
@@ -282,7 +285,69 @@ flutter run -d chrome          # ou: -d windows / -d android
 
 ---
 
-## 7. Documentação
+## 7. Fluxo de trabalho
+
+### O quadro
+
+O acompanhamento do trabalho fica no Trello:
+
+<div align="center">
+
+### 📋 **[ToolRent — Backlog](https://trello.com/b/m3gakhP8/toolrent-backlog)**
+
+</div>
+
+| Ferramenta | Papel |
+|---|---|
+| **[GitHub Issues](https://github.com/kassiods/ToolRent/issues)** `#1`–`#16` | Backlog formal: critérios de aceite e rastreabilidade de commit e PR |
+| **[Trello](https://trello.com/b/m3gakhP8/toolrent-backlog)** | Quadro Kanban: em que etapa cada história está e quem está nela |
+| **[`docs/backlog.md`](docs/backlog.md)** | Fonte da verdade do escopo: prioridade, pontos, caso de uso e sprint |
+
+O GitHub Projects foi descontinuado em favor do Trello — ver [ADR 0009](docs/decisoes/0009-trello-no-lugar-do-github-projects.md). As etiquetas das Issues descrevem a **natureza** do item (`historia`, `P0`/`P1`, `decisao-pendente`); a **sprint** não é etiqueta — vive no quadro e no backlog, um lugar só.
+
+### O diagrama vem antes do código
+
+> [!IMPORTANT]
+> **Nenhuma história entra em implementação antes de o diagrama dela estar aprovado em Pull Request.**
+> Não é recomendação de estilo: a disciplina exige que cada commit de entrega seja rastreável até
+> um elemento de diagrama, e que o código implemente exatamente o que o diagrama especifica.
+> Código primeiro transforma o diagrama em documentação retroativa — e o histórico do Git mostra.
+
+```mermaid
+flowchart LR
+    A["📥 Backlog<br/><i>história existe</i>"] --> B["🎯 Pronto<br/><i>DoR cumprida</i>"]
+    B --> C["📐 Diagrama<br/><b>PR só do diagrama</b>"]
+    C --> D["🔨 Em andamento<br/><i>agora sim, código</i>"]
+    D --> E["🔍 Em revisão<br/><i>PR da implementação</i>"]
+    E --> F["✅ Concluído<br/><i>DoD cumprida</i>"]
+
+    C -.->|"diagrama reprovado"| B
+    E -.->|"revisão pede ajuste"| D
+
+    classDef etapa fill:#F8FAFC,stroke:#1E40AF,color:#0F172A
+    classDef portao fill:#FEF3C7,stroke:#B45309,stroke-width:3px,color:#7C2D12
+    class A,B,D,E,F etapa
+    class C portao
+```
+
+O diagrama exigido depende do que a história faz:
+
+| A história… | Exige o diagrama de |
+|---|---|
+| Cria ou altera entidade de domínio | **Classes** |
+| Muda o ciclo de vida de Reserva, Locação ou Manutenção | **Estados** |
+| Coordena vários objetos num fluxo (ex.: UC09) | **Sequência** |
+| Apenas consulta, sem entidade nem estado novo | Basta o de **casos de uso**, já aprovado |
+
+Regra completa, alternativas descartadas e como ela é aplicada: [ADR 0010](docs/decisoes/0010-diagrama-antes-da-implementacao.md).
+
+### Convenções de branch, commit e revisão
+
+Estão em [`CONTRIBUTING.md`](CONTRIBUTING.md): uma branch por Issue, PR para integrar na `main`, revisão de pelo menos um colega. Nunca commite direto na `main`.
+
+---
+
+## 8. Documentação
 
 | Documento | O que responde |
 |---|---|
@@ -293,11 +358,11 @@ flutter run -d chrome          # ou: -d windows / -d android
 | [📄 Arquitetura](docs/arquitetura.md) | Como as camadas conversam e por quê |
 | [📄 Glossário](docs/glossario.md) | Vocabulário do domínio: reserva, locação, diária faturável |
 | [📁 Decisões (ADRs)](docs/decisoes/) | Toda decisão relevante, com data e alternativas descartadas |
-| [📁 Diagramas](docs/diagramas/) | Fontes PlantUML e imagens geradas |
+| [📁 Diagramas](docs/diagramas/) | Diagramas UML em Mermaid — a especificação que o código implementa |
 
 ---
 
-## 8. Equipe
+## 9. Equipe
 
 | Integrante | GitHub |
 |---|---|
@@ -308,7 +373,7 @@ flutter run -d chrome          # ou: -d windows / -d android
 
 **Professor:** Anthony Irlan Marques Luz
 
-O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent/issues) — uma Issue por história, de `#1` (US01) a `#16` (US16) — e acompanhado no [Project](https://github.com/users/kassiods/projects/2), com `Sprint`, `Pontos`, `Prioridade`, `Caso de uso` e sinalização das histórias bloqueadas por decisão pendente. O fluxo de trabalho, as convenções de branch e commit e o checklist de revisão estão em [`CONTRIBUTING.md`](CONTRIBUTING.md).
+O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent/issues) — uma Issue por história, de `#1` (US01) a `#16` (US16) — e acompanhado no [quadro do Trello](https://trello.com/b/m3gakhP8/toolrent-backlog), onde cada cartão traz caso de uso, regras, sprint, pontos, branch prevista e os diagramas obrigatórios. Ver [§ 7 Fluxo de trabalho](#7-fluxo-de-trabalho).
 
 ---
 

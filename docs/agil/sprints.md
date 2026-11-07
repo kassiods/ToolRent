@@ -72,8 +72,8 @@ gantt
 | Adicionar integrantes e professor como colaboradores | ✅ |
 | Aprovação do professor para a mudança de stack | ✅ ADR 0001 |
 | Revisar os 16 casos de uso com a equipe | ⬜ |
-| Gerar a imagem do diagrama a partir do `.puml` | ✅ [`casos-de-uso.jpg`](../diagramas/casos-de-uso.jpg) |
-| Configurar o GitHub Project com as colunas do fluxo | ✅ [Project #2](https://github.com/users/kassiods/projects/2) |
+| Diagrama de casos de uso em Mermaid, renderizado no GitHub | ✅ [`casos-de-uso.md`](../diagramas/casos-de-uso.md) |
+| Configurar o quadro de acompanhamento com as colunas do fluxo | ✅ [Trello](https://trello.com/b/m3gakhP8/toolrent-backlog) — 6 listas, 16 cartões |
 | **Resolver as decisões pendentes #1, #2 e #5** | 🟡 propostas em [ADR 0005](../decisoes/0005-login-proprio-do-cliente.md), [0006](../decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md) e [0007](../decisoes/0007-locacao-presencial-sem-reserva.md) — aguardam aprovação |
 | Revisar o documento antes da entrega | ⬜ |
 

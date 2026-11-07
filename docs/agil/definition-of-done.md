@@ -24,7 +24,7 @@ Copie e cole no Pull Request. Todos os itens aplicáveis precisam estar marcados
 - [ ] Não há número mágico, regra duplicada ou `System.out.println` de depuração
 
 **Documentação**
-- [ ] O diagrama afetado foi atualizado e corresponde ao código entregue
+- [ ] O diagrama (Mermaid, em `docs/diagramas/*.md`) **já estava aprovado antes do código** e corresponde ao que foi entregue
 - [ ] A documentação afetada (casos de uso, regras, README) foi atualizada
 - [ ] Decisões não óbvias foram registradas em `docs/decisoes/`
 
@@ -41,6 +41,10 @@ Copie e cole no Pull Request. Todos os itens aplicáveis precisam estar marcados
 **Revisão**
 - [ ] Pelo menos um colega revisou e aprovou
 - [ ] Outro integrante consegue executar e validar seguindo o README
+
+**Quadro**
+- [ ] O cartão no [Trello](https://trello.com/b/m3gakhP8/toolrent-backlog) foi movido para ✅ Concluído
+- [ ] A Issue correspondente foi fechada — o quadro **não** sincroniza sozinho
 ```
 
 ---

@@ -55,7 +55,7 @@ docs/
 │   └── rastreabilidade.md         matriz US ↔ UC ↔ RN ↔ Issue ↔ PR
 │
 ├── decisoes/                 ADRs — decisões com data, alternativas e consequências
-└── diagramas/                fontes .puml e imagens geradas
+└── diagramas/                diagramas UML em Mermaid (.md)
 ```
 
 ---

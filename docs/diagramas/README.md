@@ -2,64 +2,73 @@
 
 > **Regra de ouro da disciplina:** o código entregue implementa exatamente o que o diagrama especifica.
 > Diagrama e implementação são atualizados **no mesmo Pull Request**. Nunca um sem o outro.
+>
+> **O diagrama vem primeiro.** Nenhuma história vai para implementação antes de o diagrama dela
+> estar aprovado em PR — ver [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md)
+> e a coluna 📐 do [quadro no Trello](https://trello.com/b/m3gakhP8/toolrent-backlog).
+
+---
+
+## Notação: Mermaid
+
+Os diagramas são escritos em **Mermaid**, por recomendação do professor — ver [ADR 0008](../decisoes/0008-mermaid-no-lugar-do-plantuml.md).
+
+A fonte fica em um bloco ```` ```mermaid ```` dentro de um arquivo `.md`. **O GitHub renderiza o bloco direto na página**, então não existe imagem a gerar nem ferramenta a instalar: a fonte *é* o diagrama publicado.
+
+Isso resolve o problema que o PlantUML tinha aqui: antes, a fonte `.puml` e a imagem `.jpg` eram dois arquivos que podiam divergir — e divergiram na Sprint 1.
 
 ---
 
 ## Diagramas do projeto
 
-| Diagrama | Fonte | Imagem | Status | Sprint |
-|---|---|---|---|---|
-| Casos de uso | [`casos-de-uso.puml`](casos-de-uso.puml) | [`casos-de-uso.jpg`](casos-de-uso.jpg) | ✅ | 1 |
-| Classes de domínio | `classes.puml` | — | ⬜ | 2 |
-| Estados da Locação | `estados-locacao.puml` | — | ⬜ | 2 |
-| Estados da Reserva | `estados-reserva.puml` | — | ⬜ | 2 |
-| Sequência — Formalizar locação | `sequencia-uc09.puml` | — | ⬜ | 5 |
+| Diagrama | Arquivo | Status | Sprint |
+|---|---|---|---|
+| Casos de uso | [`casos-de-uso.md`](casos-de-uso.md) | ✅ | 1 |
+| Classes de domínio | `classes.md` | ⬜ | 2 |
+| Estados da Locação | `estados-locacao.md` | ⬜ | 2 |
+| Estados da Reserva | `estados-reserva.md` | ⬜ | 2 |
+| Sequência — Formalizar locação | `sequencia-uc09.md` | ⬜ | 5 |
 
 ---
 
-## Por que a fonte `.puml` é versionada
+## Como escrever cada tipo
 
-O checklist de entrega exige: *"O arquivo-fonte do diagrama está versionado no repositório."*
+| Diagrama UML | Sintaxe Mermaid | Documentação |
+|---|---|---|
+| Casos de uso | `flowchart LR` com `subgraph` como fronteira | [flowchart](https://mermaid.js.org/syntax/flowchart.html) |
+| Classes | `classDiagram` | [classDiagram](https://mermaid.js.org/syntax/classDiagram.html) |
+| Estados | `stateDiagram-v2` | [stateDiagram](https://mermaid.js.org/syntax/stateDiagram.html) |
+| Sequência | `sequenceDiagram` | [sequenceDiagram](https://mermaid.js.org/syntax/sequenceDiagram.html) |
+| Entidade-relacionamento | `erDiagram` | [erDiagram](https://mermaid.js.org/syntax/entityRelationshipDiagram.html) |
 
-Uma imagem solta não pode ser revisada em Pull Request, não mostra o que mudou entre versões e não pode ser corrigida por quem não tem a ferramenta original. O arquivo `.puml` é texto — aparece no `git diff` como qualquer código.
+Mermaid não tem diagrama de casos de uso nativo. A convenção adotada aqui é `flowchart LR`:
+atores como retângulos à esquerda, casos de uso como caixas arredondadas dentro de um
+`subgraph` que representa a fronteira do sistema, `«include»` como seta tracejada.
 
-**Sempre commite a fonte e a imagem juntas.**
+### Como pré-visualizar
 
----
+| Onde | Como |
+|---|---|
+| **GitHub** | Abra o `.md` — já renderiza. É a verificação que vale. |
+| **VS Code** | Extensão *Markdown Preview Mermaid Support* (bierner.markdown-mermaid), depois `Ctrl+Shift+V` |
+| **Navegador** | [mermaid.live](https://mermaid.live) — cole o conteúdo do bloco |
 
-## Como gerar a imagem
-
-### Opção 1 — Servidor online (sem instalar nada)
-
-Cole o conteúdo do `.puml` em [plantuml.com/plantuml](https://www.plantuml.com/plantuml/uml/) e baixe o PNG.
-
-### Opção 2 — VS Code
-
-Instale a extensão **PlantUML** (jebbs.plantuml). Com o arquivo aberto, pressione `Alt+D` para pré-visualizar e use o comando *PlantUML: Export Current Diagram* para gerar a imagem.
-
-Requer Java instalado — que o projeto já exige.
-
-### Opção 3 — Linha de comando
-
-```bash
-# Instale o PlantUML (requer Java)
-# Windows: choco install plantuml
-# macOS:   brew install plantuml
-
-plantuml -tpng casos-de-uso.puml
-```
+Não é preciso Java, nem PlantUML, nem gerar PNG.
 
 ---
 
 ## Convenções
 
-**Nome do arquivo:** kebab-case, descrevendo o conteúdo — `casos-de-uso.puml`, `estados-locacao.puml`, `sequencia-uc09.puml`.
+**Nome do arquivo:** kebab-case, descrevendo o conteúdo — `casos-de-uso.md`, `estados-locacao.md`, `sequencia-uc09.md`.
 
 **Dentro do arquivo:**
 
-- Cabeçalho em comentário indicando o documento correspondente
+- Título e nota indicando o documento correspondente
+- Comentários `%%` dentro do bloco Mermaid para justificar escolhas de modelagem
 - Identificadores dos elementos iguais aos da documentação (`UC01`, não `uc1` nem `autenticar`)
 - Apenas relações reais — `«include»` e `«extend»` não são enfeite
+- Legenda como tabela Markdown **fora** do bloco (Mermaid não tem legenda)
+- Cores por `classDef`, nunca literais espalhados pelos nós
 
 **`«include»` vs `«extend»`:**
 
@@ -74,14 +83,14 @@ Na dúvida, não use nenhuma das duas. Relação inventada é erro de modelagem 
 
 ## Checklist antes de commitar um diagrama
 
-- [ ] A fonte `.puml` está no commit
-- [ ] A imagem gerada está no commit
+- [ ] O bloco Mermaid renderiza no GitHub — conferido na página do arquivo, não só no editor
 - [ ] Os atores do diagrama batem **exatamente** com os do documento
 - [ ] Todos os casos de uso do documento aparecem no diagrama
 - [ ] Nenhum caso de uso no diagrama está ausente do documento
 - [ ] A fronteira do sistema está desenhada
 - [ ] As relações `«include»`/`«extend»` correspondem a comportamento real
 - [ ] A documentação afetada foi atualizada no mesmo PR
+- [ ] O cartão correspondente no Trello saiu de 📐 Diagrama
 
 ---
 
@@ -100,4 +109,7 @@ Na dúvida, não use nenhuma das duas. Relação inventada é erro de modelagem 
 
 > **Nota histórica:** a versão 1.0 do documento listava 4 atores, incluindo *Técnico de manutenção*, enquanto o diagrama tinha 3. A divergência foi resolvida removendo o ator — ver [ADR 0002](../decisoes/0002-remocao-do-ator-tecnico.md).
 >
-> A imagem `casos-de-uso.jpg` é a versão produzida pela equipe. Ao regenerar a partir do `.puml`, substitua-a por um PNG e atualize as referências no [README principal](../../README.md).
+> `casos-de-uso.jpg` é a imagem entregue na Sprint 1, gerada da antiga fonte PlantUML.
+> **Está arquivada como registro da entrega daquela data e não é mais mantida** — a fonte
+> vigente é [`casos-de-uso.md`](casos-de-uso.md). A fonte `casos-de-uso.puml` foi removida na
+> migração para Mermaid e continua recuperável no histórico do Git.

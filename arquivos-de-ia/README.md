@@ -86,4 +86,13 @@ Derivadas do [guia mestre](guias/guia-mestre.md):
 | [`guias/guia-mestre.md`](guias/guia-mestre.md) | Contexto completo do projeto. Carregue no início de uma sessão nova. |
 | [`guias/prompts.md`](guias/prompts.md) | Prompts prontos para tarefas recorrentes. |
 
-> ⚠️ **O guia mestre descreve a stack original** (JavaFX desktop + SQLite). A equipe mudou para Flutter + API Java + Supabase — ver [ADR 0001](../docs/decisoes/0001-stack-flutter-java-supabase.md). O guia continua válido para requisitos, regras de negócio, processo e critérios de qualidade; **a parte de tecnologia está superada.**
+> ⚠️ **O guia mestre descreve a stack e as ferramentas originais.** O que nele está superado:
+>
+> | No guia mestre | Hoje | Decisão |
+> |---|---|---|
+> | JavaFX desktop + SQLite + JDBC | Flutter + API Java/Spring Boot + Supabase | [ADR 0001](../docs/decisoes/0001-stack-flutter-java-supabase.md) |
+> | Diagramas em PlantUML (`.puml` + imagem) | Diagramas em Mermaid (`.md` renderizado) | [ADR 0008](../docs/decisoes/0008-mermaid-no-lugar-do-plantuml.md) |
+> | "Issues ou GitHub Projects" como quadro | Issues + quadro no Trello | [ADR 0009](../docs/decisoes/0009-trello-no-lugar-do-github-projects.md) |
+>
+> O guia continua válido para requisitos, regras de negócio, processo e critérios de qualidade;
+> **a parte de tecnologia e de ferramentas está superada.**
