@@ -113,11 +113,18 @@ projeto usa JDBC, não JPA.
 ## Verificação
 
 ```
-cd api && ./mvnw --batch-mode clean verify   ->  (ver abaixo)
-cd app && flutter analyze / flutter test     ->  (ver abaixo)
-Links relativos de todos os .md              ->  (ver abaixo)
-Blocos Mermaid                               ->  (ver abaixo)
+cd api && ./mvnw --batch-mode clean verify   ->  BUILD SUCCESS (exit 0)
+cd app && flutter analyze                    ->  No issues found!
+cd app && flutter test                       ->  All tests passed! (3 testes)
+Links relativos de todos os .md              ->  11 quebrados ao mover os diagramas,
+                                                 corrigidos; reverificado: nenhum quebrado
+Blocos Mermaid do repositorio                ->  15 blocos, todas as cercas balanceadas
+CI do PR #25 (run 42342562111)               ->  3 jobs verdes
 ```
+
+Mover os diagramas para `sprint-1/` e `sprint-2/` deixou 11 links relativos quebrados **dentro
+dos próprios arquivos movidos** — eles ficaram um nível mais fundo e precisavam de mais um `../`.
+O `git mv` não avisa; só a verificação de links pegou.
 
 ## Erros cometidos pela IA nesta sessão
 
@@ -125,7 +132,10 @@ Blocos Mermaid                               ->  (ver abaixo)
    bloqueadas — a etiqueta significa "bloqueada". Removida na hora em que percebi
 2. **Um heredoc com acentuação e crases quebrou no shell**; o arquivo foi criado com a ferramenta
    de escrita direta
-3. **Quase usei um projeto Supabase com dado de terceiro.** O usuário indicou o
+3. **Deixei a seção de verificação do log com `(ver abaixo)`** — escrevi o registro antes de
+   rodar os comandos e não voltei para preencher. Só foi corrigido porque o Kassio perguntou se
+   estava tudo salvo. Registro com placeholder é pior que registro ausente: parece verificado
+4. **Quase usei um projeto Supabase com dado de terceiro.** O usuário indicou o
    `fabrica-integracao-inscricoes` e eu só não escrevi nada porque inspecionei antes. Lição que
    vale registrar: **ler o destino antes de escrever nele**, mesmo quando indicado
 
