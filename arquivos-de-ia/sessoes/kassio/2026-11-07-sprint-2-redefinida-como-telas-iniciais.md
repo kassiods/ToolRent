@@ -36,6 +36,7 @@ das três telas abre — as telas já existirão.
 
 | Mudança | Onde |
 |---|---|
+| **Victor convidado para o quadro** e os três atribuídos aos seus cartões | Trello (navegador) |
 | Diagrama de navegação da tela do Administrador | `docs/diagramas/sprint-2/navegacao-administrador.md` |
 | Diagrama de navegação da tela do Atendente | `docs/diagramas/sprint-2/navegacao-atendente.md` |
 | Diagrama de navegação da tela do Cliente | `docs/diagramas/sprint-2/navegacao-cliente.md` |
@@ -128,11 +129,12 @@ continua verde no ponto de partida da sprint.
 
 ## Pendências
 
-- [ ] **Convidar o Victor no Trello** — o e-mail chegou nesta sessão
-      (`matadordeporcooinkoink@gmail.com`), mas o MCP do Trello não adiciona membro a quadro:
-      só tem `create` em `trelloWriteBoard`. É manual, na interface
-- [ ] **Atribuir os três como membros dos cartões** TT05/TT06/TT07 — mesma limitação do MCP. O
-      nome está no título e na descrição de cada cartão
+- [x] ~~Convidar o Victor no Trello~~ — **feito**. O e-mail chegou nesta sessão e o convite foi
+      enviado pela interface do navegador, porque o MCP do Trello não adiciona membro a quadro:
+      só tem `create` em `trelloWriteBoard`. O quadro agora tem 4 membros; o Victor aparece como
+      *"a conta ainda não foi criada"* até ele aceitar o convite por e-mail
+- [x] ~~Atribuir os três como membros dos cartões~~ — **feito**, também pela interface, pela mesma
+      limitação do MCP. Nailan no TT05, Lincoln no TT06, Victor no TT07
 - [ ] Revisar e mergear o PR desta branch — **a implementação não começa antes disso**
 - [ ] Decisão #8: perguntar ao professor o modelo de especificação textual usado em aula
 - [ ] Criar o projeto Supabase do ToolRent quando o back-end entrar
