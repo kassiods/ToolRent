@@ -112,7 +112,7 @@ Closes #12
 - História: US07
 - Caso de uso: UC07 (inclui UC05)
 - Regras: RN01, RN02, RN03, RN08
-- Diagramas afetados: casos-de-uso.puml, estados-reserva.puml
+- Diagramas afetados: docs/diagramas/casos-de-uso.md, docs/diagramas/estados-reserva.md
 
 **O que foi feito**
 ...

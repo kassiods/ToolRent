@@ -60,7 +60,7 @@ body:
     id: diagramas
     attributes:
       label: Diagrama(s) afetado(s)
-      placeholder: "casos-de-uso.puml, estados-reserva.puml"
+      placeholder: "casos-de-uso.md, estados-reserva.md"
 
   - type: dropdown
     id: prioridade

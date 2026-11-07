@@ -99,10 +99,10 @@ Casos de borda que não podem faltar:
 ```
 Alterei <o que mudou> em <arquivo>.
 
-Verifique se docs/diagramas/<diagrama>.puml continua correspondendo ao
+Verifique se docs/diagramas/<diagrama>.md continua correspondendo ao
 código. Se não:
 1. Aponte exatamente a divergência
-2. Proponha o .puml corrigido
+2. Proponha o bloco Mermaid corrigido
 3. Diga que documentos em docs/ também precisam mudar
 
 Lembre: o enunciado exige que o código implemente exatamente o que o
