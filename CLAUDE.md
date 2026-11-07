@@ -180,13 +180,17 @@ Quando pedirem apenas análise, **não altere arquivos**.
 
 | Item | Situação |
 |---|---|
-| Sprint | 2 — classes de domínio e banco · [plano](docs/sprints/sprint-2.md) |
+| Sprint | 2 — **telas iniciais por perfil, só front-end** · [plano](docs/sprints/sprint-2.md) |
 | Documentação | ✅ completa para a entrega atual |
 | App Flutter | 🟡 esqueleto; tela de boas-vindas, sem autenticação |
 | API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
-| Banco | 🟡 migration inicial em **rascunho**, a confirmar na Sprint 2 |
-| Classes de domínio | ⬜ diagrama pronto; implementação dividida em TT01–TT03 |
-| Diagramas | ✅ casos de uso, classes, estados da Reserva e da Locação · sequência pendente |
+| Banco | ⏸️ migration inicial em **rascunho**; não há projeto Supabase — adiado |
+| Telas iniciais | ⬜ 3 diagramas prontos; implementação em TT05 (Nailan), TT06 (Lincoln), TT07 (Victor) |
+| Classes de domínio | ⬜ diagrama pronto; implementação movida para a **Sprint 3** — TT01 e TT02 |
+| Diagramas | ✅ casos de uso · navegação das 3 telas · classes · estados da Reserva e da Locação · sequência pendente |
+
+> ⚠️ **A Sprint 2 é front-end.** Nenhuma tela dela chama API, banco ou autenticação. Se alguém
+> pedir endpoint, service ou classe de domínio "para a Sprint 2", isso é Sprint 3 — confirme antes.
 
 **Backlog:** GitHub Issues `#1` a `#16` = US01–US16. **Quadro de acompanhamento:**
 [Trello](https://trello.com/b/m3gakhP8/toolrent-backlog) — o GitHub Projects foi apagado

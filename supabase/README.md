@@ -71,16 +71,25 @@ supabase/
 
 ## ⚠️ Estado atual
 
-**`0001_estrutura_inicial.sql` é um RASCUNHO.** Ele antecipa o modelo a partir dos casos de uso e das regras de negócio, mas precisa ser **confirmado contra o diagrama de classes da Sprint 2** antes de virar definitivo.
+**`0001_estrutura_inicial.sql` é um RASCUNHO e nunca foi aplicado.** Não existe projeto Supabase
+do ToolRent — ver [o plano da Sprint 2](../docs/sprints/sprint-2.md).
 
-Se o diagrama divergir, a correção vem como `0002_*.sql` — nunca editando o arquivo já aplicado.
+A correspondência com o [diagrama de classes](../docs/diagramas/sprint-2/classes.md) **foi
+conferida em 07/11/2026**: 10 tabelas para as 10 classes, uma a uma. Na mesma data o rascunho
+recebeu `cliente.usuario_id` para acompanhar o [ADR 0005](../docs/decisoes/0005-login-proprio-do-cliente.md).
+Editar o arquivo foi legítimo porque ele nunca rodou; **depois de aplicado, a correção vem como
+`0002_*.sql`.**
 
 ### Pendente
 
-- [ ] Confirmar o schema contra o diagrama de classes (Sprint 2)
-- [ ] Escrever as políticas de RLS em `policies/` (Sprint 3)
-- [ ] Criar dados de demonstração fictícios (Sprint 2)
-- [ ] Decidir como reservas `SOLICITADA` afetam a disponibilidade (decisão #2)
+- [ ] **Criar o projeto Supabase do ToolRent** — não reaproveitar projeto existente de outro sistema
+- [ ] Aplicar a `0001_estrutura_inicial.sql` nesse projeto
+- [ ] Escrever as políticas de RLS em `policies/` (junto da autenticação, Sprint 3)
+- [ ] Criar dados de demonstração fictícios
+
+> A decisão #2 — como reservas `SOLICITADA` afetam a disponibilidade — **foi tomada**: só a
+> `APROVADA` bloqueia ([ADR 0006](../docs/decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md)).
+> É regra de serviço, não de schema: nada muda aqui.
 
 ---
 
