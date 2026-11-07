@@ -65,8 +65,15 @@ rastreabilidade — a diferença é que a origem é um **diagrama**, não uma US
 
 | TT | O que entrega | Diagrama que especifica | Sprint | Issue | Branch | Responsável | Status |
 |---|---|---|---|---|---|---|---|
-| TT01 | Classes de cadastros, catálogo e manutenção | [`classes.md`](../diagramas/sprint-2/classes.md) | 2 | [#21](https://github.com/kassiods/ToolRent/issues/21) | `feat/TT01-dominio-cadastros-e-catalogo` | Nailan | ⬜ |
-| TT02 | Classes de locação ponta a ponta | [`classes.md`](../diagramas/sprint-2/classes.md) · [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) · [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) | 2 | [#22](https://github.com/kassiods/ToolRent/issues/22) | `feat/TT02-dominio-locacao` | Lincoln | ⬜ |
+| TT05 | Tela inicial do Administrador + casca compartilhada | [`navegacao-administrador.md`](../diagramas/sprint-2/navegacao-administrador.md) | 2 | [#26](https://github.com/kassiods/ToolRent/issues/26) | `feat/TT05-tela-inicial-administrador` | Nailan | ⬜ |
+| TT06 | Tela inicial do Atendente — 10 itens | [`navegacao-atendente.md`](../diagramas/sprint-2/navegacao-atendente.md) | 2 | [#27](https://github.com/kassiods/ToolRent/issues/27) | `feat/TT06-tela-inicial-atendente` | Lincoln | ⬜ |
+| TT07 | Tela inicial do Cliente + teste de referência | [`navegacao-cliente.md`](../diagramas/sprint-2/navegacao-cliente.md) | 2 | [#28](https://github.com/kassiods/ToolRent/issues/28) | `feat/TT07-tela-inicial-cliente` | Victor | ⬜ |
+| TT01 | Classes de cadastros, catálogo e manutenção | [`classes.md`](../diagramas/sprint-2/classes.md) | 3 | [#21](https://github.com/kassiods/ToolRent/issues/21) | `feat/TT01-dominio-cadastros-e-catalogo` | Nailan | ⬜ |
+| TT02 | Classes de locação ponta a ponta | [`classes.md`](../diagramas/sprint-2/classes.md) · [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) · [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) | 3 | [#22](https://github.com/kassiods/ToolRent/issues/22) | `feat/TT02-dominio-locacao` | Lincoln | ⬜ |
+
+> **TT03 e TT04 não aparecem porque foram fechadas** na redivisão de 07/11/2026, e os IDs não são
+> reaproveitados. TT01 e TT02 continuam existindo: só mudaram de sprint quando a Sprint 2 passou a
+> ser entrega de front-end.
 
 Plano completo da Sprint 2, com os critérios de pronto de cada pacote e a ordem de integração:
 [`../sprints/sprint-2.md`](../sprints/sprint-2.md).
@@ -78,6 +85,9 @@ Plano completo da Sprint 2, com os critérios de pronto de cada pacote e a ordem
 | Diagrama | Habilita |
 |---|---|
 | [`casos-de-uso.md`](../diagramas/sprint-1/casos-de-uso.md) | Todas — é a fronteira do sistema |
+| [`navegacao-administrador.md`](../diagramas/sprint-2/navegacao-administrador.md) | A porta de entrada de US02 e US15 |
+| [`navegacao-atendente.md`](../diagramas/sprint-2/navegacao-atendente.md) | A porta de entrada de US03–US05, US08–US11, US13, US14, US16 |
+| [`navegacao-cliente.md`](../diagramas/sprint-2/navegacao-cliente.md) | A porta de entrada de US06 e US07 |
 | [`classes.md`](../diagramas/sprint-2/classes.md) | US01–US04, US06, US12, US13, US14 |
 | [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) | US07, US08 |
 | [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) | US09, US10, US11 |
