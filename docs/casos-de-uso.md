@@ -606,10 +606,11 @@ Cada caso de uso tem origem em pelo menos uma história de usuário. A matriz co
 
 ---
 
-## 6. Decisões — todas resolvidas, exceto uma
+## 6. Decisões — todas resolvidas
 
-Sete das oito decisões que travavam a implementação foram tomadas em **07/11/2026**. A equipe
-delegou a escolha; cada uma virou ADR com contexto, alternativas descartadas e consequências.
+As oito decisões que travavam a implementação foram resolvidas em **07/11/2026**: sete pela
+equipe, que delegou a escolha, e a #8 pelo professor. Cada uma virou ADR com contexto,
+alternativas descartadas e consequências.
 
 | # | Questão | Decisão | ADR |
 |---|---|---|---|
@@ -620,11 +621,16 @@ delegou a escolha; cada uma virou ADR com contexto, alternativas descartadas e c
 | 5 | Locação presencial sem reserva é permitida? | **Sim**, com as mesmas validações | ✅ [0007](decisoes/0007-locacao-presencial-sem-reserva.md) |
 | 6 | Devolução parcial é permitida? | **Não.** A devolução é do contrato inteiro | ✅ [0013](decisoes/0013-devolucao-sempre-integral.md) |
 | 7 | Quais relatórios na primeira versão? | **Três:** locações por período, receita por período, ferramentas mais locadas | ✅ [0014](decisoes/0014-tres-relatorios-obrigatorios.md) |
-| 8 | O professor exige um modelo específico de especificação textual? | ⬜ **Em aberto** | — |
+| 8 | O professor exige um modelo específico de especificação textual? | **Sim:** o do livro *Engenharia de Software Moderna*, de Marco Tulio Valente | ✅ [0015](decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md) |
 
-> A **#8 é a única pendente**, e não é uma escolha de projeto: só o professor pode respondê-la.
-> Enquanto isso, este documento segue o esqueleto clássico de caso de uso. Ela **não bloqueia
-> nenhuma implementação** — afeta o formato deste texto, não o comportamento do sistema.
+> **As oito estão resolvidas.** A #8 foi respondida pelo professor em 07/11/2026: a referência da
+> disciplina é o [Engenharia de Software Moderna](https://engsoftmoderna.info/).
+>
+> O modelo do capítulo 3 pede **nome** (verbo no infinitivo), **ator principal**, **fluxo normal**
+> e **extensões**, com propósito, pré-condições, pós-condições e casos relacionados como
+> opcionais. Este documento já traz todos os obrigatórios e vários dos opcionais — é um
+> superconjunto do modelo, e **não houve reescrita**. A única diferença é de nomenclatura: o que
+> aqui se chama *"Fluxos alternativos e exceções"* o livro chama **Extensões**.
 
 **ADR aceito não é editado para mudar de ideia.** Se a equipe discordar de alguma decisão acima,
 o caminho é um ADR novo marcando o anterior como 🔄 Substituída.

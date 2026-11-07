@@ -24,6 +24,7 @@ Um **ADR** (*Architecture Decision Record*) registra uma decisão relevante: o c
 | [0012](0012-multa-por-atraso-e-politica-de-danos.md) | Multa por atraso e política de danos | 07/11/2026 | ✅ Aceita — decisão #4 |
 | [0013](0013-devolucao-sempre-integral.md) | Devolução sempre integral | 07/11/2026 | ✅ Aceita — decisão #6 |
 | [0014](0014-tres-relatorios-obrigatorios.md) | Três relatórios obrigatórios | 07/11/2026 | ✅ Aceita — decisão #7 |
+| [0015](0015-diagramas-conforme-engenharia-de-software-moderna.md) | Diagramas e especificação conforme *Engenharia de Software Moderna* | 07/11/2026 | ✅ Aceita — decisão #8 |
 
 ---
 

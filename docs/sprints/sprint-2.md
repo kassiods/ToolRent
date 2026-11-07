@@ -1,6 +1,7 @@
-# Sprint 2 — Telas iniciais por perfil
+# Sprint 2 — Os três diagramas que faltavam, e as telas que eles especificam
 
-> **Escopo:** três telas iniciais, uma por perfil de usuário. **Só front-end.**
+> **Escopo:** os três diagramas do livro que o projeto ainda não tinha, e a implementação de cada
+> um. **Só front-end.**
 > **Quadro:** [ToolRent — Backlog](https://trello.com/b/m3gakhP8/toolrent-backlog)
 > **Situação:** diagramas escritos. A implementação começa quando este PR for mergeado.
 
@@ -8,17 +9,18 @@
 
 ## Objetivo
 
-Dar ao app a **primeira tela de cada perfil**, com o menu das ações que aquele perfil pode
-executar, navegando para telas de espera que nomeiam o caso de uso de cada destino.
+Completar o conjunto de diagramas da disciplina e dar ao app a **primeira tela de cada perfil**,
+com o menu das ações daquele perfil, navegando para telas de espera que nomeiam o caso de uso de
+cada destino.
 
-Três coisas, três diagramas, três pessoas. Nada além disso.
+Três diagramas, três pessoas, três telas.
 
 ### Por que front-end primeiro
 
-A Sprint 3 é autenticação, e o critério de entrega dela é *"login funcionando, **com menus
-diferentes por perfil**"* ([`sprints.md`](../agil/sprints.md)). Esses menus são exatamente o que
-esta sprint constrói. Quando o login entrar, ele passa a decidir **qual** das três telas abre —
-as telas já existirão.
+O critério de entrega da Sprint 3 já era *"login funcionando, **com menus diferentes por
+perfil**"* ([`sprints.md`](../agil/sprints.md)). Esses menus são exatamente o que esta sprint
+constrói. Quando o login entrar, ele passa a decidir **qual** das três telas abre — as telas já
+existirão.
 
 ### 🚫 Nada de back-end
 
@@ -35,58 +37,70 @@ três telas ver. Ele **não é controle de acesso** e sai na Sprint 3.
 
 ---
 
-## Os três diagramas — escritos antes do código
+## Os três diagramas — do livro, e antes do código
 
-Sob o [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md). Cada pacote tem o seu, em
-[`docs/diagramas/sprint-2/`](../diagramas/sprint-2/):
+A disciplina usa como referência o **[Engenharia de Software Moderna](https://engsoftmoderna.info/)**,
+de Marco Tulio Valente. O livro apresenta cinco diagramas; o projeto já tinha dois — casos de uso
+e classes. **Os três que faltavam entram nesta sprint, um por integrante**
+([ADR 0015](../decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)).
 
-| Pacote | Diagrama | Especifica |
-|---|---|---|
-| 1 | [`navegacao-administrador.md`](../diagramas/sprint-2/navegacao-administrador.md) | Tela do Administrador (UC02, UC15) **+ a casca compartilhada** |
-| 2 | [`navegacao-atendente.md`](../diagramas/sprint-2/navegacao-atendente.md) | Tela do Atendente — dez itens em quatro seções |
-| 3 | [`navegacao-cliente.md`](../diagramas/sprint-2/navegacao-cliente.md) | Tela do Cliente (UC06, UC07) + o teste de widget de referência |
+| Pacote | Diagrama do livro | Arquivo | Capítulo |
+|---|---|---|---|
+| 1 | **Pacotes** | [`pacotes.md`](../diagramas/sprint-2/pacotes.md) | 4 |
+| 2 | **Atividades** | [`atividades-tela-inicial.md`](../diagramas/sprint-2/atividades-tela-inicial.md) | 4 |
+| 3 | **Sequência** | [`sequencia-abrir-tela-inicial.md`](../diagramas/sprint-2/sequencia-abrir-tela-inicial.md) | 4 |
 
-**Se a implementação precisar divergir do diagrama, o diagrama muda primeiro**, em PR próprio.
-Não existe "ajusto no código e atualizo o desenho depois".
+Sob o [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md), os três foram escritos
+**antes** de qualquer linha de código. **Se a implementação precisar divergir do diagrama, o
+diagrama muda primeiro**, em PR próprio.
 
 ---
 
 ## Pacotes de trabalho
 
-Cada pacote é uma Issue, um cartão no quadro e uma branch. **Ninguém edita arquivo do outro.**
+Cada pacote é **um diagrama do livro + a fatia de código que ele especifica**. Uma Issue, um
+cartão no quadro, uma branch. **Ninguém edita arquivo do outro pacote.**
 
-### 📦 Pacote 1 — Tela inicial do Administrador + casca compartilhada
+### 📦 Pacote 1 — Diagrama de pacotes + casca compartilhada
 
 **Responsável:** Nailan Lucas dos Santos Nobre
-**Issue:** [#26](https://github.com/kassiods/ToolRent/issues/26) · **Branch:** `feat/TT05-tela-inicial-administrador`
-**Diagrama:** [`navegacao-administrador.md`](../diagramas/sprint-2/navegacao-administrador.md)
+**Issue:** [#26](https://github.com/kassiods/ToolRent/issues/26) · **Branch:** `feat/TT05-pacotes-e-tela-administrador`
+**Diagrama:** [`pacotes.md`](../diagramas/sprint-2/pacotes.md) — as camadas de `app/` e `api/`, e quem pode depender de quem
+
+O diagrama de pacotes especifica **estrutura**. A implementação dele é materializar essa
+estrutura, mais a casca de UI que as outras duas telas usam.
 
 | Arquivo | O que é |
 |---|---|
-| `app/lib/ui/screens/seletor_perfil_screen.dart` | Escolha provisória de perfil — três opções |
 | `app/lib/ui/widgets/cartao_acao.dart` | Cartão de ação do menu (ícone, rótulo, callback) |
 | `app/lib/ui/screens/em_construcao_screen.dart` | Tela de espera, recebe código e nome do UC |
-| `app/lib/ui/screens/home_administrador_screen.dart` | A tela inicial do Administrador |
+| `app/lib/ui/screens/seletor_perfil_screen.dart` | Escolha provisória de perfil — três opções |
+| `app/lib/ui/screens/home_administrador_screen.dart` | Tela inicial do Administrador — 2 itens |
 | `app/lib/main.dart` | `home:` passa a ser o `SeletorPerfilScreen` |
+| `app/lib/domain/`, `app/lib/data/` | Documentar os pacotes hoje vazios, e **remover `domain/rules/`** |
 
 **Pronto quando:**
-- As quatro telas/widgets existem com os nomes e as assinaturas **exatas** do diagrama
-- O menu do Administrador tem **exatamente dois** itens — UC02 e UC15. Nem mais, nem menos
-- `CartaoAcao` e `EmConstrucaoScreen` têm os construtores publicados no diagrama, sem mudança
-- Nenhuma cor literal: tudo de `core/app_theme.dart` (convenção do `CLAUDE.md`)
-- Nenhuma chamada HTTP, nenhum `Repository`, nenhuma regra de negócio
+- A estrutura de pastas do app corresponde **exatamente** ao diagrama de pacotes
+- **`app/lib/domain/rules/` não existe mais.** Pasta chamada *rules* dentro do app contraria o
+  [ADR 0004](../decisoes/0004-regra-de-negocio-na-api.md) — e ela está lá hoje, vazia
+- `CartaoAcao` e `EmConstrucaoScreen` têm os construtores publicados no diagrama de sequência
+- O menu do Administrador tem **exatamente dois** itens — UC02 e UC15
+- Nenhuma cor literal: tudo sai de `core/app_theme.dart`
+- Nenhuma chamada HTTP, nenhum repository, nenhuma regra de negócio
 - Nenhum nome de usuário fictício na tela — não há usuário autenticado ainda
-- O teste existente da tela de boas-vindas continua passando, ou é ajustado no mesmo PR se a
-  troca do `home:` o afetar
+- O teste da tela de boas-vindas continua passando, ou é ajustado neste mesmo PR
 - `flutter analyze` sem nenhum aviso e `flutter test` verde
 
-**Sem dependência. Entra primeiro** — os outros dois pacotes usam a casca que ele entrega.
+**Sem dependência. Entra primeiro** — os outros dois usam a casca que ele entrega.
 
-### 📦 Pacote 2 — Tela inicial do Atendente
+### 📦 Pacote 2 — Diagrama de atividades + tela do Atendente
 
 **Responsável:** Lincoln Gustavo de Brito Soares
-**Issue:** [#27](https://github.com/kassiods/ToolRent/issues/27) · **Branch:** `feat/TT06-tela-inicial-atendente`
-**Diagrama:** [`navegacao-atendente.md`](../diagramas/sprint-2/navegacao-atendente.md)
+**Issue:** [#27](https://github.com/kassiods/ToolRent/issues/27) · **Branch:** `feat/TT06-atividades-e-tela-atendente`
+**Diagrama:** [`atividades-tela-inicial.md`](../diagramas/sprint-2/atividades-tela-inicial.md) — o fluxo da abertura do app até cada tela inicial
+
+O diagrama de atividades cobre a navegação das **três** telas e traz a tabela de itens de menu de
+cada uma. A implementação deste pacote é a maior delas.
 
 | Arquivo | O que é |
 |---|---|
@@ -94,20 +108,23 @@ Cada pacote é uma Issue, um cartão no quadro e uma branch. **Ninguém edita ar
 
 **Pronto quando:**
 - Os **dez** itens do diagrama existem, com o rótulo, o ícone e a seção especificados
-- **UC12 não tem item de menu.** Ele é `«include»` de UC09 e UC11 — botão próprio seria inventar relação
+- **UC12 não tem item de menu** — é `«include»` de UC09 e UC11, nunca acionado sozinho
 - As quatro seções aparecem na ordem do fluxo operacional, não em ordem alfabética
 - Os cartões se reorganizam em tela estreita e em tela larga, sem largura em pixel literal
 - Usa o `CartaoAcao` e o `EmConstrucaoScreen` do Pacote 1 **como estão** — nenhuma cópia local
 - Nenhuma cor literal, nenhuma chamada HTTP, nenhuma regra de negócio
 - `flutter analyze` sem nenhum aviso e `flutter test` verde
 
-**É a maior das três** — dez itens contra dois. **Depende do Pacote 1.**
+**É a maior das três telas** — dez itens contra dois. **Depende do Pacote 1.**
 
-### 📦 Pacote 3 — Tela inicial do Cliente
+### 📦 Pacote 3 — Diagrama de sequência + tela do Cliente + teste de referência
 
 **Responsável:** Victor Rennan Alves Sátiro
-**Issue:** [#28](https://github.com/kassiods/ToolRent/issues/28) · **Branch:** `feat/TT07-tela-inicial-cliente`
-**Diagrama:** [`navegacao-cliente.md`](../diagramas/sprint-2/navegacao-cliente.md)
+**Issue:** [#28](https://github.com/kassiods/ToolRent/issues/28) · **Branch:** `feat/TT07-sequencia-e-tela-cliente`
+**Diagrama:** [`sequencia-abrir-tela-inicial.md`](../diagramas/sprint-2/sequencia-abrir-tela-inicial.md) — a interação entre os objetos ao abrir a tela e tocar num item
+
+O diagrama de sequência é o que **fixa os contratos** do `CartaoAcao` e do `EmConstrucaoScreen`.
+Por isso este pacote entrega também o teste que prova que a sequência acontece.
 
 | Arquivo | O que é |
 |---|---|
@@ -117,32 +134,32 @@ Cada pacote é uma Issue, um cartão no quadro e uma branch. **Ninguém edita ar
 **Pronto quando:**
 - O menu tem **exatamente dois** itens — UC06 e UC07
 - **Nenhum item inventado.** Nada de "minhas reservas" ou "meus pagamentos": não existe caso de
-  uso do Cliente para isso, e o diagrama explica por quê
-- O teste de widget verifica que os dois cartões aparecem e que tocar neles abre a tela de espera
-  com o código do UC correto
+  uso do Cliente para isso, e o diagrama de atividades explica por quê
+- O teste percorre a sequência do diagrama: tocar no cartão abre a tela de espera com o
+  `codigoUc` correto
 - Usa o `CartaoAcao` e o `EmConstrucaoScreen` do Pacote 1 como estão
 - Nenhuma cor literal, nenhuma chamada HTTP, nenhuma regra de negócio
 - `flutter analyze` sem nenhum aviso e `flutter test` verde
 
-**É o menor dos três** — e é a primeira tarefa do Victor no projeto. Por isso ele entrega também
-o **teste de widget de referência**, que fica como modelo para as telas das próximas sprints.
-**Depende do Pacote 1.**
+**É a menor das três telas** — e é a primeira tarefa do Victor no projeto. O teste de widget fica
+como modelo para as telas das próximas sprints: hoje o `app/test/` só tem o da tela de
+boas-vindas. **Depende do Pacote 1.**
 
 ---
 
 ## Quem faz o quê
 
-| Pacote | Tela | Itens de menu | Responsável |
-|---|---|---|---|
-| 1 | Administrador + casca | 2 + 4 arquivos compartilhados | **Nailan** |
-| 2 | Atendente | 10 | **Lincoln** |
-| 3 | Cliente + teste de referência | 2 | **Victor** |
+| Pacote | Diagrama do livro | Tela que implementa | Itens de menu | Responsável |
+|---|---|---|---|---|
+| 1 | Pacotes | Administrador + casca | 2 | **Nailan** |
+| 2 | Atividades | Atendente | 10 | **Lincoln** |
+| 3 | Sequência | Cliente + teste | 2 | **Victor** |
 
 Os pacotes **não têm o mesmo tamanho**, e isso está declarado de propósito: o Atendente concentra
 dez dos dezesseis casos de uso, então a tela dele é maior por natureza. O Pacote 1 compensa
-carregando a casca que os três usam, e o Pacote 3 compensa com o teste de referência. A divisão foi
-acordada com a equipe; o que não deve mudar é a **fronteira entre os pacotes**, porque é ela que
-evita conflito de merge.
+carregando a casca que os três usam, e o Pacote 3 compensa com o teste de referência. A divisão
+foi acordada com a equipe; o que não deve mudar é a **fronteira entre os pacotes**, porque é ela
+que evita conflito de merge.
 
 ---
 
@@ -150,9 +167,9 @@ evita conflito de merge.
 
 ```mermaid
 flowchart LR
-    P1["📦 1 · Administrador<br/>+ casca compartilhada"] --> P2["📦 2 · Atendente<br/>10 itens"]
-    P1 --> P3["📦 3 · Cliente<br/>+ teste de referência"]
-    P2 --> FIM["✅ Sprint 2 fechada<br/>3 telas iniciais"]
+    P1["📦 1 · Pacotes<br/>+ casca compartilhada"] --> P2["📦 2 · Atividades<br/>tela do Atendente"]
+    P1 --> P3["📦 3 · Sequência<br/>tela do Cliente + teste"]
+    P2 --> FIM["✅ Sprint 2 fechada<br/>3 diagramas do livro<br/>+ 3 telas iniciais"]
     P3 --> FIM
 
     classDef pacote fill:#F8FAFC,stroke:#1E40AF,color:#0F172A
@@ -161,20 +178,22 @@ flowchart LR
     class FIM final
 ```
 
-Os três podem **escrever** em paralelo desde já — o diagrama fixa os contratos do `CartaoAcao` e
-do `EmConstrucaoScreen`. O que precisa de ordem é o **merge**:
+Os três podem **escrever** em paralelo desde já — o diagrama de sequência publica os contratos do
+`CartaoAcao` e do `EmConstrucaoScreen`. O que precisa de ordem é o **merge**:
 
 1. O Pacote 1 abre o PR primeiro, e os outros dois revisam com prioridade
 2. Pacotes 2 e 3 fazem `git rebase origin/main` assim que o 1 entrar
 3. Pacotes 2 e 3 **não dependem um do outro** — podem entrar em qualquer ordem
-4. Quem terminar antes não força o merge: espera, rebaseia, confirma o build
+4. Quem terminar antes **não força o merge**: espera, rebaseia, confirma o build
 
 ---
 
 ## O que saiu desta sprint
 
-As **classes de domínio em Java** eram o escopo anterior da Sprint 2. Elas foram movidas para a
-**Sprint 3**, com os diagramas que já as especificam — que continuam válidos e mergeados:
+### As classes de domínio
+
+Eram o escopo original da Sprint 2. Foram movidas para a **Sprint 3**, com os diagramas que já as
+especificam — que continuam válidos e mergeados:
 
 | Movido | Para | Por quê |
 |---|---|---|
@@ -186,32 +205,44 @@ Os diagramas [`classes.md`](../diagramas/sprint-2/classes.md),
 [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) **permanecem na pasta
 `sprint-2/`**: a pasta registra em que entrega o diagrama nasceu, não em que sprint ele é
 implementado — convenção de [`diagramas/README.md`](../diagramas/README.md#organização-uma-pasta-por-sprint).
-Nenhum deles foi reescrito.
 
-**Banco de dados:** segue adiado. Não há projeto Supabase do ToolRent, e esta sprint não precisa
-de nenhum. A migration `0001_estrutura_inicial.sql` continua rascunho versionado.
+### Os três diagramas de navegação
+
+Criados mais cedo nesta mesma data e **removidos**: eram máquinas de estado adaptadas para
+descrever telas, e não correspondem a nenhum dos cinco diagramas do livro. O conteúdo útil deles
+— itens de menu, ícones, rastreabilidade a cada caso de uso — foi preservado dentro do diagrama
+de atividades. Ver [ADR 0015](../decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md).
+
+### O banco
+
+Segue adiado. Não há projeto Supabase do ToolRent, e esta sprint não precisa de nenhum. A
+migration `0001_estrutura_inicial.sql` continua rascunho versionado.
 
 ---
 
-## Decisões: nenhuma pendente afeta esta sprint
+## Decisões: nenhuma pendente
 
-As sete que travavam implementação foram decididas em 07/11/2026. A única aberta é a **#8** — o
-modelo de especificação textual que o professor usa em aula —, que não afeta código.
+As oito foram resolvidas em 07/11/2026 — sete pela equipe e a **#8 pelo professor**, que indicou
+o *Engenharia de Software Moderna* como referência da disciplina. É daí que sai o conjunto de
+diagramas desta sprint.
 
-Duas decisões já tomadas aparecem aqui:
+Três decisões já tomadas aparecem aqui:
 
 | Decisão | Como aparece |
 |---|---|
 | [ADR 0002](../decisoes/0002-remocao-do-ator-tecnico.md) — sem o ator Técnico | São **três** telas porque são três atores. UC14 está no menu do Atendente |
 | [ADR 0005](../decisoes/0005-login-proprio-do-cliente.md) — cliente com login | Justifica a tela do Cliente existir. Autenticar é Sprint 3 |
+| [ADR 0015](../decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md) — diagramas do livro | Define **quais** três diagramas esta sprint entrega |
 
 ---
 
 ## Definition of Done da Sprint 2
 
-- [ ] Os três diagramas de navegação estão mergeados na `main` e renderizam no GitHub
+- [ ] Os três diagramas estão mergeados na `main` e renderizam no GitHub
+- [ ] O projeto tem os **cinco** diagramas do livro: casos de uso, classes, pacotes, sequência e atividades
 - [ ] As três telas iniciais existem e correspondem **exatamente** aos diagramas
 - [ ] O seletor de perfil provisório abre as três
+- [ ] `app/lib/domain/rules/` foi removido
 - [ ] Nenhuma tela chama API, banco ou autenticação
 - [ ] Nenhuma cor literal fora de `core/app_theme.dart`
 - [ ] Nenhuma regra de negócio no app ([ADR 0004](../decisoes/0004-regra-de-negocio-na-api.md))

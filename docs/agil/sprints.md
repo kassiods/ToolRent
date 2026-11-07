@@ -81,26 +81,29 @@ gantt
 
 ---
 
-## Sprint 2 — Telas iniciais por perfil
+## Sprint 2 — Os três diagramas que faltavam, e as telas que eles especificam
 
-**Objetivo:** a primeira tela de cada perfil, com o menu das ações daquele perfil. **Só front-end.**
+**Objetivo:** completar o conjunto de diagramas do livro e entregar a primeira tela de cada
+perfil, com o menu das ações daquele perfil. **Só front-end.**
 
 📋 **Plano detalhado, com os pacotes por integrante: [`../sprints/sprint-2.md`](../sprints/sprint-2.md)**
 
 | Tarefa | Situação |
 |---|---|
-| Diagrama de navegação — tela do Administrador | ✅ [`navegacao-administrador.md`](../diagramas/sprint-2/navegacao-administrador.md) |
-| Diagrama de navegação — tela do Atendente | ✅ [`navegacao-atendente.md`](../diagramas/sprint-2/navegacao-atendente.md) |
-| Diagrama de navegação — tela do Cliente | ✅ [`navegacao-cliente.md`](../diagramas/sprint-2/navegacao-cliente.md) |
-| [TT05](https://github.com/kassiods/ToolRent/issues/26) Tela do Administrador + casca compartilhada — Nailan | ⬜ |
-| [TT06](https://github.com/kassiods/ToolRent/issues/27) Tela do Atendente, 10 itens — Lincoln | ⬜ |
-| [TT07](https://github.com/kassiods/ToolRent/issues/28) Tela do Cliente + teste de referência — Victor | ⬜ |
+| Diagrama de **pacotes** — camadas de `app/` e `api/` | ✅ [`pacotes.md`](../diagramas/sprint-2/pacotes.md) |
+| Diagrama de **atividades** — da abertura do app à tela inicial | ✅ [`atividades-tela-inicial.md`](../diagramas/sprint-2/atividades-tela-inicial.md) |
+| Diagrama de **sequência** — abrir a tela e acionar o menu | ✅ [`sequencia-abrir-tela-inicial.md`](../diagramas/sprint-2/sequencia-abrir-tela-inicial.md) |
+| [TT05](https://github.com/kassiods/ToolRent/issues/26) Pacotes + casca + tela do Administrador — Nailan | ⬜ |
+| [TT06](https://github.com/kassiods/ToolRent/issues/27) Atividades + tela do Atendente, 10 itens — Lincoln | ⬜ |
+| [TT07](https://github.com/kassiods/ToolRent/issues/28) Sequência + tela do Cliente + teste — Victor | ⬜ |
 | Banco de dados no Supabase | ⏸️ **adiado** — não há projeto Supabase do ToolRent |
 | Políticas de RLS | ⏸️ adiado junto com o banco |
 | Dados de demonstração fictícios | ⏸️ adiado junto com o banco |
 
-**Três telas porque são três atores** — Administrador, Atendente e Cliente
-([ADR 0002](../decisoes/0002-remocao-do-ator-tecnico.md)). Cada integrante leva uma.
+**Três diagramas porque eram os três que faltavam** do conjunto do livro *Engenharia de Software
+Moderna* ([ADR 0015](../decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)), e
+**três telas porque são três atores** ([ADR 0002](../decisoes/0002-remocao-do-ator-tecnico.md)).
+Cada integrante leva um diagrama e a tela que ele especifica.
 
 > 🚫 **Nada de back-end nesta sprint.** Nenhuma tela chama a API, lê banco ou autentica. Um
 > seletor de perfil provisório abre o app e deixa escolher qual das três telas ver; ele **não é
@@ -108,6 +111,9 @@ gantt
 
 > 📐 **Primeira sprint implementada sob o [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md):**
 > os três diagramas foram escritos **antes** de qualquer linha de código.
+
+> 📚 Com esta entrega o projeto passa a ter os **cinco** diagramas do livro: casos de uso,
+> classes, pacotes, sequência e atividades.
 
 > ⏭️ **As classes de domínio saíram daqui para a Sprint 3** — TT01 e TT02. Os diagramas que as
 > especificam continuam válidos e mergeados; só a implementação mudou de sprint.

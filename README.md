@@ -207,7 +207,7 @@ ToolRent/
 │   ├── decisoes/                ADRs — decisões com data e justificativa
 │   └── diagramas/               diagramas UML em Mermaid, UMA PASTA POR SPRINT
 │       ├── sprint-1/            casos de uso
-│       └── sprint-2/            navegacao das telas iniciais, classes e ciclos de vida
+│       └── sprint-2/            pacotes, atividades, sequencia, classes e ciclos de vida
 │
 ├── 🤖 arquivos-de-ia/           USO DE IA NO PROJETO
 │   ├── guias/                   guia mestre e prompts reutilizáveis
@@ -335,8 +335,12 @@ flowchart LR
 
 **Toda sprint tem a sua pasta de diagramas** em `docs/diagramas/sprint-N/`, e a implementação
 daquela sprint segue o que eles especificam. Hoje: [sprint-1](docs/diagramas/sprint-1/) (casos de
-uso) e [sprint-2](docs/diagramas/sprint-2/) (navegação das três telas iniciais, classes de domínio,
+uso) e [sprint-2](docs/diagramas/sprint-2/) (pacotes, atividades, sequência, classes de domínio,
 estados da Reserva e da Locação).
+
+O conjunto de diagramas é o do livro **[Engenharia de Software Moderna](https://engsoftmoderna.info/)**,
+de Marco Tulio Valente, referência da disciplina — ver
+[ADR 0015](docs/decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md).
 
 O diagrama exigido depende do que a história faz:
 

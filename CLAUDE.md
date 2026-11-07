@@ -68,9 +68,12 @@ Motivo: o app roda no dispositivo do usuário e pode ser modificado por ele. Ver
 
 ### 2. Não invente decisão
 
-As sete decisões que travavam implementação foram tomadas em 07/11/2026 e viraram ADR ✅ Aceita
-(ver [casos de uso § 6](docs/casos-de-uso.md#6-decisões--todas-resolvidas-exceto-uma)). **Resta
-só a #8** — o modelo de especificação textual do professor —, que não afeta código.
+As oito decisões que travavam implementação foram resolvidas em 07/11/2026 e viraram ADR
+✅ Aceita (ver [casos de uso § 6](docs/casos-de-uso.md#6-decisões--todas-resolvidas)). Sete pela
+equipe; a #8 pelo professor — a referência da disciplina é o livro
+[Engenharia de Software Moderna](https://engsoftmoderna.info/), de Marco Tulio Valente, e é dele
+que sai o conjunto de diagramas do projeto ([ADR 0015](docs/decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)).
+**Nenhuma decisão segue pendente.**
 
 A regra continua valendo para o que vier: onde a documentação disser "pendente" ou "proposta",
 **pergunte à equipe**. Não escolha por conta própria e não implemente como se estivesse aprovado.
@@ -180,14 +183,14 @@ Quando pedirem apenas análise, **não altere arquivos**.
 
 | Item | Situação |
 |---|---|
-| Sprint | 2 — **telas iniciais por perfil, só front-end** · [plano](docs/sprints/sprint-2.md) |
+| Sprint | 2 — **pacotes, sequência e atividades + as 3 telas iniciais, só front-end** · [plano](docs/sprints/sprint-2.md) |
 | Documentação | ✅ completa para a entrega atual |
 | App Flutter | 🟡 esqueleto; tela de boas-vindas, sem autenticação |
 | API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
 | Banco | ⏸️ migration inicial em **rascunho**; não há projeto Supabase — adiado |
-| Telas iniciais | ⬜ 3 diagramas prontos; implementação em TT05 (Nailan), TT06 (Lincoln), TT07 (Victor) |
+| Telas iniciais | ⬜ diagramas prontos; implementação em TT05 (Nailan), TT06 (Lincoln), TT07 (Victor) |
 | Classes de domínio | ⬜ diagrama pronto; implementação movida para a **Sprint 3** — TT01 e TT02 |
-| Diagramas | ✅ casos de uso · navegação das 3 telas · classes · estados da Reserva e da Locação · sequência pendente |
+| Diagramas | ✅ os **cinco** do livro: casos de uso · classes · pacotes · sequência · atividades · mais 2 de estados ([ADR 0015](docs/decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)) |
 
 > ⚠️ **A Sprint 2 é front-end.** Nenhuma tela dela chama API, banco ou autenticação. Se alguém
 > pedir endpoint, service ou classe de domínio "para a Sprint 2", isso é Sprint 3 — confirme antes.
