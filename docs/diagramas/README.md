@@ -9,6 +9,32 @@
 
 ---
 
+## Quais diagramas — o conjunto do livro
+
+A disciplina usa como referência o livro **[Engenharia de Software Moderna](https://engsoftmoderna.info/)**,
+de Marco Tulio Valente — ver [ADR 0015](../decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md).
+
+O repertório do projeto são os **cinco diagramas que o livro apresenta**. O autor cobre quatro no
+capítulo 4 de propósito, por entender que são *"os 20% dos recursos responsáveis por 80% do uso
+prático"*; o quinto está no capítulo 3:
+
+| Diagrama | Capítulo | Para que serve |
+|---|---|---|
+| Casos de uso | [3.4.1](https://engsoftmoderna.info/cap3.html) | A fronteira do sistema: atores e o que cada um faz |
+| Classes | [4](https://engsoftmoderna.info/cap4.html) | Classes, atributos, métodos e relacionamentos |
+| Pacotes | [4](https://engsoftmoderna.info/cap4.html) | Alto nível: grupos de classes e dependências |
+| Sequência | [4](https://engsoftmoderna.info/cap4.html) | Um cenário: a sequência de chamadas entre objetos |
+| Atividades | [4](https://engsoftmoderna.info/cap4.html) | Processos e fluxos de execução em alto nível |
+
+**Diagrama fora dessa lista só entra com justificativa escrita no próprio arquivo.**
+
+> **Exceção registrada:** os diagramas de estados da `Reserva` e da `Locacao` não estão entre os
+> cinco. Foram mantidos porque especificam RN08 — as transições válidas e as proibidas —, já
+> estão aprovados, e TT01/TT02 dependem deles. Máquina de estados é UML legítima; o livro não a
+> cobre por recorte de escopo, não por rejeição. Ver [ADR 0015](../decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md).
+
+---
+
 ## Notação: Mermaid
 
 Os diagramas são escritos em **Mermaid**, por recomendação do professor — ver [ADR 0008](../decisoes/0008-mermaid-no-lugar-do-plantuml.md).
@@ -24,7 +50,7 @@ Isso resolve o problema que o PlantUML tinha aqui: antes, a fonte `.puml` e a im
 ```
 docs/diagramas/
 ├── sprint-1/     casos de uso — a fronteira do sistema
-├── sprint-2/     navegação das telas iniciais · classes de domínio · ciclos de vida
+├── sprint-2/     pacotes · atividades · sequência · classes · ciclos de vida
 ├── sprint-4/     (a criar) sequência de UC05
 └── sprint-5/     (a criar) sequência de UC09
 ```
@@ -34,21 +60,24 @@ A pasta diz em que entrega o diagrama **nasceu**, não em que sprint ele é impl
 diagrama continua valendo depois da sprint dele — o de casos de uso, da Sprint 1, é referência até
 o fim do projeto.
 
-| Nasceu na | Diagrama | Arquivo | Implementado em | Status |
-|---|---|---|---|---|
-| 1 | Casos de uso | [`sprint-1/casos-de-uso.md`](sprint-1/casos-de-uso.md) | referência permanente | ✅ |
-| 2 | Navegação — tela inicial do Administrador | [`sprint-2/navegacao-administrador.md`](sprint-2/navegacao-administrador.md) | Sprint 2 | ✅ |
-| 2 | Navegação — tela inicial do Atendente | [`sprint-2/navegacao-atendente.md`](sprint-2/navegacao-atendente.md) | Sprint 2 | ✅ |
-| 2 | Navegação — tela inicial do Cliente | [`sprint-2/navegacao-cliente.md`](sprint-2/navegacao-cliente.md) | Sprint 2 | ✅ |
-| 2 | Classes de domínio | [`sprint-2/classes.md`](sprint-2/classes.md) | **Sprint 3** | ✅ |
-| 2 | Estados da Reserva | [`sprint-2/estados-reserva.md`](sprint-2/estados-reserva.md) | **Sprint 3** | ✅ |
-| 2 | Estados da Locação | [`sprint-2/estados-locacao.md`](sprint-2/estados-locacao.md) | **Sprint 3** | ✅ |
-| 4 | Sequência — Consultar disponibilidade | `sprint-4/sequencia-uc05.md` | Sprint 4 | ⬜ |
-| 5 | Sequência — Formalizar locação | `sprint-5/sequencia-uc09.md` | Sprint 5 | ⬜ |
+| Nasceu na | Diagrama | Tipo | Arquivo | Implementado em | Status |
+|---|---|---|---|---|---|
+| 1 | Casos de uso do ToolRent | **casos de uso** | [`sprint-1/casos-de-uso.md`](sprint-1/casos-de-uso.md) | referência permanente | ✅ |
+| 2 | Camadas de `app/` e `api/` | **pacotes** | [`sprint-2/pacotes.md`](sprint-2/pacotes.md) | Sprint 2 | ✅ |
+| 2 | Da abertura do app à tela inicial | **atividades** | [`sprint-2/atividades-tela-inicial.md`](sprint-2/atividades-tela-inicial.md) | Sprint 2 | ✅ |
+| 2 | Abrir tela inicial e acionar o menu | **sequência** | [`sprint-2/sequencia-abrir-tela-inicial.md`](sprint-2/sequencia-abrir-tela-inicial.md) | Sprint 2 | ✅ |
+| 2 | Classes de domínio | **classes** | [`sprint-2/classes.md`](sprint-2/classes.md) | **Sprint 3** | ✅ |
+| 2 | Estados da Reserva | estados ⚠️ | [`sprint-2/estados-reserva.md`](sprint-2/estados-reserva.md) | **Sprint 3** | ✅ |
+| 2 | Estados da Locação | estados ⚠️ | [`sprint-2/estados-locacao.md`](sprint-2/estados-locacao.md) | **Sprint 3** | ✅ |
+| 4 | Consultar disponibilidade (UC05) | **sequência** | `sprint-4/sequencia-uc05.md` | Sprint 4 | ⬜ |
+| 5 | Formalizar locação (UC09) | **sequência** | `sprint-5/sequencia-uc09.md` | Sprint 5 | ⬜ |
 
-> Os três diagramas de domínio nasceram na Sprint 2 e continuam nesta pasta, mas a implementação
-> deles passou para a Sprint 3 quando a Sprint 2 foi redefinida como entrega de front-end — ver
-> [`../sprints/sprint-2.md`](../sprints/sprint-2.md). O diagrama não se move de pasta por isso.
+⚠️ fora dos cinco do livro — exceção justificada acima.
+
+> O diagrama de classes e os dois de estados nasceram na Sprint 2 e continuam nesta pasta, mas a
+> implementação deles passou para a Sprint 3 quando a Sprint 2 foi redefinida como entrega de
+> front-end — ver [`../sprints/sprint-2.md`](../sprints/sprint-2.md). O diagrama não se move de
+> pasta por isso.
 
 ### Ao abrir uma sprint nova
 
@@ -63,14 +92,19 @@ o fim do projeto.
 |---|---|---|
 | Casos de uso | `flowchart LR` com `subgraph` como fronteira | [flowchart](https://mermaid.js.org/syntax/flowchart.html) |
 | Classes | `classDiagram` | [classDiagram](https://mermaid.js.org/syntax/classDiagram.html) |
+| Pacotes | `flowchart` com `subgraph` como pacote e `-.->` como dependência | [flowchart](https://mermaid.js.org/syntax/flowchart.html) |
+| Atividades | `flowchart TD` — retângulo é ação, losango é decisão | [flowchart](https://mermaid.js.org/syntax/flowchart.html) |
 | Estados | `stateDiagram-v2` | [stateDiagram](https://mermaid.js.org/syntax/stateDiagram.html) |
-| Navegação entre telas | `stateDiagram-v2` — cada estado é uma tela, cada transição um toque | [stateDiagram](https://mermaid.js.org/syntax/stateDiagram.html) |
 | Sequência | `sequenceDiagram` | [sequenceDiagram](https://mermaid.js.org/syntax/sequenceDiagram.html) |
 | Entidade-relacionamento | `erDiagram` | [erDiagram](https://mermaid.js.org/syntax/entityRelationshipDiagram.html) |
 
 Mermaid não tem diagrama de casos de uso nativo. A convenção adotada aqui é `flowchart LR`:
 atores como retângulos à esquerda, casos de uso como caixas arredondadas dentro de um
 `subgraph` que representa a fronteira do sistema, `«include»` como seta tracejada.
+
+Mermaid também não tem diagrama de pacotes nativo. Mesma saída: `subgraph` faz o papel do pacote
+(que o livro desenha como retângulo com aba) e `-.->` faz o papel da seta tracejada de
+dependência.
 
 ### Como pré-visualizar
 

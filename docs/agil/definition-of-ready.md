@@ -60,13 +60,14 @@ identifica na DoR é quem vai desenhar em seguida.
 Uma história que depende de decisão em aberto **não está pronta**. Era o caso de US05, US11, US12
 e US15 até 07/11/2026.
 
-**As sete decisões que bloqueavam implementação foram tomadas** — ver
-[`../casos-de-uso.md § 6`](../casos-de-uso.md#6-decisões--todas-resolvidas-exceto-uma). Nenhuma
+**As oito decisões foram resolvidas** — ver
+[`../casos-de-uso.md § 6`](../casos-de-uso.md#6-decisões--todas-resolvidas). Nenhuma
 história do backlog está bloqueada por decisão hoje.
 
-A única pendência que resta é a **#8** (modelo de especificação textual do professor), que afeta o
-formato do documento de casos de uso, não o comportamento do sistema — e portanto não bloqueia
-nada.
+A #8 — o modelo de especificação textual — foi respondida pelo professor em 07/11/2026: a
+referência é o livro *Engenharia de Software Moderna*
+([ADR 0015](../decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)). O documento
+de casos de uso já atendia ao modelo, então nada foi reescrito.
 
 Se uma decisão nova aparecer no meio de uma sprint, a regra volta a valer: a história sai da
 sprint ou a parte independente é separada **por escrito** na Issue.

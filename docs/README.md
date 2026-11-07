@@ -82,13 +82,17 @@ docs/
 | Arquitetura | 1.0 | ✅ |
 | Glossário | 1.0 | ✅ |
 | Diagrama de casos de uso | 1.0 | ✅ [`sprint-1/casos-de-uso.md`](diagramas/sprint-1/casos-de-uso.md) |
-| Diagramas de navegação das 3 telas iniciais | 1.0 | ✅ [`sprint-2/`](diagramas/sprint-2/) |
+| Diagrama de pacotes | 1.0 | ✅ [`sprint-2/pacotes.md`](diagramas/sprint-2/pacotes.md) |
+| Diagrama de atividades | 1.0 | ✅ [`sprint-2/atividades-tela-inicial.md`](diagramas/sprint-2/atividades-tela-inicial.md) |
 | Diagrama de classes | 1.0 | ✅ [`sprint-2/classes.md`](diagramas/sprint-2/classes.md) |
 | Diagramas de estados | 1.0 | ✅ Reserva e Locação, em [`sprint-2/`](diagramas/sprint-2/) |
-| Diagramas de sequência | — | ⬜ Sprints 4 e 5 |
+| Diagrama de sequência | 1.0 | ✅ [`sprint-2/sequencia-abrir-tela-inicial.md`](diagramas/sprint-2/sequencia-abrir-tela-inicial.md) |
+| Sequência de UC05 e UC09 | — | ⬜ Sprints 4 e 5 |
 
-**Resta uma decisão pendente** — a #8, o modelo de especificação textual que o professor usa em
-aula, que não afeta código. As outras sete foram tomadas em 07/11/2026 e viraram ADR; ver
-[Casos de uso § 6](casos-de-uso.md#6-decisões--todas-resolvidas-exceto-uma).
+**Nenhuma decisão pendente.** As oito foram resolvidas em 07/11/2026 e viraram ADR — sete pela
+equipe e a #8 pelo professor, que indicou o livro
+[Engenharia de Software Moderna](https://engsoftmoderna.info/) como referência da disciplina
+([ADR 0015](decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)). Ver
+[Casos de uso § 6](casos-de-uso.md#6-decisões--todas-resolvidas).
 
 O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent/issues): `#1` a `#16` correspondem a US01–US16. A matriz em [`agil/rastreabilidade.md`](agil/rastreabilidade.md) liga cada uma ao seu caso de uso.
