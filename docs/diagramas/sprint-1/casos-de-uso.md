@@ -2,10 +2,10 @@
 
 > **Esta é a fonte do diagrama.** O bloco Mermaid abaixo é renderizado pelo próprio GitHub —
 > não existe imagem a gerar nem ferramenta a instalar. Ao alterar o diagrama, altere este
-> arquivo e atualize [`../casos-de-uso.md`](../casos-de-uso.md) no mesmo PR.
+> arquivo e atualize [`../casos-de-uso.md`](../../casos-de-uso.md) no mesmo PR.
 >
-> Documento correspondente: [`docs/casos-de-uso.md`](../casos-de-uso.md) (versão 2.0)
-> Notação: ver [ADR 0008](../decisoes/0008-mermaid-no-lugar-do-plantuml.md).
+> Documento correspondente: [`docs/casos-de-uso.md`](../../casos-de-uso.md) (versão 2.0)
+> Notação: ver [ADR 0008](../../decisoes/0008-mermaid-no-lugar-do-plantuml.md).
 
 **3 atores · 16 casos de uso · 3 CRUD puro**
 

@@ -1,12 +1,13 @@
 # ADR 0005 — Cliente com login próprio
 
 - **Data:** 27/10/2026
-- **Status:** 🟡 Proposta
-- **Decidido por:** — *aguardando aprovação da equipe*
+- **Status:** ✅ Aceita
+- **Decidido por:** Kassio de Sousa Dias, em nome da equipe
+- **Aceita em:** 07/11/2026
 
-> ⚠️ **Esta decisão ainda não vale.** Corresponde à decisão pendente **#1** de
-> [`casos-de-uso.md § 6`](../casos-de-uso.md#6-decisões-pendentes). Enquanto o status for
-> 🟡 Proposta, não implemente como se estivesse aprovada — ver `CLAUDE.md`, regra 2.
+> ✅ **Aceita em 07/11/2026.** Resolve a decisão pendente **#1**. A equipe delegou a
+> escolha; se discordar, abra um ADR novo marcando este como 🔄 Substituída — ADR aceito
+> não é editado para mudar de ideia.
 
 ---
 
@@ -33,7 +34,7 @@ A tabela de atores do [`README.md`](../../README.md#2-atores-e-perfis) atribui *
 
 Ou seja: a opção 1 é a que **os documentos já aprovados descrevem**. A opção 2 exigiria redesenhar o diagrama e remover um ator — e a equipe já removeu um ator uma vez ([ADR 0002](0002-remocao-do-ator-tecnico.md)); remover o segundo reduziria o escopo a dois atores.
 
-## Decisão proposta
+## Decisão
 
 **O Cliente tem login próprio.** Autentica pelo Supabase Auth com perfil `CLIENTE` e opera UC06 e UC07 por conta própria.
 

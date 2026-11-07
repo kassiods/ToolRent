@@ -55,18 +55,21 @@ identifica na DoR é quem vai desenhar em seguida.
 
 ---
 
-## Decisões pendentes bloqueiam
+## Decisões pendentes bloqueiam — e hoje não há nenhuma
 
-Oito decisões ainda estão em aberto (listadas em [`../casos-de-uso.md`](../casos-de-uso.md#6-decisões-pendentes)). Uma história que depende de uma delas **não está pronta**.
+Uma história que depende de decisão em aberto **não está pronta**. Era o caso de US05, US11, US12
+e US15 até 07/11/2026.
 
-| História | Depende de | Status |
-|---|---|---|
-| US05 | #2 — reserva solicitada bloqueia disponibilidade? | ⛔ Resolver antes da Sprint 4 |
-| US11 | #6 — devolução parcial é permitida? | ⛔ Resolver antes da Sprint 6 |
-| US12 | #3 — contagem de diárias · #4 — fórmula de atraso | ⛔ Resolver antes da Sprint 6 |
-| US15 | #7 — quais relatórios no MVP | ⛔ Resolver antes da Sprint 7 |
+**As sete decisões que bloqueavam implementação foram tomadas** — ver
+[`../casos-de-uso.md § 6`](../casos-de-uso.md#6-decisões--todas-resolvidas-exceto-uma). Nenhuma
+história do backlog está bloqueada por decisão hoje.
 
-**A exceção:** se a decisão afeta apenas uma parte da história, a parte independente pode avançar — desde que a divisão esteja escrita na Issue.
+A única pendência que resta é a **#8** (modelo de especificação textual do professor), que afeta o
+formato do documento de casos de uso, não o comportamento do sistema — e portanto não bloqueia
+nada.
+
+Se uma decisão nova aparecer no meio de uma sprint, a regra volta a valer: a história sai da
+sprint ou a parte independente é separada **por escrito** na Issue.
 
 ---
 

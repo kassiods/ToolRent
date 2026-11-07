@@ -72,7 +72,7 @@ gantt
 | Adicionar integrantes e professor como colaboradores | ✅ |
 | Aprovação do professor para a mudança de stack | ✅ ADR 0001 |
 | Revisar os 16 casos de uso com a equipe | ⬜ |
-| Diagrama de casos de uso em Mermaid, renderizado no GitHub | ✅ [`casos-de-uso.md`](../diagramas/casos-de-uso.md) |
+| Diagrama de casos de uso em Mermaid, renderizado no GitHub | ✅ [`casos-de-uso.md`](../diagramas/sprint-1/casos-de-uso.md) |
 | Configurar o quadro de acompanhamento com as colunas do fluxo | ✅ [Trello](https://trello.com/b/m3gakhP8/toolrent-backlog) — 6 listas, 16 cartões |
 | **Resolver as decisões pendentes #1, #2 e #5** | 🟡 propostas em [ADR 0005](../decisoes/0005-login-proprio-do-cliente.md), [0006](../decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md) e [0007](../decisoes/0007-locacao-presencial-sem-reserva.md) — aguardam aprovação |
 | Revisar o documento antes da entrega | ⬜ |
@@ -85,15 +85,27 @@ gantt
 
 **Objetivo:** diagrama de classes e banco de dados correspondentes.
 
-| Tarefa | Depende de |
-|---|---|
-| Diagrama de classes de domínio (9 a 13 classes) | Sprint 1 |
-| Diagrama de estados da `Locacao` | Sprint 1 |
-| Migration do schema no Supabase | Diagrama de classes |
-| Políticas de RLS | Schema |
-| Dados de demonstração fictícios | Schema |
+📋 **Plano detalhado, com os pacotes por integrante: [`../sprints/sprint-2.md`](../sprints/sprint-2.md)**
 
-> ⚠️ O enunciado limita o domínio a **9–13 classes**. Candidatas: `Usuario`, `Perfil`, `Cliente`, `Categoria`, `Ferramenta`, `Reserva`, `Locacao`, `ItemLocacao`, `Devolucao`, `Pagamento`, `Manutencao` — 11 classes. Classes de UI, DTO, service e repository **não** contam como domínio.
+| Tarefa | Situação |
+|---|---|
+| Diagrama de classes de domínio (10 classes) | ✅ [`classes.md`](../diagramas/sprint-2/classes.md) |
+| Diagrama de estados da `Reserva` | ✅ [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) |
+| Diagrama de estados da `Locacao` | ✅ [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) |
+| [TT01](https://github.com/kassiods/ToolRent/issues/21) Classes de cadastros, catálogo e manutenção — Nailan | ⬜ |
+| [TT02](https://github.com/kassiods/ToolRent/issues/22) Classes de locação ponta a ponta — Lincoln | ⬜ |
+| Banco de dados no Supabase | ⏸️ **adiado** — a Sprint 2 não precisa de banco |
+| Políticas de RLS | ⏸️ adiado junto com o banco |
+| Dados de demonstração fictícios | ⏸️ adiado junto com o banco |
+
+> ⚠️ O enunciado limita o domínio a **9–13 classes**. O diagrama aprovado tem **10**: `Usuario`,
+> `Cliente`, `Categoria`, `Ferramenta`, `Reserva`, `Locacao`, `ItemLocacao`, `Devolucao`,
+> `Pagamento` e `Manutencao`. `Perfil` virou enumeração e `Funcionario` não existe — as duas
+> divergências em relação ao guia mestre estão justificadas em [`classes.md`](../diagramas/sprint-2/classes.md).
+> Classes de UI, DTO, service e repository **não** contam como domínio.
+
+> 📐 **Esta é a primeira sprint sob o [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md):**
+> os três diagramas foram escritos **antes** de qualquer linha de código.
 
 ---
 

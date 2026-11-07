@@ -606,23 +606,27 @@ Cada caso de uso tem origem em pelo menos uma história de usuário. A matriz co
 
 ---
 
-## 6. Decisões pendentes
+## 6. Decisões — todas resolvidas, exceto uma
 
-Estes pontos ainda precisam de validação da equipe e, quando aplicável, do professor. Nenhum deles bloqueia a entrega atual, mas todos afetam a implementação.
+Sete das oito decisões que travavam a implementação foram tomadas em **07/11/2026**. A equipe
+delegou a escolha; cada uma virou ADR com contexto, alternativas descartadas e consequências.
 
-| # | Questão | Afeta | Proposta registrada |
+| # | Questão | Decisão | ADR |
 |---|---|---|---|
-| 1 | O Cliente terá login próprio ou o Atendente registra as solicitações em seu nome? | UC01, UC06, UC07 | 🟡 [ADR 0005](decisoes/0005-login-proprio-do-cliente.md) |
-| 2 | Uma reserva `SOLICITADA` bloqueia a disponibilidade ou só após aprovação? | RN02, UC05, UC07 | 🟡 [ADR 0006](decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md) |
-| 3 | Como contar diárias: períodos exatos de 24h ou diárias iniciadas? | RN04, UC12 | recomendação em [RN04](regras-de-negocio.md) |
-| 4 | Qual a fórmula exata do atraso e quem aprova cobranças por dano? | RN05, RN06, UC11, UC12 | recomendação parcial em [RN05](regras-de-negocio.md) |
-| 5 | Locação presencial direta, sem reserva prévia, é permitida? | UC09 | 🟡 [ADR 0007](decisoes/0007-locacao-presencial-sem-reserva.md) |
-| 6 | Devolução parcial de itens do mesmo contrato é permitida? | UC11 | — |
-| 7 | Quais relatórios são obrigatórios na primeira versão? | UC15 | — |
-| 8 | O professor exige um modelo específico de especificação textual visto em aula? | Este documento | — |
+| 1 | Cliente tem login próprio? | **Sim**, e o cadastro de balcão não exige conta | ✅ [0005](decisoes/0005-login-proprio-do-cliente.md) |
+| 2 | Reserva `SOLICITADA` bloqueia disponibilidade? | **Não.** Só `APROVADA` bloqueia | ✅ [0006](decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md) |
+| 3 | Como contar diárias? | **Diária iniciada** — toda diária começada é cobrada inteira | ✅ [0011](decisoes/0011-diaria-iniciada-como-criterio-de-cobranca.md) |
+| 4 | Fórmula do atraso e política de dano? | **20% da diária por diária de atraso**; dano só entra no total após aprovação do Administrador | ✅ [0012](decisoes/0012-multa-por-atraso-e-politica-de-danos.md) |
+| 5 | Locação presencial sem reserva é permitida? | **Sim**, com as mesmas validações | ✅ [0007](decisoes/0007-locacao-presencial-sem-reserva.md) |
+| 6 | Devolução parcial é permitida? | **Não.** A devolução é do contrato inteiro | ✅ [0013](decisoes/0013-devolucao-sempre-integral.md) |
+| 7 | Quais relatórios na primeira versão? | **Três:** locações por período, receita por período, ferramentas mais locadas | ✅ [0014](decisoes/0014-tres-relatorios-obrigatorios.md) |
+| 8 | O professor exige um modelo específico de especificação textual? | ⬜ **Em aberto** | — |
 
-> As questões **1, 2 e 5** têm ADR em status 🟡 **Proposta**: o texto está escrito, com
-> alternativas e consequências, aguardando só a aprovação da equipe. **Proposta não vale** —
-> enquanto o status não virar ✅ Aceita, não implemente como decidido.
+> A **#8 é a única pendente**, e não é uma escolha de projeto: só o professor pode respondê-la.
+> Enquanto isso, este documento segue o esqueleto clássico de caso de uso. Ela **não bloqueia
+> nenhuma implementação** — afeta o formato deste texto, não o comportamento do sistema.
 
-Ver também [`decisoes/`](decisoes/) para as decisões já tomadas.
+**ADR aceito não é editado para mudar de ideia.** Se a equipe discordar de alguma decisão acima,
+o caminho é um ADR novo marcando o anterior como 🔄 Substituída.
+
+Ver [`decisoes/`](decisoes/) para o registro completo.

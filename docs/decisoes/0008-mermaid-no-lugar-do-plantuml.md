@@ -68,15 +68,15 @@ As convenções completas estão em [`docs/diagramas/README.md`](../diagramas/RE
 
 **Riscos**
 
-- A convenção de `flowchart` para casos de uso pode ser lida como "não é UML". Mitigação: a legenda e a tabela de relações em [`casos-de-uso.md`](../diagramas/casos-de-uso.md) deixam explícito o que cada elemento representa.
+- A convenção de `flowchart` para casos de uso pode ser lida como "não é UML". Mitigação: a legenda e a tabela de relações em [`casos-de-uso.md`](../diagramas/sprint-1/casos-de-uso.md) deixam explícito o que cada elemento representa.
 
 ## O que foi feito nesta decisão
 
 | Ação | Arquivo |
 |---|---|
-| Diagrama de casos de uso convertido | `docs/diagramas/casos-de-uso.md` (novo) |
+| Diagrama de casos de uso convertido | `docs/diagramas/sprint-1/casos-de-uso.md` (novo) |
 | Fonte PlantUML removida | `docs/diagramas/casos-de-uso.puml` (recuperável no histórico) |
-| Imagem da Sprint 1 arquivada, não mais mantida | `docs/diagramas/casos-de-uso.jpg` |
+| Imagem da Sprint 1 arquivada, não mais mantida | `docs/diagramas/sprint-1/casos-de-uso.jpg` |
 | Guia de diagramas reescrito para Mermaid | `docs/diagramas/README.md` |
 
 Os diagramas ainda não escritos — classes, estados e sequência — nascem já em Mermaid na Sprint 2.

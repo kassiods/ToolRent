@@ -96,7 +96,7 @@ graph LR
 ### Diagrama de casos de uso
 
 O diagrama é escrito em **Mermaid** e renderizado pelo próprio GitHub — abra
-**[`docs/diagramas/casos-de-uso.md`](docs/diagramas/casos-de-uso.md)** e ele aparece na página,
+**[`docs/diagramas/sprint-1/casos-de-uso.md`](docs/diagramas/sprint-1/casos-de-uso.md)** e ele aparece na página,
 sem imagem a baixar.
 
 📎 Especificação textual dos 16 casos de uso: [`docs/casos-de-uso.md`](docs/casos-de-uso.md) · notação: [ADR 0008](docs/decisoes/0008-mermaid-no-lugar-do-plantuml.md)
@@ -202,9 +202,12 @@ ToolRent/
 │   ├── regras-de-negocio.md     RN01 a RN12
 │   ├── arquitetura.md
 │   ├── glossario.md
-│   ├── agil/                    DoR, DoD, sprints e rastreabilidade
+│   ├── agil/                    DoR, DoD, roadmap e rastreabilidade
+│   ├── sprints/                 plano da sprint em execução, com os pacotes por integrante
 │   ├── decisoes/                ADRs — decisões com data e justificativa
-│   └── diagramas/               diagramas UML em Mermaid (.md)
+│   └── diagramas/               diagramas UML em Mermaid, UMA PASTA POR SPRINT
+│       ├── sprint-1/            casos de uso
+│       └── sprint-2/            classes e ciclos de vida
 │
 ├── 🤖 arquivos-de-ia/           USO DE IA NO PROJETO
 │   ├── guias/                   guia mestre e prompts reutilizáveis
@@ -330,6 +333,10 @@ flowchart LR
     class C portao
 ```
 
+**Toda sprint tem a sua pasta de diagramas** em `docs/diagramas/sprint-N/`, e a implementação
+daquela sprint segue o que eles especificam. Hoje: [sprint-1](docs/diagramas/sprint-1/) (casos de
+uso) e [sprint-2](docs/diagramas/sprint-2/) (classes, estados da Reserva e da Locação).
+
 O diagrama exigido depende do que a história faz:
 
 | A história… | Exige o diagrama de |
@@ -358,7 +365,8 @@ Estão em [`CONTRIBUTING.md`](CONTRIBUTING.md): uma branch por Issue, PR para in
 | [📄 Arquitetura](docs/arquitetura.md) | Como as camadas conversam e por quê |
 | [📄 Glossário](docs/glossario.md) | Vocabulário do domínio: reserva, locação, diária faturável |
 | [📁 Decisões (ADRs)](docs/decisoes/) | Toda decisão relevante, com data e alternativas descartadas |
-| [📁 Diagramas](docs/diagramas/) | Diagramas UML em Mermaid — a especificação que o código implementa |
+| [📁 Diagramas](docs/diagramas/) | Diagramas UML em Mermaid, **uma pasta por sprint** — a especificação que o código implementa |
+| [📁 Sprints](docs/sprints/) | O plano da sprint em execução: pacotes, donos e o que é "pronto" |
 
 ---
 

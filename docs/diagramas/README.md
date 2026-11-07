@@ -19,17 +19,35 @@ Isso resolve o problema que o PlantUML tinha aqui: antes, a fonte `.puml` e a im
 
 ---
 
-## Diagramas do projeto
+## Organização: uma pasta por sprint
 
-| Diagrama | Arquivo | Status | Sprint |
+```
+docs/diagramas/
+├── sprint-1/     casos de uso — a fronteira do sistema
+├── sprint-2/     classes de domínio e ciclos de vida
+├── sprint-4/     (a criar) sequência de UC05
+└── sprint-5/     (a criar) sequência de UC09
+```
+
+**Toda sprint tem os seus diagramas, e a implementação da sprint segue o que eles especificam.**
+A pasta diz em que entrega o diagrama nasceu; um diagrama continua valendo depois da sprint dele
+— o de casos de uso, da Sprint 1, é referência até o fim do projeto.
+
+| Sprint | Diagrama | Arquivo | Status |
 |---|---|---|---|
-| Casos de uso | [`casos-de-uso.md`](casos-de-uso.md) | ✅ | 1 |
-| Classes de domínio | `classes.md` | ⬜ | 2 |
-| Estados da Locação | `estados-locacao.md` | ⬜ | 2 |
-| Estados da Reserva | `estados-reserva.md` | ⬜ | 2 |
-| Sequência — Formalizar locação | `sequencia-uc09.md` | ⬜ | 5 |
+| 1 | Casos de uso | [`sprint-1/casos-de-uso.md`](sprint-1/casos-de-uso.md) | ✅ |
+| 2 | Classes de domínio | [`sprint-2/classes.md`](sprint-2/classes.md) | ✅ |
+| 2 | Estados da Reserva | [`sprint-2/estados-reserva.md`](sprint-2/estados-reserva.md) | ✅ |
+| 2 | Estados da Locação | [`sprint-2/estados-locacao.md`](sprint-2/estados-locacao.md) | ✅ |
+| 4 | Sequência — Consultar disponibilidade | `sprint-4/sequencia-uc05.md` | ⬜ |
+| 5 | Sequência — Formalizar locação | `sprint-5/sequencia-uc09.md` | ⬜ |
 
----
+### Ao abrir uma sprint nova
+
+1. Crie `docs/diagramas/sprint-N/`
+2. Desenhe os diagramas que a entrega exige — **antes** de qualquer código
+3. Abra o PR só do diagrama, e só depois do merge comece a implementar
+4. Registre no plano da sprint, em [`../sprints/`](../sprints/), qual diagrama especifica qual pacote
 
 ## Como escrever cada tipo
 
@@ -59,7 +77,7 @@ Não é preciso Java, nem PlantUML, nem gerar PNG.
 
 ## Convenções
 
-**Nome do arquivo:** kebab-case, descrevendo o conteúdo — `casos-de-uso.md`, `estados-locacao.md`, `sequencia-uc09.md`.
+**Nome do arquivo:** kebab-case, descrevendo o conteúdo — `casos-de-uso.md`, `estados-locacao.md`, `sequencia-uc09.md`. **Dentro da pasta da sprint em que nasceu.**
 
 **Dentro do arquivo:**
 
@@ -109,7 +127,7 @@ Na dúvida, não use nenhuma das duas. Relação inventada é erro de modelagem 
 
 > **Nota histórica:** a versão 1.0 do documento listava 4 atores, incluindo *Técnico de manutenção*, enquanto o diagrama tinha 3. A divergência foi resolvida removendo o ator — ver [ADR 0002](../decisoes/0002-remocao-do-ator-tecnico.md).
 >
-> `casos-de-uso.jpg` é a imagem entregue na Sprint 1, gerada da antiga fonte PlantUML.
+> `sprint-1/casos-de-uso.jpg` é a imagem entregue na Sprint 1, gerada da antiga fonte PlantUML.
 > **Está arquivada como registro da entrega daquela data e não é mais mantida** — a fonte
-> vigente é [`casos-de-uso.md`](casos-de-uso.md). A fonte `casos-de-uso.puml` foi removida na
+> vigente é [`casos-de-uso.md`](../casos-de-uso.md). A fonte `casos-de-uso.puml` foi removida na
 > migração para Mermaid e continua recuperável no histórico do Git.

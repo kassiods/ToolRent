@@ -18,7 +18,7 @@ Aplicar quatro recomendações do professor: trocar o GitHub Projects pelo Trell
 | Quadro [ToolRent — Backlog](https://trello.com/b/m3gakhP8/toolrent-backlog) criado: 6 listas, 16 cartões, etiquetas | Trello |
 | GitHub Project #2 apagado | GitHub |
 | Labels `sprint-3`…`sprint-7` removidas das 16 Issues e apagadas do repositório | GitHub |
-| Diagrama de casos de uso convertido de PlantUML para Mermaid | `docs/diagramas/casos-de-uso.md` |
+| Diagrama de casos de uso convertido de PlantUML para Mermaid | `docs/diagramas/sprint-1/casos-de-uso.md` |
 | `casos-de-uso.puml` removido | `docs/diagramas/` |
 | Guia de diagramas reescrito para Mermaid | `docs/diagramas/README.md` |
 | Regra de início de sessão (perguntar quem está, checar o cartão, seguir a lista) | `CLAUDE.md` § 0 |

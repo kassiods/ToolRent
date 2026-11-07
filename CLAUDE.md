@@ -68,7 +68,15 @@ Motivo: o app roda no dispositivo do usuário e pode ser modificado por ele. Ver
 
 ### 2. Não invente decisão
 
-Oito decisões estão pendentes (ver [casos de uso § 6](docs/casos-de-uso.md#6-decisões-pendentes)). Onde a documentação diz "pendente" ou "proposta", **pergunte à equipe**. Não escolha por conta própria e não implemente como se estivesse aprovado.
+As sete decisões que travavam implementação foram tomadas em 07/11/2026 e viraram ADR ✅ Aceita
+(ver [casos de uso § 6](docs/casos-de-uso.md#6-decisões--todas-resolvidas-exceto-uma)). **Resta
+só a #8** — o modelo de especificação textual do professor —, que não afeta código.
+
+A regra continua valendo para o que vier: onde a documentação disser "pendente" ou "proposta",
+**pergunte à equipe**. Não escolha por conta própria e não implemente como se estivesse aprovado.
+
+**ADR aceito não é editado para mudar a decisão.** Se a equipe mudar de ideia, é ADR novo
+marcando o antigo como 🔄 Substituída.
 
 ### 3. O diagrama vem antes do código
 
@@ -172,13 +180,13 @@ Quando pedirem apenas análise, **não altere arquivos**.
 
 | Item | Situação |
 |---|---|
-| Sprint | 1 — casos de uso e backlog |
+| Sprint | 2 — classes de domínio e banco · [plano](docs/sprints/sprint-2.md) |
 | Documentação | ✅ completa para a entrega atual |
 | App Flutter | 🟡 esqueleto; tela de boas-vindas, sem autenticação |
 | API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
 | Banco | 🟡 migration inicial em **rascunho**, a confirmar na Sprint 2 |
-| Classes de domínio | ⬜ Sprint 2 — **diagrama primeiro**, depois o código |
-| Diagramas | ✅ casos de uso em Mermaid · classes, estados e sequência pendentes |
+| Classes de domínio | ⬜ diagrama pronto; implementação dividida em TT01–TT03 |
+| Diagramas | ✅ casos de uso, classes, estados da Reserva e da Locação · sequência pendente |
 
 **Backlog:** GitHub Issues `#1` a `#16` = US01–US16. **Quadro de acompanhamento:**
 [Trello](https://trello.com/b/m3gakhP8/toolrent-backlog) — o GitHub Projects foi apagado

@@ -37,17 +37,18 @@ toolrent:
   # Centralizados aqui para que nenhuma taxa apareca literal no
   # meio de um metodo (RN05, RN12).
   #
-  # ATENCAO: os valores abaixo sao PROVISORIOS. Dependem das
-  # decisoes pendentes #3 e #4 — ver docs/regras-de-negocio.md.
-  # Confirmar com a equipe antes da Sprint 6.
+  # Os valores abaixo estao DECIDIDOS desde 07/11/2026.
+  # Alterar qualquer um deles muda o valor cobrado do cliente:
+  # exige ADR novo, nao edicao direta.
   # ----------------------------------------------------------
   calculo:
-    # PENDENTE #3 — valor NAO decidido. Opcoes: DIARIA_INICIADA | PERIODO_24H.
-    # Nao implemente UC12 assumindo este valor; resolva #3 primeiro.
+    # Diaria iniciada: toda diaria comecada e cobrada inteira.
+    # 23h de uso = 1 diaria; 25h = 2. Ver ADR 0011.
     criterio-diaria: DIARIA_INICIADA
     diarias-minimas: 1
-    # PENDENTE #4 — percentual NAO decidido, nem quem aprova cobranca por dano.
-    # Nao implemente RN05/RN06 assumindo este valor; resolva #4 primeiro.
+    # Multa de 20% da diaria, por diaria de atraso, acumulativa.
+    # Dano nao entra no total sem aprovacao de ADMINISTRADOR.
+    # Ver ADR 0012.
     percentual-multa-atraso: 0.20
     escala-monetaria: 2
     arredondamento: HALF_UP
