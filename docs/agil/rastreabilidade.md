@@ -30,9 +30,10 @@ Cada elo responde uma pergunta:
 
 Preencha as colunas de Issue e PR conforme o trabalho avança.
 
-O acompanhamento diário fica no [GitHub Project](https://github.com/users/kassiods/projects/2),
-cujo campo `Status` usa a mesma legenda da coluna Status desta matriz. **Esta matriz continua
-sendo a fonte da entrega** — o Project é conveniência de quadro, não substituto do documento.
+O acompanhamento diário fica no [quadro do Trello](https://trello.com/b/m3gakhP8/toolrent-backlog),
+cujas listas correspondem à legenda da coluna Status desta matriz. **Esta matriz continua sendo a
+fonte da entrega** — o quadro é conveniência, não substituto do documento. O GitHub Projects foi
+apagado; ver [ADR 0009](../decisoes/0009-trello-no-lugar-do-github-projects.md).
 
 | US | Caso de uso | Regras | Sprint | Issue | Branch | PR | Diagrama | Status |
 |---|---|---|---|---|---|---|---|---|
@@ -117,7 +118,7 @@ Closes #12
 - História: US07
 - Caso de uso: UC07 (inclui UC05)
 - Regras: RN01, RN02, RN03, RN08
-- Diagramas afetados: casos-de-uso.puml, estados-reserva.puml
+- Diagramas afetados: docs/diagramas/casos-de-uso.md, docs/diagramas/estados-reserva.md
 ```
 
 **Ao concluir:** mude o status para ✅.
