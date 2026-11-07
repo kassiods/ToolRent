@@ -81,44 +81,65 @@ gantt
 
 ---
 
-## Sprint 2 — Modelagem
+## Sprint 2 — Telas iniciais por perfil
 
-**Objetivo:** diagrama de classes e banco de dados correspondentes.
+**Objetivo:** a primeira tela de cada perfil, com o menu das ações daquele perfil. **Só front-end.**
 
 📋 **Plano detalhado, com os pacotes por integrante: [`../sprints/sprint-2.md`](../sprints/sprint-2.md)**
 
 | Tarefa | Situação |
 |---|---|
-| Diagrama de classes de domínio (10 classes) | ✅ [`classes.md`](../diagramas/sprint-2/classes.md) |
-| Diagrama de estados da `Reserva` | ✅ [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) |
-| Diagrama de estados da `Locacao` | ✅ [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) |
-| [TT01](https://github.com/kassiods/ToolRent/issues/21) Classes de cadastros, catálogo e manutenção — Nailan | ⬜ |
-| [TT02](https://github.com/kassiods/ToolRent/issues/22) Classes de locação ponta a ponta — Lincoln | ⬜ |
-| Banco de dados no Supabase | ⏸️ **adiado** — a Sprint 2 não precisa de banco |
+| Diagrama de navegação — tela do Administrador | ✅ [`navegacao-administrador.md`](../diagramas/sprint-2/navegacao-administrador.md) |
+| Diagrama de navegação — tela do Atendente | ✅ [`navegacao-atendente.md`](../diagramas/sprint-2/navegacao-atendente.md) |
+| Diagrama de navegação — tela do Cliente | ✅ [`navegacao-cliente.md`](../diagramas/sprint-2/navegacao-cliente.md) |
+| [TT05](https://github.com/kassiods/ToolRent/issues/26) Tela do Administrador + casca compartilhada — Nailan | ⬜ |
+| [TT06](https://github.com/kassiods/ToolRent/issues/27) Tela do Atendente, 10 itens — Lincoln | ⬜ |
+| [TT07](https://github.com/kassiods/ToolRent/issues/28) Tela do Cliente + teste de referência — Victor | ⬜ |
+| Banco de dados no Supabase | ⏸️ **adiado** — não há projeto Supabase do ToolRent |
 | Políticas de RLS | ⏸️ adiado junto com o banco |
 | Dados de demonstração fictícios | ⏸️ adiado junto com o banco |
 
-> ⚠️ O enunciado limita o domínio a **9–13 classes**. O diagrama aprovado tem **10**: `Usuario`,
-> `Cliente`, `Categoria`, `Ferramenta`, `Reserva`, `Locacao`, `ItemLocacao`, `Devolucao`,
-> `Pagamento` e `Manutencao`. `Perfil` virou enumeração e `Funcionario` não existe — as duas
-> divergências em relação ao guia mestre estão justificadas em [`classes.md`](../diagramas/sprint-2/classes.md).
-> Classes de UI, DTO, service e repository **não** contam como domínio.
+**Três telas porque são três atores** — Administrador, Atendente e Cliente
+([ADR 0002](../decisoes/0002-remocao-do-ator-tecnico.md)). Cada integrante leva uma.
 
-> 📐 **Esta é a primeira sprint sob o [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md):**
+> 🚫 **Nada de back-end nesta sprint.** Nenhuma tela chama a API, lê banco ou autentica. Um
+> seletor de perfil provisório abre o app e deixa escolher qual das três telas ver; ele **não é
+> controle de acesso** e sai na Sprint 3.
+
+> 📐 **Primeira sprint implementada sob o [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md):**
 > os três diagramas foram escritos **antes** de qualquer linha de código.
+
+> ⏭️ **As classes de domínio saíram daqui para a Sprint 3** — TT01 e TT02. Os diagramas que as
+> especificam continuam válidos e mergeados; só a implementação mudou de sprint.
 
 ---
 
-## Sprint 3 — Autenticação · 10 pontos
+## Sprint 3 — Domínio e autenticação · 10 pontos
 
 | História | Pontos |
 |---|---|
 | US01 — Autenticar-se | 5 |
 | US02 — Gerenciar usuários e perfis | 5 |
 
-**Por que primeiro:** todo o resto depende de saber quem é o usuário. RN09 atravessa todos os casos de uso.
+| Tarefa técnica | Situação |
+|---|---|
+| [TT01](https://github.com/kassiods/ToolRent/issues/21) Classes de cadastros, catálogo e manutenção — Nailan | ⬜ |
+| [TT02](https://github.com/kassiods/ToolRent/issues/22) Classes de locação ponta a ponta — Lincoln | ⬜ |
 
-**Entrega demonstrável:** login funcionando, com menus diferentes por perfil e endpoint protegido retornando 403.
+**Por que as classes entram aqui:** autenticar exige `Usuario` e `PerfilUsuario`. Sem classe de
+domínio não há o que servir nem persistir, então a Sprint 3 precisaria delas de todo jeito.
+
+**Por que a autenticação vem antes do resto:** todo o resto depende de saber quem é o usuário.
+RN09 atravessa todos os casos de uso.
+
+**Entrega demonstrável:** login funcionando, decidindo **qual das três telas da Sprint 2** abre, e
+endpoint protegido retornando 403.
+
+> ⚠️ O enunciado limita o domínio a **9–13 classes**. O diagrama aprovado tem **10**: `Usuario`,
+> `Cliente`, `Categoria`, `Ferramenta`, `Reserva`, `Locacao`, `ItemLocacao`, `Devolucao`,
+> `Pagamento` e `Manutencao`. `Perfil` virou enumeração e `Funcionario` não existe — as duas
+> divergências em relação ao guia mestre estão justificadas em [`classes.md`](../diagramas/sprint-2/classes.md).
+> Classes de UI, DTO, service e repository **não** contam como domínio.
 
 ---
 

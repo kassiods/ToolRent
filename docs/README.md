@@ -78,13 +78,17 @@ docs/
 | Visão do produto | 1.0 | ✅ |
 | Casos de uso | 2.0 | ✅ UC04 especificado, 3 atores |
 | Backlog | 2.0 | ✅ US08 restaurada |
-| Regras de negócio | 2.0 | 🟡 4 pendências de parâmetro |
+| Regras de negócio | 2.0 | ✅ RN02, RN04, RN05 e RN06 definidas em 07/11/2026 |
 | Arquitetura | 1.0 | ✅ |
 | Glossário | 1.0 | ✅ |
-| Diagrama de casos de uso | 1.0 | ✅ fonte e imagem versionadas |
-| Diagrama de classes | — | ⬜ Sprint 2 |
-| Diagrama de estados | — | ⬜ Sprint 2 |
+| Diagrama de casos de uso | 1.0 | ✅ [`sprint-1/casos-de-uso.md`](diagramas/sprint-1/casos-de-uso.md) |
+| Diagramas de navegação das 3 telas iniciais | 1.0 | ✅ [`sprint-2/`](diagramas/sprint-2/) |
+| Diagrama de classes | 1.0 | ✅ [`sprint-2/classes.md`](diagramas/sprint-2/classes.md) |
+| Diagramas de estados | 1.0 | ✅ Reserva e Locação, em [`sprint-2/`](diagramas/sprint-2/) |
+| Diagramas de sequência | — | ⬜ Sprints 4 e 5 |
 
-**8 decisões pendentes** aguardam a equipe — listadas em [Casos de uso § 6](casos-de-uso.md#6-decisões-pendentes).
+**Resta uma decisão pendente** — a #8, o modelo de especificação textual que o professor usa em
+aula, que não afeta código. As outras sete foram tomadas em 07/11/2026 e viraram ADR; ver
+[Casos de uso § 6](casos-de-uso.md#6-decisões--todas-resolvidas-exceto-uma).
 
 O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent/issues): `#1` a `#16` correspondem a US01–US16. A matriz em [`agil/rastreabilidade.md`](agil/rastreabilidade.md) liga cada uma ao seu caso de uso.
