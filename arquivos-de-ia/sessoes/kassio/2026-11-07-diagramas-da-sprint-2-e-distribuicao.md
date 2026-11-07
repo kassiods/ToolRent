@@ -96,11 +96,15 @@ Blocos Mermaid dos 3 diagramas novos         ->  sintaxe consistente, cercas bal
 classes.md: nós usados x declarados          ->  15 declarados (10 classes + 5 enums), 0 órfãos
 Classes do diagrama x tabelas da migration   ->  10 x 10, correspondência um a um
 Etiquetas do quadro                          ->  6 nomeadas, conferidas na interface
+Renderizacao no GitHub (classes, estados)    ->  conferida no navegador, renderiza completo
+Renderizacao de casos-de-uso.md              ->  conferida; fronteira e cores corretas
 ```
 
-**Não verificado:** a renderização dos três diagramas novos na página do GitHub — a conferência
-exigida pelo checklist de `diagramas/README.md` só pode ser feita depois do push. Foi feita a
-verificação estática.
+A renderização no GitHub foi conferida **de verdade** desta vez, abrindo as três páginas no
+navegador — o checklist de `diagramas/README.md` exige isso, e na sessão anterior ficou pendente
+porque a extensão do Chrome não estava conectada. O diagrama de casos de uso, entregue naquela
+rodada sem conferência visual, também foi verificado agora: renderiza com a fronteira do sistema
+e as cores dos atores corretas.
 
 ## Erros cometidos pela IA nesta sessão
 
