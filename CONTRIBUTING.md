@@ -112,7 +112,7 @@ Closes #12
 - História: US07
 - Caso de uso: UC07 (inclui UC05)
 - Regras: RN01, RN02, RN03, RN08
-- Diagramas afetados: docs/diagramas/casos-de-uso.md, docs/diagramas/estados-reserva.md
+- Diagramas afetados: docs/diagramas/sprint-1/casos-de-uso.md, docs/diagramas/sprint-2/estados-reserva.md
 
 **O que foi feito**
 ...

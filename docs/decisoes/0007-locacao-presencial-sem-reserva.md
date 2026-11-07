@@ -1,12 +1,13 @@
 # ADR 0007 — Locação presencial direta, sem reserva prévia
 
 - **Data:** 27/10/2026
-- **Status:** 🟡 Proposta
-- **Decidido por:** — *aguardando aprovação da equipe*
+- **Status:** ✅ Aceita
+- **Decidido por:** Kassio de Sousa Dias, em nome da equipe
+- **Aceita em:** 07/11/2026
 
-> ⚠️ **Esta decisão ainda não vale.** Corresponde à decisão pendente **#5** de
-> [`casos-de-uso.md § 6`](../casos-de-uso.md#6-decisões-pendentes). Enquanto o status for
-> 🟡 Proposta, não implemente como aprovada — ver `CLAUDE.md`, regra 2.
+> ✅ **Aceita em 07/11/2026.** Resolve a decisão pendente **#5**. A equipe delegou a
+> escolha; se discordar, abra um ADR novo marcando este como 🔄 Substituída — ADR aceito
+> não é editado para mudar de ideia.
 
 ---
 
@@ -26,7 +27,7 @@ A própria especificação de UC09 em [`casos-de-uso.md`](../casos-de-uso.md) j�
 
 A pendência #5, portanto, não é uma questão aberta de verdade: é a **confirmação** de um comportamento que o caso de uso já especifica. Este ADR existe para fechar a lacuna formal.
 
-## Decisão proposta
+## Decisão
 
 **A locação presencial direta é permitida.** UC09 aceita dois caminhos de entrada:
 

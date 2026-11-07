@@ -18,9 +18,9 @@ ajeitar o quadro no Trello.
 
 | Mudança | Onde |
 |---|---|
-| Diagrama de classes de domínio — 10 classes e 5 enumerações | `docs/diagramas/classes.md` |
-| Diagrama de estados da `Reserva` | `docs/diagramas/estados-reserva.md` |
-| Diagrama de estados da `Locacao`, com `ATRASADA` derivado | `docs/diagramas/estados-locacao.md` |
+| Diagrama de classes de domínio — 10 classes e 5 enumerações | `docs/diagramas/sprint-2/classes.md` |
+| Diagrama de estados da `Reserva` | `docs/diagramas/sprint-2/estados-reserva.md` |
+| Diagrama de estados da `Locacao`, com `ATRASADA` derivado | `docs/diagramas/sprint-2/estados-locacao.md` |
 | Pasta de sprints, com modelo para as próximas | `docs/sprints/README.md` |
 | Plano da Sprint 2: 4 pacotes, donos, critérios de pronto e ordem de integração | `docs/sprints/sprint-2.md` |
 | Issues #21 a #24, uma por pacote | GitHub |

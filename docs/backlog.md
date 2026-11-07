@@ -134,7 +134,7 @@
 - [ ] O resultado informa o motivo da indisponibilidade
 - [ ] Testes cobrem sobreposição parcial no início, no fim, total e sem sobreposição
 
-> **Depende da decisão pendente #2:** se uma reserva `SOLICITADA` bloqueia ou não a disponibilidade.
+> ✅ **Decisão #2 tomada:** só a reserva `APROVADA` bloqueia a disponibilidade — [ADR 0006](decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md).
 
 ---
 
@@ -238,7 +238,7 @@
 - [ ] As ferramentas voltam a ficar disponíveis
 - [ ] Devolução de locação já devolvida é bloqueada
 
-> **Depende da decisão pendente #6:** se devolução parcial é permitida.
+> ✅ **Decisão #6 tomada:** não há devolução parcial; a devolução é do contrato inteiro — [ADR 0013](decisoes/0013-devolucao-sempre-integral.md).
 
 ---
 
@@ -260,7 +260,7 @@
 - [ ] Nenhuma taxa ou percentual aparece como número mágico no código
 - [ ] Testes cobrem: 1 dia, vários dias, devolução no prazo, 1 dia de atraso, vários dias de atraso e arredondamento
 
-> **Maior história do backlog.** Depende das decisões pendentes #3 e #4. Considere quebrá-la em sub-tarefas na Sprint 6.
+> **Maior história do backlog.** ✅ Decisões #3 e #4 tomadas — diária iniciada ([ADR 0011](decisoes/0011-diaria-iniciada-como-criterio-de-cobranca.md)) e multa de 20% da diária por diária de atraso ([ADR 0012](decisoes/0012-multa-por-atraso-e-politica-de-danos.md)). Continua valendo quebrá-la em sub-tarefas na Sprint 6.
 
 ---
 
@@ -313,7 +313,7 @@
 - [ ] Período sem dados exibe mensagem apropriada
 - [ ] Apenas o perfil administrador acessa os relatórios
 
-> **Depende da decisão pendente #7:** quais relatórios são obrigatórios no MVP.
+> ✅ **Decisão #7 tomada:** três relatórios — locações por período, receita por período e ferramentas mais locadas — [ADR 0014](decisoes/0014-tres-relatorios-obrigatorios.md).
 
 ---
 

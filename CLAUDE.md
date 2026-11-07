@@ -68,7 +68,15 @@ Motivo: o app roda no dispositivo do usuário e pode ser modificado por ele. Ver
 
 ### 2. Não invente decisão
 
-Oito decisões estão pendentes (ver [casos de uso § 6](docs/casos-de-uso.md#6-decisões-pendentes)). Onde a documentação diz "pendente" ou "proposta", **pergunte à equipe**. Não escolha por conta própria e não implemente como se estivesse aprovado.
+As sete decisões que travavam implementação foram tomadas em 07/11/2026 e viraram ADR ✅ Aceita
+(ver [casos de uso § 6](docs/casos-de-uso.md#6-decisões--todas-resolvidas-exceto-uma)). **Resta
+só a #8** — o modelo de especificação textual do professor —, que não afeta código.
+
+A regra continua valendo para o que vier: onde a documentação disser "pendente" ou "proposta",
+**pergunte à equipe**. Não escolha por conta própria e não implemente como se estivesse aprovado.
+
+**ADR aceito não é editado para mudar a decisão.** Se a equipe mudar de ideia, é ADR novo
+marcando o antigo como 🔄 Substituída.
 
 ### 3. O diagrama vem antes do código
 

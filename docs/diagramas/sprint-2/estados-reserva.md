@@ -1,7 +1,7 @@
 # Diagrama de Estados — Reserva
 
 > Especificação do ciclo de vida da `Reserva`. Entrega da Sprint 2 —
-> ver [`docs/sprints/sprint-2.md`](../sprints/sprint-2.md).
+> ver [`docs/sprints/sprint-2.md`](../../sprints/sprint-2.md).
 >
 > **As transições válidas são exatamente estas.** Qualquer outra é rejeitada na camada de
 > serviço, não escondida na interface (RN08, RN09).
@@ -23,8 +23,8 @@ stateDiagram-v2
     CANCELADA --> [*]
 
     note right of SOLICITADA
-        Nao bloqueia disponibilidade.
-        Depende da decisao #2 - ADR 0006 em Proposta.
+        NAO bloqueia disponibilidade.
+        E um pedido - ver ADR 0006.
     end note
 
     note right of APROVADA
@@ -53,10 +53,13 @@ Estas **não** existem e devem ser rejeitadas com erro claro:
 - `SOLICITADA` → formalizar locação direto, sem passar por `APROVADA`
 - `APROVADA` → `RECUSADA` — recusar depois de aprovar é cancelar, não recusar
 
-## O que depende de decisão da equipe
+## Decisão aplicada
 
-> ⚠️ **Decisão #2** — se a reserva `SOLICITADA` bloqueia ou não a disponibilidade
-> ([ADR 0006](../decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md), 🟡 Proposta).
->
-> **Não muda os estados nem as transições deste diagrama** — muda apenas a regra de
-> disponibilidade (RN02, UC05), que é Sprint 4. O diagrama vale nos dois cenários.
+✅ **Decisão #2** — [ADR 0006](../../decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md),
+aceita em 07/11/2026: **só a reserva `APROVADA` bloqueia a disponibilidade.** A `SOLICITADA` é um
+pedido, e pedido pode ser recusado.
+
+Isso não muda os estados nem as transições deste diagrama — muda a regra de disponibilidade
+(RN02, UC05). A consequência que **precisa** aparecer na interface: duas pessoas podem solicitar o
+mesmo período, e a tela de análise tem de mostrar o pedido concorrente, senão o Atendente aprova
+os dois e cria o conflito que o sistema existe para evitar.

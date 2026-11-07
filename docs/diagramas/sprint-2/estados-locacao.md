@@ -1,7 +1,7 @@
 # Diagrama de Estados — Locação
 
 > Especificação do ciclo de vida da `Locacao`. Entrega da Sprint 2 —
-> ver [`docs/sprints/sprint-2.md`](../sprints/sprint-2.md).
+> ver [`docs/sprints/sprint-2.md`](../../sprints/sprint-2.md).
 >
 > Esta é a entidade que cumpre a exigência da disciplina de **pelo menos uma entidade com
 > ciclo de vida de quatro ou mais estados**.
@@ -73,13 +73,14 @@ return estadoPersistido;
 
 **O cálculo fica em um único método da camada de serviço.** Nenhuma consulta SQL e nenhum trecho
 do app Flutter repete essa comparação. Justificativa completa em
-[ADR 0003](../decisoes/0003-estado-atrasada-derivado.md).
+[ADR 0003](../../decisoes/0003-estado-atrasada-derivado.md).
 
-## O que depende de decisão da equipe
+## Decisões aplicadas
 
-> ⚠️ **Decisão #5** — se a locação pode nascer sem reserva prévia
-> ([ADR 0007](../decisoes/0007-locacao-presencial-sem-reserva.md), 🟡 Proposta).
->
-> Não muda os estados: muda apenas se a transição inicial pode partir do atendimento direto
-> ou só de uma reserva `APROVADA`. Ver a multiplicidade `Reserva --> Locacao` em
-> [`classes.md`](classes.md).
+| Decisão | O que vale | ADR |
+|---|---|---|
+| **#5** — locação presencial | A locação **pode** nascer sem reserva, no atendimento direto, com as mesmas validações | ✅ [0007](../../decisoes/0007-locacao-presencial-sem-reserva.md) |
+| **#6** — devolução parcial | **Não existe.** A transição `EM_ANDAMENTO → DEVOLVIDA` encerra o contrato inteiro | ✅ [0013](../../decisoes/0013-devolucao-sempre-integral.md) |
+| **#4** — multa de atraso | `ATRASADA → DEVOLVIDA` aplica 20% da diária por diária de atraso | ✅ [0012](../../decisoes/0012-multa-por-atraso-e-politica-de-danos.md) |
+
+Nenhuma decisão pendente afeta este diagrama.

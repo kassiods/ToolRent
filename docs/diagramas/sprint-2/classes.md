@@ -2,9 +2,9 @@
 
 > **Esta é a especificação das classes de domínio da Sprint 2.** O código em
 > `api/src/main/java/br/edu/toolrent/api/domain/` deve corresponder exatamente a este diagrama.
-> Entrega da Sprint 2 — ver [`docs/sprints/sprint-2.md`](../sprints/sprint-2.md).
+> Entrega da Sprint 2 — ver [`docs/sprints/sprint-2.md`](../../sprints/sprint-2.md).
 >
-> Alterou o modelo? Altere este arquivo **no mesmo PR** ([ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md)).
+> Alterou o modelo? Altere este arquivo **no mesmo PR** ([ADR 0010](../../decisoes/0010-diagrama-antes-da-implementacao.md)).
 
 **10 classes de domínio** — dentro do intervalo de 9 a 13 exigido pela disciplina.
 Enumerações são tipos de valor e não contam como classe de domínio.
@@ -13,7 +13,7 @@ Enumerações são tipos de valor e não contam como classe de domínio.
 classDiagram
     direction LR
 
-    %% ============== PACOTE 1 - PESSOAS E CATALOGO ==============
+    %% ====== PACOTE 1 - CADASTROS, CATALOGO E MANUTENCAO ======
     class Usuario {
         +UUID id
         +UUID authUserId
@@ -51,7 +51,7 @@ classDiagram
         +OffsetDateTime criadoEm
     }
 
-    %% ============== PACOTE 2 - RESERVA E LOCACAO ==============
+    %% ========== PACOTE 2 - LOCACAO PONTA A PONTA ==========
     class Reserva {
         +UUID id
         +int quantidade
@@ -79,7 +79,7 @@ classDiagram
         +String condicaoRetirada
     }
 
-    %% ======== PACOTE 3 - DEVOLUCAO, PAGAMENTO E MANUTENCAO ========
+    %% ainda do pacote 2: o dinheiro do contrato
     class Devolucao {
         +UUID id
         +OffsetDateTime dataDevolucao
@@ -96,6 +96,7 @@ classDiagram
         +String forma
         +OffsetDateTime dataPagamento
     }
+    %% do pacote 1: a manutencao e o que tira a ferramenta de circulacao
     class Manutencao {
         +UUID id
         +String motivo
@@ -140,6 +141,7 @@ classDiagram
     }
 
     %% ===================== ASSOCIACOES =====================
+    Cliente "0..1" --> "0..1" Usuario : acessa como
     Categoria "1" --> "0..*" Ferramenta : classifica
     Cliente "1" --> "0..*" Reserva : solicita
     Ferramenta "1" --> "0..*" Reserva : reservada em
@@ -170,32 +172,30 @@ classDiagram
 | 1 | **Toda quantia é `BigDecimal`.** Nunca `double`, nunca `float` | RN12 |
 | 2 | **`Usuario` não guarda senha.** A autenticação é do Supabase Auth; `authUserId` é só a referência | RN10 |
 | 3 | **`ItemLocacao.tarifaRegistrada` é uma cópia** da tarifa no momento da formalização. Mudar o catálogo depois não altera locações já fechadas | RN04 |
-| 4 | **`ATRASADA` não existe em `EstadoLocacao`** — é derivado da data prevista de devolução, calculado em um único método de serviço | [ADR 0003](../decisoes/0003-estado-atrasada-derivado.md) |
+| 4 | **`ATRASADA` não existe em `EstadoLocacao`** — é derivado da data prevista de devolução, calculado em um único método de serviço | [ADR 0003](../../decisoes/0003-estado-atrasada-derivado.md) |
 | 5 | **`ativo` em vez de exclusão.** Registro referenciado por locação, pagamento ou manutenção é inativado, nunca apagado | RN11 |
 | 6 | **A composição `Locacao *-- ItemLocacao`** é a única relação de vida compartilhada: apagar a locação apaga os itens. As demais são associações | RN11 |
-| 7 | **Nenhuma classe de domínio tem regra de cálculo nem SQL.** Validação e cálculo ficam em `service/` | [ADR 0004](../decisoes/0004-regra-de-negocio-na-api.md) |
+| 7 | **Nenhuma classe de domínio tem regra de cálculo nem SQL.** Validação e cálculo ficam em `service/` | [ADR 0004](../../decisoes/0004-regra-de-negocio-na-api.md) |
 
-## O que ainda depende de decisão da equipe
+## Decisões que este modelo aplica
 
-> ⚠️ Estes dois pontos **não estão decididos**. O diagrama registra a forma que o rascunho da
-> migration já assumia, e a equipe confirma ou corrige ao revisar este PR. Ver `CLAUDE.md` regra 2.
+Todas as pendências que afetavam o modelo foram decididas em 07/11/2026:
 
-| Ponto no diagrama | Depende de | Se a decisão mudar |
+| Ponto no diagrama | Decisão | ADR |
 |---|---|---|
-| `Cliente` **não** tem vínculo com `Usuario` | Decisão **#1** — cliente com login próprio ([ADR 0005](../decisoes/0005-login-proprio-do-cliente.md), 🟡 Proposta) | Se #1 for aceita, entra a associação `Cliente "1" -- "0..1" Usuario` |
-| `Reserva "0..1" --> "0..1" Locacao` — locação **pode** existir sem reserva | Decisão **#5** — locação presencial direta ([ADR 0007](../decisoes/0007-locacao-presencial-sem-reserva.md), 🟡 Proposta) | Se #5 for rejeitada, a multiplicidade vira `"1" --> "0..1"`: toda locação nasce de uma reserva |
+| `Cliente "0..1" --> "0..1" Usuario` — o cliente **pode** ter login próprio, e o cadastro não exige conta | #1 — cliente com login próprio | [0005](../../decisoes/0005-login-proprio-do-cliente.md) ✅ |
+| `Reserva "0..1" --> "0..1" Locacao` — a locação **pode** nascer sem reserva, no atendimento direto | #5 — locação presencial permitida | [0007](../../decisoes/0007-locacao-presencial-sem-reserva.md) ✅ |
+| `Locacao "1" --> "0..1" Devolucao` — **uma** devolução por locação, sempre integral | #6 — sem devolução parcial | [0013](../../decisoes/0013-devolucao-sempre-integral.md) ✅ |
+| `Devolucao.danosAprovados` — o dano só entra no total depois de aprovado por `ADMINISTRADOR` | #4 — política de danos | [0012](../../decisoes/0012-multa-por-atraso-e-politica-de-danos.md) ✅ |
+| `Devolucao.valorMulta` — multa de 20% da diária, por diária de atraso | #4 — fórmula do atraso | [0012](../../decisoes/0012-multa-por-atraso-e-politica-de-danos.md) ✅ |
+| `ItemLocacao.tarifaRegistrada` — base do cálculo por **diária iniciada** | #3 — critério de cobrança | [0011](../../decisoes/0011-diaria-iniciada-como-criterio-de-cobranca.md) ✅ |
 
-Nenhum dos dois impede a Sprint 2: as classes existem nos dois cenários, e o que muda é uma
-associação. Mas **nenhum dos dois pode ser implementado como decidido** antes de o ADR virar
-✅ Aceita.
-
-> **Achado:** o rascunho da migration já trazia `reserva_id` anulável em `locacao`, com o
-> comentário *"nulo em atendimento direto"* — ou seja, **já assumia a decisão #5 como aprovada**.
-> O diagrama mantém a multiplicidade, mas agora com a dependência declarada em vez de implícita.
+**Nenhuma decisão pendente bloqueia este diagrama.** A única que segue aberta é a #8 — o modelo de
+especificação textual que o professor usa em aula — e ela não afeta o modelo de domínio.
 
 ## Divergências em relação ao guia mestre
 
-O [guia mestre](../../arquivos-de-ia/guias/guia-mestre.md) propunha 12 classes. Este modelo tem 10.
+O [guia mestre](../../../arquivos-de-ia/guias/guia-mestre.md) propunha 12 classes. Este modelo tem 10.
 As duas diferenças vêm do rascunho da migration e **precisam do aval da equipe**:
 
 | Guia mestre | Aqui | Motivo |
@@ -207,6 +207,8 @@ Ambas mantêm o modelo dentro do intervalo de 9 a 13 classes exigido.
 
 ## Correspondência com o banco
 
-Cada classe corresponde a uma tabela de [`supabase/migrations/0001_estrutura_inicial.sql`](../../supabase/migrations/0001_estrutura_inicial.sql),
-hoje em **rascunho**. A Sprint 2 confirma a migration contra este diagrama — e é esta a ordem:
-o diagrama manda, a migration segue.
+Cada classe corresponde a uma tabela de [`supabase/migrations/0001_estrutura_inicial.sql`](../../../supabase/migrations/0001_estrutura_inicial.sql),
+hoje em **rascunho e nunca aplicada** — não existe projeto Supabase, e a Sprint 2 não depende de um.
+
+A ordem é esta: **o diagrama manda, a migration segue.** Com a decisão #1 aceita, a migration
+ganhou `cliente.usuario_id` para refletir o vínculo opcional desenhado aqui.

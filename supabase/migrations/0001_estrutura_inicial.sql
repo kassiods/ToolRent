@@ -57,6 +57,10 @@ create table usuario (
 
 create table cliente (
     id         uuid primary key default gen_random_uuid(),
+    -- Vinculo OPCIONAL com a conta de acesso: o cliente pode ter login
+    -- proprio (UC06, UC07), mas o cadastro de balcao (UC03) nao exige.
+    -- Ver docs/decisoes/0005-login-proprio-do-cliente.md
+    usuario_id uuid unique references usuario (id),
     nome       text not null,
     documento  text unique not null,
     telefone   text,

@@ -1,13 +1,13 @@
 # ADR 0006 — Reserva bloqueia disponibilidade apenas após aprovação
 
 - **Data:** 27/10/2026
-- **Status:** 🟡 Proposta
-- **Decidido por:** — *aguardando aprovação da equipe*
+- **Status:** ✅ Aceita
+- **Decidido por:** Kassio de Sousa Dias, em nome da equipe
+- **Aceita em:** 07/11/2026
 
-> ⚠️ **Esta decisão ainda não vale.** Corresponde à decisão pendente **#2** de
-> [`casos-de-uso.md § 6`](../casos-de-uso.md#6-decisões-pendentes) e ao parâmetro pendente de
-> [RN02](../regras-de-negocio.md). Enquanto o status for 🟡 Proposta, não implemente como
-> aprovada — ver `CLAUDE.md`, regra 2.
+> ✅ **Aceita em 07/11/2026.** Resolve a decisão pendente **#2**. A equipe delegou a
+> escolha; se discordar, abra um ADR novo marcando este como 🔄 Substituída — ADR aceito
+> não é editado para mudar de ideia.
 
 ---
 
@@ -27,7 +27,7 @@ RN02 já fixa a aritmética da sobreposição: dois períodos conflitam quando `
 
 Este ADR **formaliza o que o documento já recomenda**; não introduz critério novo.
 
-## Decisão proposta
+## Decisão
 
 **Somente reservas `APROVADA` bloqueiam disponibilidade.**
 

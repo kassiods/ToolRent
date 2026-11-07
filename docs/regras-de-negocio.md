@@ -40,9 +40,13 @@ Períodos inválidos são rejeitados com mensagem compreensível, indicando qual
 
 ## RN02 — Disponibilidade e conflitos
 
-⚠️ **Parâmetro pendente** — ver decisão #2
+✅ **Definida** — [ADR 0006](decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md), 07/11/2026.
 
 Uma ferramenta não pode ser reservada ou locada para um período que se sobreponha a outra locação ativa ou reserva bloqueante.
+
+**Bloqueiam a disponibilidade:** locação em `APROVADA` ou `EM_ANDAMENTO`, reserva em `APROVADA`, e ferramenta cuja situação não seja `DISPONIVEL`.
+
+**Não bloqueia:** reserva em `SOLICITADA`. Ela é um pedido, e pedido pode ser recusado — duas pessoas podem solicitar o mesmo período, e o Atendente decide (UC08). A tela de análise **precisa** mostrar que existe pedido concorrente, senão o atendente aprova os dois.
 
 **Dois períodos se sobrepõem quando** `inicioA < fimB` **e** `inicioB < fimA`. Períodos que apenas se tocam nas extremidades não conflitam.
 
@@ -78,7 +82,15 @@ Ferramenta em manutenção, danificada ou marcada como indisponível **não pode
 
 ## RN04 — Cálculo do valor-base
 
-⚠️ **Parâmetro pendente** — ver decisão #3
+✅ **Definida** — [ADR 0011](decisoes/0011-diaria-iniciada-como-criterio-de-cobranca.md), 07/11/2026.
+
+**Critério: diária iniciada.** Toda diária começada é cobrada inteira, com mínimo de 1.
+
+```
+diariasFaturaveis = ceil( (devolucaoPrevista - inicio) / 24h ),  mínimo 1
+```
+
+23 horas de uso = 1 diária. 25 horas = 2 diárias.
 
 Para cada item da locação, o subtotal é calculado a partir da tarifa registrada, da quantidade e do número de diárias faturáveis.
 
@@ -102,14 +114,20 @@ valorBase    = Σ subtotalItem
 
 ## RN05 — Atraso
 
-⚠️ **Parâmetro pendente** — ver decisão #4
+✅ **Definida** — [ADR 0012](decisoes/0012-multa-por-atraso-e-politica-de-danos.md), 07/11/2026.
 
 A multa por atraso é calculada **apenas** quando a devolução ocorre depois do prazo acordado.
 
 ```
-diariasAtraso = diárias entre prazo acordado e devolução efetiva
-multaAtraso   = diariasAtraso × taxaMultaPorDiaria × quantidade
+diariasAtraso = ceil( (devolucaoReal - devolucaoPrevista) / 24h )
+multaAtraso   = Σ ( tarifaRegistrada × quantidade × diariasAtraso × 0,20 )
 ```
+
+**20% da diária, por diária de atraso, acumulativo.** O percentual vive em
+`toolrent.calculo.percentual-multa-atraso`, nunca literal no código.
+
+As diárias de atraso contam **a partir** do prazo — o período já cobrado no valor-base não é
+recontado. Arredondamento `HALF_UP`, duas casas, uma vez só no total (RN12).
 
 **Restrições obrigatórias:**
 
@@ -127,9 +145,12 @@ multaAtraso   = diariasAtraso × taxaMultaPorDiaria × quantidade
 
 ## RN06 — Danos
 
-⚠️ **Parâmetro pendente** — ver decisão #4
+✅ **Definida** — [ADR 0012](decisoes/0012-multa-por-atraso-e-politica-de-danos.md), 07/11/2026.
 
 Danos identificados na devolução são registrados com descrição e valor estimado.
+
+**Quem registra não é quem aprova:** o Atendente registra o dano e o valor estimado; um usuário
+de perfil `ADMINISTRADOR` aprova. O dano nasce com `danosAprovados = false`.
 
 **Uma cobrança por dano só compõe o total devido após aprovação.** Danos registrados mas não aprovados ficam visíveis no histórico sem entrar no valor.
 
