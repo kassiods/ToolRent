@@ -172,13 +172,13 @@ Quando pedirem apenas análise, **não altere arquivos**.
 
 | Item | Situação |
 |---|---|
-| Sprint | 1 — casos de uso e backlog |
+| Sprint | 2 — classes de domínio e banco · [plano](docs/sprints/sprint-2.md) |
 | Documentação | ✅ completa para a entrega atual |
 | App Flutter | 🟡 esqueleto; tela de boas-vindas, sem autenticação |
 | API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
 | Banco | 🟡 migration inicial em **rascunho**, a confirmar na Sprint 2 |
-| Classes de domínio | ⬜ Sprint 2 — **diagrama primeiro**, depois o código |
-| Diagramas | ✅ casos de uso em Mermaid · classes, estados e sequência pendentes |
+| Classes de domínio | ⬜ diagrama pronto; implementação dividida em TT01–TT03 |
+| Diagramas | ✅ casos de uso, classes, estados da Reserva e da Locação · sequência pendente |
 
 **Backlog:** GitHub Issues `#1` a `#16` = US01–US16. **Quadro de acompanhamento:**
 [Trello](https://trello.com/b/m3gakhP8/toolrent-backlog) — o GitHub Projects foi apagado

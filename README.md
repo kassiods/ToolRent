@@ -202,7 +202,8 @@ ToolRent/
 │   ├── regras-de-negocio.md     RN01 a RN12
 │   ├── arquitetura.md
 │   ├── glossario.md
-│   ├── agil/                    DoR, DoD, sprints e rastreabilidade
+│   ├── agil/                    DoR, DoD, roadmap e rastreabilidade
+│   ├── sprints/                 plano da sprint em execução, com os pacotes por integrante
 │   ├── decisoes/                ADRs — decisões com data e justificativa
 │   └── diagramas/               diagramas UML em Mermaid (.md)
 │
@@ -359,6 +360,7 @@ Estão em [`CONTRIBUTING.md`](CONTRIBUTING.md): uma branch por Issue, PR para in
 | [📄 Glossário](docs/glossario.md) | Vocabulário do domínio: reserva, locação, diária faturável |
 | [📁 Decisões (ADRs)](docs/decisoes/) | Toda decisão relevante, com data e alternativas descartadas |
 | [📁 Diagramas](docs/diagramas/) | Diagramas UML em Mermaid — a especificação que o código implementa |
+| [📁 Sprints](docs/sprints/) | O plano da sprint em execução: pacotes, donos e o que é "pronto" |
 
 ---
 

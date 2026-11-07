@@ -54,6 +54,7 @@ docs/
 │   ├── sprints.md                 roadmap, capacidade e riscos
 │   └── rastreabilidade.md         matriz US ↔ UC ↔ RN ↔ Issue ↔ PR
 │
+├── sprints/                  plano de cada sprint em execução, com os pacotes por integrante
 ├── decisoes/                 ADRs — decisões com data, alternativas e consequências
 └── diagramas/                diagramas UML em Mermaid (.md)
 ```

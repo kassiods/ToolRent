@@ -85,15 +85,28 @@ gantt
 
 **Objetivo:** diagrama de classes e banco de dados correspondentes.
 
-| Tarefa | Depende de |
-|---|---|
-| Diagrama de classes de domínio (9 a 13 classes) | Sprint 1 |
-| Diagrama de estados da `Locacao` | Sprint 1 |
-| Migration do schema no Supabase | Diagrama de classes |
-| Políticas de RLS | Schema |
-| Dados de demonstração fictícios | Schema |
+📋 **Plano detalhado, com os pacotes por integrante: [`../sprints/sprint-2.md`](../sprints/sprint-2.md)**
 
-> ⚠️ O enunciado limita o domínio a **9–13 classes**. Candidatas: `Usuario`, `Perfil`, `Cliente`, `Categoria`, `Ferramenta`, `Reserva`, `Locacao`, `ItemLocacao`, `Devolucao`, `Pagamento`, `Manutencao` — 11 classes. Classes de UI, DTO, service e repository **não** contam como domínio.
+| Tarefa | Situação |
+|---|---|
+| Diagrama de classes de domínio (10 classes) | ✅ [`classes.md`](../diagramas/classes.md) |
+| Diagrama de estados da `Reserva` | ✅ [`estados-reserva.md`](../diagramas/estados-reserva.md) |
+| Diagrama de estados da `Locacao` | ✅ [`estados-locacao.md`](../diagramas/estados-locacao.md) |
+| [TT01](https://github.com/kassiods/ToolRent/issues/21) Classes de pessoas e catálogo — Lincoln | ⬜ |
+| [TT02](https://github.com/kassiods/ToolRent/issues/22) Classes de reserva e locação — Victor | ⬜ |
+| [TT03](https://github.com/kassiods/ToolRent/issues/23) Classes de devolução, pagamento e manutenção — Nailan | ⬜ |
+| [TT04](https://github.com/kassiods/ToolRent/issues/24) Confirmar a migration contra o diagrama — Kassio | ⬜ |
+| Políticas de RLS | ⬜ depende do schema confirmado |
+| Dados de demonstração fictícios | ⬜ depende do schema confirmado |
+
+> ⚠️ O enunciado limita o domínio a **9–13 classes**. O diagrama aprovado tem **10**: `Usuario`,
+> `Cliente`, `Categoria`, `Ferramenta`, `Reserva`, `Locacao`, `ItemLocacao`, `Devolucao`,
+> `Pagamento` e `Manutencao`. `Perfil` virou enumeração e `Funcionario` não existe — as duas
+> divergências em relação ao guia mestre estão justificadas em [`classes.md`](../diagramas/classes.md).
+> Classes de UI, DTO, service e repository **não** contam como domínio.
+
+> 📐 **Esta é a primeira sprint sob o [ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md):**
+> os três diagramas foram escritos **antes** de qualquer linha de código.
 
 ---
 

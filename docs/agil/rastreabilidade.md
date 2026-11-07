@@ -58,6 +58,39 @@ apagado; ver [ADR 0009](../decisoes/0009-trello-no-lugar-do-github-projects.md).
 
 ---
 
+## Tarefas técnicas
+
+Trabalho que não é história de usuário, mas que as histórias dependem. Mesma cadeia de
+rastreabilidade — a diferença é que a origem é um **diagrama**, não uma US.
+
+| TT | O que entrega | Diagrama que especifica | Sprint | Issue | Branch | Responsável | Status |
+|---|---|---|---|---|---|---|---|
+| TT01 | Classes de pessoas e catálogo | [`classes.md`](../diagramas/classes.md) | 2 | [#21](https://github.com/kassiods/ToolRent/issues/21) | `feat/TT01-dominio-pessoas-e-catalogo` | Lincoln | ⬜ |
+| TT02 | Classes de reserva e locação | [`classes.md`](../diagramas/classes.md) · [`estados-reserva.md`](../diagramas/estados-reserva.md) · [`estados-locacao.md`](../diagramas/estados-locacao.md) | 2 | [#22](https://github.com/kassiods/ToolRent/issues/22) | `feat/TT02-dominio-reserva-e-locacao` | Victor | ⬜ |
+| TT03 | Classes de devolução, pagamento e manutenção | [`classes.md`](../diagramas/classes.md) | 2 | [#23](https://github.com/kassiods/ToolRent/issues/23) | `feat/TT03-dominio-devolucao-pagamento-manutencao` | Nailan | ⬜ |
+| TT04 | Migration conferida contra o diagrama | [`classes.md`](../diagramas/classes.md) | 2 | [#24](https://github.com/kassiods/ToolRent/issues/24) | `chore/TT04-confirma-migration-contra-o-diagrama` | Kassio | ⬜ |
+
+Plano completo da Sprint 2, com os critérios de pronto de cada pacote e a ordem de integração:
+[`../sprints/sprint-2.md`](../sprints/sprint-2.md).
+
+---
+
+## Quais histórias cada diagrama habilita
+
+| Diagrama | Habilita |
+|---|---|
+| [`casos-de-uso.md`](../diagramas/casos-de-uso.md) | Todas — é a fronteira do sistema |
+| [`classes.md`](../diagramas/classes.md) | US01–US04, US06, US12, US13, US14 |
+| [`estados-reserva.md`](../diagramas/estados-reserva.md) | US07, US08 |
+| [`estados-locacao.md`](../diagramas/estados-locacao.md) | US09, US10, US11 |
+| `sequencia-uc05.md` ⬜ | US05 |
+| `sequencia-uc09.md` ⬜ | US09 |
+
+**Uma história só entra em implementação depois que o diagrama que a especifica está mergeado**
+([ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md)).
+
+---
+
 ## Cobertura das regras de negócio
 
 Toda regra precisa ser exercitada por pelo menos um caso de uso. Nenhuma regra órfã.
