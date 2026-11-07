@@ -59,19 +59,6 @@ com a própria tabela acima dela:
 Corrigido. Os totais por sprint de `sprints.md` já estavam certos — o erro era só na linha de
 resumo do backlog, e passou despercebido nas duas sessões anteriores.
 
-## Defeito encontrado — a linha de resumo do backlog estava errada
-
-Ao montar os cartões a partir de `docs/backlog.md`, dois números da linha de resumo não fecharam
-com a própria tabela acima dela:
-
-| Afirmava | Real | Confirmado por |
-|---|---|---|
-| 88 pontos | **92** | soma da coluna Pontos; e os totais por sprint em `sprints.md` (10+19+21+26+16 = 92) |
-| 10 em P0, 6 em P1 | **12 em P0, 4 em P1** | a tabela lista US01–US12 como P0; as labels do GitHub também são 12 e 4 |
-
-Corrigido. Os totais por sprint de `sprints.md` já estavam certos — o erro era só na linha de
-resumo do backlog, e passou despercebido nas duas sessões anteriores.
-
 ## Decisões tomadas
 
 - **PR #19 mergeado antes de abrir esta branch.** Ele registrava o Project que esta sessão apagou, mas é registro datado de 27/10 e vale como histórico — a correção veio aqui, não por reescrita
@@ -113,7 +100,10 @@ Registrados porque o `guia-mestre.md` pede honestidade sobre o uso de IA:
 
 1. **O link do quadro não abria.** `trello.com/b/5FldI0TK/kanban-quadro-modelo` não estava na conta `kassiodias` — era o template público da Trello, não um quadro da equipe. Em vez de supor, a sessão parou e perguntou; o quadro foi então criado do zero
 2. **O primeiro verificador de Mermaid deu falso positivo.** A expressão regular só reconhecia nós declarados em início de linha, e acusou `B`–`F` do diagrama de fluxo do README como inexistentes — eles são declarados no meio da aresta. O verificador foi corrigido, não o diagrama
-3. **As etiquetas do Trello ficaram sem nome.** O MCP disponível cria cartões e anexa etiquetas, mas não cria nem renomeia definições de etiqueta. Foram usadas as seis padrão, com as cores espelhando as labels do GitHub; nomear ficou como pendência manual
+3. **Uma seção do log foi duplicada.** Um script de edição releu o arquivo depois de já ter
+   gravado a primeira alteração e aplicou a mesma substituição duas vezes. Detectado na
+   conferência com `grep` e removido antes do push
+4. **As etiquetas do Trello ficaram sem nome.** O MCP disponível cria cartões e anexa etiquetas, mas não cria nem renomeia definições de etiqueta. Foram usadas as seis padrão, com as cores espelhando as labels do GitHub; nomear ficou como pendência manual
 
 ## Pendências
 
