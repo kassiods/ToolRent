@@ -30,6 +30,10 @@ Cada elo responde uma pergunta:
 
 Preencha as colunas de Issue e PR conforme o trabalho avança.
 
+O acompanhamento diário fica no [GitHub Project](https://github.com/users/kassiods/projects/2),
+cujo campo `Status` usa a mesma legenda da coluna Status desta matriz. **Esta matriz continua
+sendo a fonte da entrega** — o Project é conveniência de quadro, não substituto do documento.
+
 | US | Caso de uso | Regras | Sprint | Issue | Branch | PR | Diagrama | Status |
 |---|---|---|---|---|---|---|---|---|
 | US01 | UC01 | RN09, RN10 | 3 | [#1](https://github.com/kassiods/ToolRent/issues/1) | `feat/US01-autenticar-usuario` | — | Casos de uso, Classes | ⬜ |

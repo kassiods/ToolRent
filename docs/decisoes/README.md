@@ -14,6 +14,9 @@ Um **ADR** (*Architecture Decision Record*) registra uma decisão relevante: o c
 | [0002](0002-remocao-do-ator-tecnico.md) | Remoção do ator "Técnico de manutenção" | 27/10/2026 | ✅ Aceita |
 | [0003](0003-estado-atrasada-derivado.md) | `ATRASADA` como estado derivado | 27/10/2026 | ✅ Aceita |
 | [0004](0004-regra-de-negocio-na-api.md) | Regra de negócio exclusivamente na API | 27/10/2026 | ✅ Aceita |
+| [0005](0005-login-proprio-do-cliente.md) | Cliente com login próprio | 27/10/2026 | 🟡 Proposta — decisão #1 |
+| [0006](0006-reserva-bloqueia-apenas-apos-aprovacao.md) | Reserva bloqueia disponibilidade só após aprovação | 27/10/2026 | 🟡 Proposta — decisão #2 |
+| [0007](0007-locacao-presencial-sem-reserva.md) | Locação presencial direta, sem reserva prévia | 27/10/2026 | 🟡 Proposta — decisão #5 |
 
 ---
 

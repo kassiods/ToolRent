@@ -308,7 +308,7 @@ flutter run -d chrome          # ou: -d windows / -d android
 
 **Professor:** Anthony Irlan Marques Luz
 
-O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent/issues) — uma Issue por história, de `#1` (US01) a `#16` (US16). O fluxo de trabalho, as convenções de branch e commit e o checklist de revisão estão em [`CONTRIBUTING.md`](CONTRIBUTING.md).
+O backlog está no [GitHub Issues](https://github.com/kassiods/ToolRent/issues) — uma Issue por história, de `#1` (US01) a `#16` (US16) — e acompanhado no [Project](https://github.com/users/kassiods/projects/2), com `Sprint`, `Pontos`, `Prioridade`, `Caso de uso` e sinalização das histórias bloqueadas por decisão pendente. O fluxo de trabalho, as convenções de branch e commit e o checklist de revisão estão em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 
