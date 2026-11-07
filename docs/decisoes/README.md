@@ -17,6 +17,9 @@ Um **ADR** (*Architecture Decision Record*) registra uma decisão relevante: o c
 | [0005](0005-login-proprio-do-cliente.md) | Cliente com login próprio | 27/10/2026 | 🟡 Proposta — decisão #1 |
 | [0006](0006-reserva-bloqueia-apenas-apos-aprovacao.md) | Reserva bloqueia disponibilidade só após aprovação | 27/10/2026 | 🟡 Proposta — decisão #2 |
 | [0007](0007-locacao-presencial-sem-reserva.md) | Locação presencial direta, sem reserva prévia | 27/10/2026 | 🟡 Proposta — decisão #5 |
+| [0008](0008-mermaid-no-lugar-do-plantuml.md) | Mermaid no lugar do PlantUML | 07/11/2026 | ✅ Aceita · recomendação do professor |
+| [0009](0009-trello-no-lugar-do-github-projects.md) | Trello no lugar do GitHub Projects | 07/11/2026 | ✅ Aceita |
+| [0010](0010-diagrama-antes-da-implementacao.md) | Diagrama aprovado antes da implementação | 07/11/2026 | ✅ Aceita |
 
 ---
 
