@@ -46,6 +46,32 @@ Cada um dos 16 cartões traz na descrição: enunciado da história, link da Iss
 
 Sprint estava em três lugares: label da Issue, campo do Project e `docs/backlog.md`. Três cópias da mesma informação que muda a cada replanejamento garantem que duas fiquem erradas. Agora vive no quadro e no backlog. As labels que descrevem a **natureza** do item não mudam de valor e ficaram: `historia`, `tarefa-tecnica`, `defeito`, `P0`, `P1`, `decisao-pendente`.
 
+## Defeito encontrado — a linha de resumo do backlog estava errada
+
+Ao montar os cartões a partir de `docs/backlog.md`, dois números da linha de resumo não fecharam
+com a própria tabela acima dela:
+
+| Afirmava | Real | Confirmado por |
+|---|---|---|
+| 88 pontos | **92** | soma da coluna Pontos; e os totais por sprint em `sprints.md` (10+19+21+26+16 = 92) |
+| 10 em P0, 6 em P1 | **12 em P0, 4 em P1** | a tabela lista US01–US12 como P0; as labels do GitHub também são 12 e 4 |
+
+Corrigido. Os totais por sprint de `sprints.md` já estavam certos — o erro era só na linha de
+resumo do backlog, e passou despercebido nas duas sessões anteriores.
+
+## Defeito encontrado — a linha de resumo do backlog estava errada
+
+Ao montar os cartões a partir de `docs/backlog.md`, dois números da linha de resumo não fecharam
+com a própria tabela acima dela:
+
+| Afirmava | Real | Confirmado por |
+|---|---|---|
+| 88 pontos | **92** | soma da coluna Pontos; e os totais por sprint em `sprints.md` (10+19+21+26+16 = 92) |
+| 10 em P0, 6 em P1 | **12 em P0, 4 em P1** | a tabela lista US01–US12 como P0; as labels do GitHub também são 12 e 4 |
+
+Corrigido. Os totais por sprint de `sprints.md` já estavam certos — o erro era só na linha de
+resumo do backlog, e passou despercebido nas duas sessões anteriores.
+
 ## Decisões tomadas
 
 - **PR #19 mergeado antes de abrir esta branch.** Ele registrava o Project que esta sessão apagou, mas é registro datado de 27/10 e vale como histórico — a correção veio aqui, não por reescrita
@@ -70,7 +96,14 @@ YAML dos templates de Issue e do ci.yml      ->  5 arquivos válidos
 Blocos Mermaid (nós, arestas e classDef)     ->  4 blocos consistentes, cercas balanceadas
 Varredura por .puml / projects/2 restantes   ->  só ocorrências intencionais (notas de "superado")
 Issues: labels após a limpeza                ->  historia + P0/P1 + decisao-pendente, sem sprint
+Totais do backlog x sprints.md x labels      ->  divergência encontrada e corrigida (ver acima)
+CI do PR #20                                 ->  3 jobs verdes
 ```
+
+**Não verificado:** a renderização do bloco Mermaid na página do GitHub. A extensão do Chrome não
+estava conectada nesta sessão, então a conferência visual exigida pelo checklist de
+`docs/diagramas/README.md` ficou pendente — a verificação feita foi apenas estática (nós, arestas
+e `classDef` consistentes, cercas balanceadas).
 
 Nenhum arquivo de código foi alterado nesta sessão — só documentação, template de Issue e configuração de ferramentas.
 

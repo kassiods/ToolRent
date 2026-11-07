@@ -39,7 +39,7 @@
 | [US15](#us15) | Consultar relatórios | P1 | 8 | UC15 | 7 |
 | [US16](#us16) | Consultar histórico do cliente | P1 | 3 | UC16 | 7 |
 
-**Total:** 16 histórias · 88 pontos · 10 em P0, 6 em P1
+**Total:** 16 histórias · 92 pontos · 12 em P0, 4 em P1
 
 ---
 
