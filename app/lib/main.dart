@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'core/app_theme.dart';
-import 'ui/screens/boas_vindas_screen.dart';
+import 'ui/screens/seletor_perfil_screen.dart';
 
 /// Ponto de entrada do ToolRent.
 ///
-/// Sprint 0: apenas a estrutura e a tela de boas-vindas.
-/// A autenticação (US01) entra na Sprint 3 e substitui a tela inicial
-/// pela tela de login.
+/// O seletor de perfil é provisório e será substituído pelo fluxo de
+/// autenticação da Sprint 3.
 void main() {
   runApp(const ToolRentApp());
 }
@@ -22,7 +21,7 @@ class ToolRentApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.claro,
       darkTheme: AppTheme.escuro,
-      home: const BoasVindasScreen(),
+      home: const SeletorPerfilScreen(),
     );
   }
 }
