@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:toolrent_app/main.dart';
+import 'package:toolrent_app/ui/screens/boas_vindas_screen.dart';
 
 void main() {
   group('BoasVindasScreen', () {
+    Future<void> pumpTela(WidgetTester tester) {
+      return tester.pumpWidget(const MaterialApp(home: BoasVindasScreen()));
+    }
+
     testWidgets('exibe a marca e a descrição do sistema', (tester) async {
-      await tester.pumpWidget(const ToolRentApp());
+      await pumpTela(tester);
 
       expect(find.text('ToolRent'), findsOneWidget);
       expect(find.text('Sistema de Locação de Ferramentas'), findsOneWidget);
     });
 
     testWidgets('lista as etapas do roadmap', (tester) async {
-      await tester.pumpWidget(const ToolRentApp());
+      await pumpTela(tester);
 
       expect(find.text('Estado do projeto'), findsOneWidget);
       expect(find.text('Repositório e documentação'), findsOneWidget);
@@ -20,9 +24,8 @@ void main() {
     });
 
     testWidgets('marca a Sprint 0 como concluída', (tester) async {
-      await tester.pumpWidget(const ToolRentApp());
+      await pumpTela(tester);
 
-      // A Sprint 0 é a única etapa concluída neste momento do projeto.
       expect(find.byIcon(Icons.check_circle), findsOneWidget);
     });
   });
