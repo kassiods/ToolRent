@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
-import 'em_construcao_screen.dart';
 import 'home_administrador_screen.dart';
+import 'home_atendente_screen.dart';
 import 'home_cliente_screen.dart';
 
 class SeletorPerfilScreen extends StatelessWidget {
@@ -20,18 +20,10 @@ class SeletorPerfilScreen extends StatelessWidget {
     );
   }
 
-  void _abrirTelaPrevista(
-    BuildContext context, {
-    required String perfil,
-    required String sprintPrevista,
-  }) {
+  void _abrirAtendente(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (_) => EmConstrucaoScreen(
-          codigoUc: 'Sprint 2',
-          nomeUc: 'Tela inicial do $perfil',
-          sprintPrevista: sprintPrevista,
-        ),
+        builder: (_) => const HomeAtendenteScreen(),
       ),
     );
   }
@@ -68,11 +60,7 @@ class SeletorPerfilScreen extends StatelessWidget {
                 _PerfilCard(
                   rotulo: 'Atendente',
                   icone: Icons.support_agent_outlined,
-                  aoTocar: () => _abrirTelaPrevista(
-                    context,
-                    perfil: 'Atendente',
-                    sprintPrevista: 'Pacote 2',
-                  ),
+                  aoTocar: () => _abrirAtendente(context),
                 ),
                 _PerfilCard(
                   rotulo: 'Cliente',

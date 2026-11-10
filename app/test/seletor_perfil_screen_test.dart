@@ -22,6 +22,17 @@ void main() {
       expect(find.text('Relatórios'), findsOneWidget);
     });
 
+    testWidgets('abre a tela do Atendente', (tester) async {
+      await tester.pumpWidget(const ToolRentApp());
+
+      await tester.tap(find.text('Atendente'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Área do Atendente'), findsOneWidget);
+      expect(find.text('Clientes'), findsOneWidget);
+      expect(find.text('Formalizar locação'), findsOneWidget);
+    });
+
     testWidgets('abre a tela de espera de uma ação do Administrador', (
       tester,
     ) async {
