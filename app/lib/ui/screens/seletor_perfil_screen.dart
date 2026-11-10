@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_theme.dart';
 import 'em_construcao_screen.dart';
 import 'home_administrador_screen.dart';
+import 'home_cliente_screen.dart';
 
 class SeletorPerfilScreen extends StatelessWidget {
   const SeletorPerfilScreen({super.key});
@@ -10,6 +11,12 @@ class SeletorPerfilScreen extends StatelessWidget {
   void _abrirAdministrador(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(builder: (_) => const HomeAdministradorScreen()),
+    );
+  }
+
+  void _abrirCliente(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const HomeClienteScreen()),
     );
   }
 
@@ -70,11 +77,7 @@ class SeletorPerfilScreen extends StatelessWidget {
                 _PerfilCard(
                   rotulo: 'Cliente',
                   icone: Icons.person_outline,
-                  aoTocar: () => _abrirTelaPrevista(
-                    context,
-                    perfil: 'Cliente',
-                    sprintPrevista: 'Pacote 3',
-                  ),
+                  aoTocar: () => _abrirCliente(context),
                 ),
               ],
             ),
