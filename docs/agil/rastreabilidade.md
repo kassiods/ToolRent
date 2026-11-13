@@ -63,13 +63,13 @@ apagado; ver [ADR 0009](../decisoes/0009-trello-no-lugar-do-github-projects.md).
 Trabalho que não é história de usuário, mas que as histórias dependem. Mesma cadeia de
 rastreabilidade — a diferença é que a origem é um **diagrama**, não uma US.
 
-| TT | O que entrega | Diagrama que especifica | Sprint | Issue | Branch | Responsável | Status |
-|---|---|---|---|---|---|---|---|
-| TT05 | Diagrama de **pacotes** + casca compartilhada + tela do Administrador | [`pacotes.md`](../diagramas/sprint-2/pacotes.md) | 2 | [#26](https://github.com/kassiods/ToolRent/issues/26) | `feat/TT05-pacotes-e-tela-administrador` | Nailan | ⬜ |
-| TT06 | Diagrama de **atividades** + tela do Atendente, 10 itens | [`atividades-tela-inicial.md`](../diagramas/sprint-2/atividades-tela-inicial.md) | 2 | [#27](https://github.com/kassiods/ToolRent/issues/27) | `feat/TT06-atividades-e-tela-atendente` | Lincoln | ⬜ |
-| TT07 | Diagrama de **sequência** + tela do Cliente + teste de referência | [`sequencia-abrir-tela-inicial.md`](../diagramas/sprint-2/sequencia-abrir-tela-inicial.md) | 2 | [#28](https://github.com/kassiods/ToolRent/issues/28) | `feat/TT07-sequencia-e-tela-cliente` | [#34](https://github.com/kassiods/ToolRent/pull/34) | Victor | 🔍 |
-| TT01 | Classes de cadastros, catálogo e manutenção | [`classes.md`](../diagramas/sprint-2/classes.md) | 3 | [#21](https://github.com/kassiods/ToolRent/issues/21) | `feat/TT01-dominio-cadastros-e-catalogo` | Nailan | ⬜ |
-| TT02 | Classes de locação ponta a ponta | [`classes.md`](../diagramas/sprint-2/classes.md) · [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) · [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) | 3 | [#22](https://github.com/kassiods/ToolRent/issues/22) | `feat/TT02-dominio-locacao` | Lincoln | ⬜ |
+| TT | O que entrega | Diagrama que especifica | Sprint | Issue | Branch | PR | Responsável | Status |
+|---|---|---|---|---|---|---|---|---|
+| TT05 | Diagrama de **pacotes** + casca compartilhada + tela do Administrador | [`pacotes.md`](../diagramas/sprint-2/pacotes.md) | 2 | [#26](https://github.com/kassiods/ToolRent/issues/26) | `feat/TT05-pacotes-e-tela-administrador` | [#31](https://github.com/kassiods/ToolRent/pull/31) · [#32](https://github.com/kassiods/ToolRent/pull/32) | Nailan | ✅ |
+| TT06 | Diagrama de **atividades** + tela do Atendente, 10 itens | [`atividades-tela-inicial.md`](../diagramas/sprint-2/atividades-tela-inicial.md) | 2 | [#27](https://github.com/kassiods/ToolRent/issues/27) | `feat/TT06-atividades-e-tela-atendente` | [#33](https://github.com/kassiods/ToolRent/pull/33) | Lincoln | ✅ |
+| TT07 | Diagrama de **sequência** + tela do Cliente + teste de referência | [`sequencia-abrir-tela-inicial.md`](../diagramas/sprint-2/sequencia-abrir-tela-inicial.md) | 2 | [#28](https://github.com/kassiods/ToolRent/issues/28) | `feat/TT07-sequencia-e-tela-cliente` | [#34](https://github.com/kassiods/ToolRent/pull/34) | Victor | ✅ |
+| TT01 | Classes de cadastros, catálogo e manutenção | [`classes.md`](../diagramas/sprint-2/classes.md) | 3 | [#21](https://github.com/kassiods/ToolRent/issues/21) | `feat/TT01-dominio-cadastros-e-catalogo` | — | Nailan | ⬜ |
+| TT02 | Classes de locação ponta a ponta | [`classes.md`](../diagramas/sprint-2/classes.md) · [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) · [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) | 3 | [#22](https://github.com/kassiods/ToolRent/issues/22) | `feat/TT02-dominio-locacao` | — | Lincoln | ⬜ |
 
 > **TT03 e TT04 não aparecem porque foram fechadas** na redivisão de 07/11/2026, e os IDs não são
 > reaproveitados. TT01 e TT02 continuam existindo: só mudaram de sprint quando a Sprint 2 passou a

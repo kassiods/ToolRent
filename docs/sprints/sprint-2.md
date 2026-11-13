@@ -3,7 +3,10 @@
 > **Escopo:** os três diagramas do livro que o projeto ainda não tinha, e a implementação de cada
 > um. **Só front-end.**
 > **Quadro:** [ToolRent — Backlog](https://trello.com/b/m3gakhP8/toolrent-backlog)
-> **Situação:** diagramas escritos. A implementação começa quando este PR for mergeado.
+> **Situação:** ✅ **entregue.** Os três diagramas e as três telas estão mergeados na `main`
+> (PRs [#31](https://github.com/kassiods/ToolRent/pull/31), [#33](https://github.com/kassiods/ToolRent/pull/33)
+> e [#34](https://github.com/kassiods/ToolRent/pull/34)); `flutter analyze` sem avisos e
+> `flutter test` com 11 testes verdes, verificados em 13/11/2026.
 
 ---
 
@@ -238,17 +241,17 @@ Três decisões já tomadas aparecem aqui:
 
 ## Definition of Done da Sprint 2
 
-- [ ] Os três diagramas estão mergeados na `main` e renderizam no GitHub
-- [ ] O projeto tem os **cinco** diagramas do livro: casos de uso, classes, pacotes, sequência e atividades
-- [ ] As três telas iniciais existem e correspondem **exatamente** aos diagramas
-- [ ] O seletor de perfil provisório abre as três
-- [ ] `app/lib/domain/rules/` foi removido
-- [ ] Nenhuma tela chama API, banco ou autenticação
-- [ ] Nenhuma cor literal fora de `core/app_theme.dart`
-- [ ] Nenhuma regra de negócio no app ([ADR 0004](../decisoes/0004-regra-de-negocio-na-api.md))
-- [ ] `flutter analyze` sem avisos e `flutter test` verde na `main`
-- [ ] A [matriz de rastreabilidade](../agil/rastreabilidade.md) aponta o diagrama de cada pacote
-- [ ] Os três cartões estão em ✅ no quadro e as Issues, fechadas
+- [x] Os três diagramas estão mergeados na `main` e renderizam no GitHub
+- [x] O projeto tem os **cinco** diagramas do livro: casos de uso, classes, pacotes, sequência e atividades
+- [x] As três telas iniciais existem e correspondem **exatamente** aos diagramas — Admin 2 itens (UC02, UC15) · Atendente 10 itens, UC12 sem botão · Cliente 2 itens (UC06, UC07)
+- [x] O seletor de perfil provisório abre as três
+- [x] `app/lib/domain/rules/` foi removido
+- [x] Nenhuma tela chama API, banco ou autenticação
+- [x] Nenhuma cor literal fora de `core/app_theme.dart` — nas três telas da sprint; resta um `Colors.white` na `boas_vindas_screen.dart` (Sprint 1), a limpar
+- [x] Nenhuma regra de negócio no app ([ADR 0004](../decisoes/0004-regra-de-negocio-na-api.md))
+- [x] `flutter analyze` sem avisos e `flutter test` verde na `main` (11 testes, verificado em 13/11/2026)
+- [x] A [matriz de rastreabilidade](../agil/rastreabilidade.md) aponta o diagrama de cada pacote
+- [x] Os três cartões estão em ✅ no quadro e as Issues [#26](https://github.com/kassiods/ToolRent/issues/26), [#27](https://github.com/kassiods/ToolRent/issues/27) e [#28](https://github.com/kassiods/ToolRent/issues/28), fechadas
 
 **Fora do escopo, de propósito:** classes de domínio, banco, repositórios, serviços, endpoints,
 autenticação e as telas de destino de cada caso de uso.
