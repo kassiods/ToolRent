@@ -90,21 +90,25 @@ Em particular, repare no que **não** está desenhado:
 
 **Seta que aparecer fora deste diagrama é erro de arquitetura, não liberdade de implementação.**
 
-## Divergência encontrada entre o desenho e o disco
+## Correspondência entre o desenho e o disco
 
-Ao conferir a estrutura real contra [`arquitetura.md`](../../arquitetura.md), apareceu uma pasta
-a mais no app:
+Ao conferir a estrutura real contra [`arquitetura.md`](../../arquitetura.md), a estrutura do app
+corresponde aos pacotes deste diagrama:
 
 ```
-app/lib/domain/rules/     ← existe no disco, vazia, e NÃO está na arquitetura
+app/lib/
+├── core/
+├── data/repositories/
+├── domain/entities/
+├── domain/enums/
+└── ui/
+    ├── screens/
+    └── widgets/
 ```
 
-`arquitetura.md` prevê `core/`, `domain/`, `data/repositories/`, `ui/screens/` e `ui/widgets/` —
-não prevê `domain/rules/`. Uma pasta chamada *rules* dentro do app é um convite para colocar ali
-exatamente o que o [ADR 0004](../../decisoes/0004-regra-de-negocio-na-api.md) proíbe.
-
-**Decisão deste diagrama: a pasta sai.** Ela está vazia, nunca foi usada, e não aparece neste
-desenho. Remover é tarefa do Pacote 1.
+`arquitetura.md` não prevê `domain/rules/`, e essa pasta não existe. A ausência é intencional:
+uma pasta de regras dentro do app contrariaria o [ADR 0004](../../decisoes/0004-regra-de-negocio-na-api.md).
+As regras RN01–RN12 permanecem exclusivamente em `api/service`.
 
 ## Correspondência com o disco
 
@@ -121,5 +125,6 @@ desenho. Remover é tarefa do Pacote 1.
 | `domain` (api) | `api/src/main/java/br/edu/toolrent/api/domain/` |
 | `config` | `api/src/main/java/br/edu/toolrent/api/config/` |
 
-Os pacotes da API **já existem**, cada um com o seu `package-info.java`. Os do app existem como
-pastas vazias, sem documentação. Equilibrar isso é a implementação deste pacote de trabalho.
+Os pacotes da API já existem, cada um com o seu `package-info.java`. Os pacotes estruturais do
+app também estão materializados; entidades, enums e repositories entram nas histórias que
+precisarem deles.
