@@ -69,23 +69,35 @@ supabase/
 
 ---
 
-## ⚠️ Estado atual
+## ✅ Estado atual
 
-**`0001_estrutura_inicial.sql` é um RASCUNHO e nunca foi aplicado.** Não existe projeto Supabase
-do ToolRent — ver [o plano da Sprint 2](../docs/sprints/sprint-2.md).
+**O projeto Supabase existe e o schema está aplicado.** Projeto `ToolRent`
+(ref `xosbuvwwuobmroqfylwu`, região `us-east-1`), criado em 13/11/2026. No mesmo dia foram
+aplicadas, registradas no histórico de migrations do projeto:
 
-A correspondência com o [diagrama de classes](../docs/diagramas/sprint-2/classes.md) **foi
-conferida em 07/11/2026**: 10 tabelas para as 10 classes, uma a uma. Na mesma data o rascunho
-recebeu `cliente.usuario_id` para acompanhar o [ADR 0005](../docs/decisoes/0005-login-proprio-do-cliente.md).
-Editar o arquivo foi legítimo porque ele nunca rodou; **depois de aplicado, a correção vem como
-`0002_*.sql`.**
+| Migration | O que fez | Verificação |
+|---|---|---|
+| `0001_estrutura_inicial.sql` | 10 tabelas, 5 enums, constraints e índices | 10 tabelas criadas, 1:1 com o [diagrama de classes](../docs/diagramas/sprint-2/classes.md) |
+| `0002_habilita_rls.sql` | RLS ligado em todas as tabelas, **sem políticas** — nega tudo via Data API por padrão | `rls_enabled = true` nas 10 tabelas; advisor de segurança sem erro |
+
+A correspondência com o diagrama de classes foi conferida duas vezes: em 07/11/2026 (quando o
+rascunho ganhou `cliente.usuario_id` pelo [ADR 0005](../docs/decisoes/0005-login-proprio-do-cliente.md))
+e em 13/11/2026, imediatamente antes de aplicar. **A partir de agora vale a regra: migration
+aplicada não se edita — mudança nova é `0003_*.sql` em diante.**
+
+> ℹ️ O comentário "STATUS: RASCUNHO" no cabeçalho da `0001` ficou como está: o arquivo não pode
+> mais ser editado, e o status real vive aqui.
+
+> ⚠️ A região ficou `us-east-1`, não São Paulo como este README recomendava. Para o uso da
+> disciplina a latência extra é irrelevante; mudar exigiria recriar o projeto.
 
 ### Pendente
 
-- [ ] **Criar o projeto Supabase do ToolRent** — não reaproveitar projeto existente de outro sistema
-- [ ] Aplicar a `0001_estrutura_inicial.sql` nesse projeto
-- [ ] Escrever as políticas de RLS em `policies/` (junto da autenticação, Sprint 3)
+- [x] Criar o projeto Supabase do ToolRent — feito em 13/11/2026
+- [x] Aplicar a `0001_estrutura_inicial.sql` — feita, mais a `0002_habilita_rls.sql`
+- [ ] Escrever as políticas de RLS **por perfil** em `policies/` (junto da autenticação, Sprint 3)
 - [ ] Criar dados de demonstração fictícios
+- [ ] Avaliar índices nas FKs que o advisor apontou (`categoria_id`, `criado_por`, `registrado_por`…) — candidata a `0003`, junto da US05
 
 > A decisão #2 — como reservas `SOLICITADA` afetam a disponibilidade — **foi tomada**: só a
 > `APROVADA` bloqueia ([ADR 0006](../docs/decisoes/0006-reserva-bloqueia-apenas-apos-aprovacao.md)).
