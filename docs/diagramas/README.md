@@ -49,17 +49,20 @@ Isso resolve o problema que o PlantUML tinha aqui: antes, a fonte `.puml` e a im
 
 ```
 docs/diagramas/
-├── sprint-1/     casos de uso — a fronteira do sistema
+├── sprint-1/     casos de uso — a fronteira do sistema (referência permanente)
 ├── sprint-2/     pacotes · atividades · sequência · classes · ciclos de vida
-├── sprint-3/     sequência de UC01 — autenticação e autorização por perfil
-├── sprint-4/     (a criar) sequência de UC05
-└── sprint-5/     (a criar) sequência de UC09
+├── sprint-3/     sequência de UC01 · classes · estados (cópias) — tudo que a Sprint 3 implementa
+├── sprint-4/     (a criar) sequência de UC05 + cópias do que a sprint implementar
+└── sprint-5/     (a criar) sequência de UC09 + cópias do que a sprint implementar
 ```
 
-**Toda sprint tem os seus diagramas, e a implementação da sprint segue o que eles especificam.**
-A pasta diz em que entrega o diagrama **nasceu**, não em que sprint ele é implementado; um
-diagrama continua valendo depois da sprint dele — o de casos de uso, da Sprint 1, é referência até
-o fim do projeto.
+**A pasta de cada sprint contém todos os diagramas que aquela sprint implementa.** Quem abre
+`sprint-N/` vê a especificação completa da sprint, sem caçar em pastas anteriores. Quando um
+diagrama nasceu numa sprint anterior, ele é **duplicado** na pasta da sprint que o implementa,
+com uma nota no topo apontando a **fonte editável** (a pasta onde nasceu). Alterou a fonte?
+Atualize a cópia **no mesmo PR** — duas versões divergentes é exatamente o erro que derrubou o
+PlantUML na Sprint 1. A exceção é o de **casos de uso** (Sprint 1): é referência permanente de
+todas as sprints e não é copiado.
 
 | Nasceu na | Diagrama | Tipo | Arquivo | Implementado em | Status |
 |---|---|---|---|---|---|
@@ -67,26 +70,28 @@ o fim do projeto.
 | 2 | Camadas de `app/` e `api/` | **pacotes** | [`sprint-2/pacotes.md`](sprint-2/pacotes.md) | Sprint 2 | ✅ |
 | 2 | Da abertura do app à tela inicial | **atividades** | [`sprint-2/atividades-tela-inicial.md`](sprint-2/atividades-tela-inicial.md) | Sprint 2 | ✅ |
 | 2 | Abrir tela inicial e acionar o menu | **sequência** | [`sprint-2/sequencia-abrir-tela-inicial.md`](sprint-2/sequencia-abrir-tela-inicial.md) | Sprint 2 | ✅ |
-| 2 | Classes de domínio | **classes** | [`sprint-2/classes.md`](sprint-2/classes.md) | **Sprint 3** | ✅ |
-| 2 | Estados da Reserva | estados ⚠️ | [`sprint-2/estados-reserva.md`](sprint-2/estados-reserva.md) | **Sprint 3** | ✅ |
-| 2 | Estados da Locação | estados ⚠️ | [`sprint-2/estados-locacao.md`](sprint-2/estados-locacao.md) | **Sprint 3** | ✅ |
+| 2 | Classes de domínio | **classes** | [`sprint-2/classes.md`](sprint-2/classes.md) · cópia em [`sprint-3/`](sprint-3/classes.md) | **Sprint 3** | ✅ |
+| 2 | Estados da Reserva | estados ⚠️ | [`sprint-2/estados-reserva.md`](sprint-2/estados-reserva.md) · cópia em [`sprint-3/`](sprint-3/estados-reserva.md) | **Sprint 3** | ✅ |
+| 2 | Estados da Locação | estados ⚠️ | [`sprint-2/estados-locacao.md`](sprint-2/estados-locacao.md) · cópia em [`sprint-3/`](sprint-3/estados-locacao.md) | **Sprint 3** | ✅ |
 | 3 | Autenticar e autorizar por perfil (UC01) | **sequência** | [`sprint-3/sequencia-uc01.md`](sprint-3/sequencia-uc01.md) | Sprint 3 | ✅ |
 | 4 | Consultar disponibilidade (UC05) | **sequência** | `sprint-4/sequencia-uc05.md` | Sprint 4 | ⬜ |
 | 5 | Formalizar locação (UC09) | **sequência** | `sprint-5/sequencia-uc09.md` | Sprint 5 | ⬜ |
 
 ⚠️ fora dos cinco do livro — exceção justificada acima.
 
-> O diagrama de classes e os dois de estados nasceram na Sprint 2 e continuam nesta pasta, mas a
-> implementação deles passou para a Sprint 3 quando a Sprint 2 foi redefinida como entrega de
-> front-end — ver [`../sprints/sprint-2.md`](../sprints/sprint-2.md). O diagrama não se move de
-> pasta por isso.
+> O diagrama de classes e os dois de estados nasceram na Sprint 2, onde fica a **fonte editável**;
+> a implementação deles passou para a Sprint 3 quando a Sprint 2 foi redefinida como entrega de
+> front-end — ver [`../sprints/sprint-2.md`](../sprints/sprint-2.md). Por isso há uma **cópia** de
+> cada um em `sprint-3/`, marcada como tal no topo do arquivo.
 
 ### Ao abrir uma sprint nova
 
 1. Crie `docs/diagramas/sprint-N/`
 2. Desenhe os diagramas que a entrega exige — **antes** de qualquer código
-3. Abra o PR só do diagrama, e só depois do merge comece a implementar
-4. Registre no plano da sprint, em [`../sprints/`](../sprints/), qual diagrama especifica qual pacote
+3. **Copie para `sprint-N/` os diagramas de sprints anteriores que esta sprint implementa**,
+   com a nota de "cópia de conveniência" no topo apontando a fonte editável
+4. Abra o PR só do diagrama, e só depois do merge comece a implementar
+5. Registre no plano da sprint, em [`../sprints/`](../sprints/), qual diagrama especifica qual pacote
 
 ## Como escrever cada tipo
 
