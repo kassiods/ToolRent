@@ -183,7 +183,7 @@ Quando pedirem apenas análise, **não altere arquivos**.
 
 | Item | Situação |
 |---|---|
-| Sprint | 2 **✅ entregue em 13/11/2026** · [plano](docs/sprints/sprint-2.md) — a próxima é a **Sprint 3: autenticação + classes de domínio** (TT01, TT02, US01, US02) |
+| Sprint | **3 — domínio e autenticação, em andamento** (TT01 Nailan · TT02 Lincoln · US01 Nailan · US02 Victor) · [plano](docs/sprints/sprint-3.md) — a Sprint 2 foi entregue em 13/11/2026 ([plano](docs/sprints/sprint-2.md)) |
 | Documentação | ✅ completa para a entrega atual |
 | App Flutter | 🟡 seletor de perfil + 3 telas iniciais (Admin, Atendente, Cliente), só front-end, sem autenticação |
 | API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
@@ -192,8 +192,11 @@ Quando pedirem apenas análise, **não altere arquivos**.
 | Classes de domínio | ⬜ diagrama pronto e mergeado; implementação na **Sprint 3** — TT01 (Nailan) e TT02 (Lincoln) |
 | Diagramas | ✅ os **cinco** do livro: casos de uso · classes · pacotes · sequência · atividades · mais 2 de estados ([ADR 0015](docs/decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)) |
 
-> ⚠️ **A Sprint 2 é front-end.** Nenhuma tela dela chama API, banco ou autenticação. Se alguém
-> pedir endpoint, service ou classe de domínio "para a Sprint 2", isso é Sprint 3 — confirme antes.
+> ⚠️ **A Sprint 3 é domínio + autenticação — e só isso.** As classes de domínio (TT01, TT02) são
+> **objetos Java puros**: sem JPA/`@Entity`, sem SQL, sem cálculo, sem validação de transição —
+> isso é serviço das Sprints 5 e 6. Se alguém pedir endpoint de reserva, cálculo de valores ou
+> tela de cadastro "para a Sprint 3", é sprint futura — confirme antes. Guardrails completos no
+> [plano da sprint](docs/sprints/sprint-3.md#guardrails--leia-antes-de-pedir-código-a-uma-ia).
 
 **Backlog:** GitHub Issues `#1` a `#16` = US01–US16. **Quadro de acompanhamento:**
 [Trello](https://trello.com/b/m3gakhP8/toolrent-backlog) — o GitHub Projects foi apagado

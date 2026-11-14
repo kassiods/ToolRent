@@ -14,7 +14,7 @@
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.3-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-Postgres-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-![Status](https://img.shields.io/badge/status-Sprint_2_·_entregue-brightgreen?style=flat-square)
+![Status](https://img.shields.io/badge/status-Sprint_3_·_em_andamento-yellow?style=flat-square)
 ![Casos de uso](https://img.shields.io/badge/casos_de_uso-16-blue?style=flat-square)
 ![Histórias](https://img.shields.io/badge/histórias-16-blue?style=flat-square)
 ![Uso](https://img.shields.io/badge/uso-acadêmico-lightgrey?style=flat-square)
