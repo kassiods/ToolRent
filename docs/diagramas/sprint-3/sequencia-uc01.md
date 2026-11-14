@@ -1,4 +1,4 @@
-ja # Diagrama de Sequência — Autenticar-se e autorizar por perfil (UC01)
+# Diagrama de Sequência — Autenticar-se e autorizar por perfil (UC01)
 
 > **Especificação da US01 e do contrato de autorização que a US02 consome.**
 > Documento correspondente: [`casos-de-uso.md`](../../casos-de-uso.md) (UC01) ·
