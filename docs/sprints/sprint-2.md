@@ -247,7 +247,7 @@ Três decisões já tomadas aparecem aqui:
 - [x] O seletor de perfil provisório abre as três
 - [x] `app/lib/domain/rules/` foi removido
 - [x] Nenhuma tela chama API, banco ou autenticação
-- [x] Nenhuma cor literal fora de `core/app_theme.dart` — nas três telas da sprint; resta um `Colors.white` na `boas_vindas_screen.dart` (Sprint 1), a limpar
+- [x] Nenhuma cor literal fora de `core/app_theme.dart` — o `Colors.white` remanescente da `boas_vindas_screen.dart` (Sprint 1) foi movido para o tema (`AppTheme.branco`) neste mesmo PR
 - [x] Nenhuma regra de negócio no app ([ADR 0004](../decisoes/0004-regra-de-negocio-na-api.md))
 - [x] `flutter analyze` sem avisos e `flutter test` verde na `main` (11 testes, verificado em 13/11/2026)
 - [x] A [matriz de rastreabilidade](../agil/rastreabilidade.md) aponta o diagrama de cada pacote
