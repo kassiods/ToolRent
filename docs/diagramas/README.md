@@ -51,6 +51,7 @@ Isso resolve o problema que o PlantUML tinha aqui: antes, a fonte `.puml` e a im
 docs/diagramas/
 ├── sprint-1/     casos de uso — a fronteira do sistema
 ├── sprint-2/     pacotes · atividades · sequência · classes · ciclos de vida
+├── sprint-3/     sequência de UC01 — autenticação e autorização por perfil
 ├── sprint-4/     (a criar) sequência de UC05
 └── sprint-5/     (a criar) sequência de UC09
 ```
@@ -69,6 +70,7 @@ o fim do projeto.
 | 2 | Classes de domínio | **classes** | [`sprint-2/classes.md`](sprint-2/classes.md) | **Sprint 3** | ✅ |
 | 2 | Estados da Reserva | estados ⚠️ | [`sprint-2/estados-reserva.md`](sprint-2/estados-reserva.md) | **Sprint 3** | ✅ |
 | 2 | Estados da Locação | estados ⚠️ | [`sprint-2/estados-locacao.md`](sprint-2/estados-locacao.md) | **Sprint 3** | ✅ |
+| 3 | Autenticar e autorizar por perfil (UC01) | **sequência** | [`sprint-3/sequencia-uc01.md`](sprint-3/sequencia-uc01.md) | Sprint 3 | ✅ |
 | 4 | Consultar disponibilidade (UC05) | **sequência** | `sprint-4/sequencia-uc05.md` | Sprint 4 | ⬜ |
 | 5 | Formalizar locação (UC09) | **sequência** | `sprint-5/sequencia-uc09.md` | Sprint 5 | ⬜ |
 

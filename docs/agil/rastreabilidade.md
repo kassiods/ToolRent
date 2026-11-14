@@ -37,8 +37,8 @@ apagado; ver [ADR 0009](../decisoes/0009-trello-no-lugar-do-github-projects.md).
 
 | US | Caso de uso | Regras | Sprint | Issue | Branch | PR | Diagrama | Status |
 |---|---|---|---|---|---|---|---|---|
-| US01 | UC01 | RN09, RN10 | 3 | [#1](https://github.com/kassiods/ToolRent/issues/1) | `feat/US01-autenticar-usuario` | — | Casos de uso, Classes | ⬜ |
-| US02 | UC02 | RN09, RN10, RN11 | 3 | [#2](https://github.com/kassiods/ToolRent/issues/2) | `feat/US02-gerenciar-usuarios` | — | Casos de uso, Classes | ⬜ |
+| US01 | UC01 | RN09, RN10 | 3 | [#1](https://github.com/kassiods/ToolRent/issues/1) | `feat/US01-autenticar-usuario` | — | Casos de uso, Classes, Sequência | ⬜ |
+| US02 | UC02 | RN09, RN10, RN11 | 3 | [#2](https://github.com/kassiods/ToolRent/issues/2) | `feat/US02-gerenciar-usuarios` | — | Casos de uso, Classes, Sequência | ⬜ |
 | US03 | UC03 | RN09, RN11 | 4 | [#3](https://github.com/kassiods/ToolRent/issues/3) | `feat/US03-gerenciar-clientes` | — | Casos de uso, Classes | ⬜ |
 | US04 | UC04 | RN04, RN09, RN11, RN12 | 4 | [#4](https://github.com/kassiods/ToolRent/issues/4) | `feat/US04-gerenciar-ferramentas` | — | Casos de uso, Classes | ⬜ |
 | US05 | UC05 | RN01, RN02, RN03 | 4 | [#5](https://github.com/kassiods/ToolRent/issues/5) | `feat/US05-consultar-disponibilidade` | — | Casos de uso, Sequência | ⬜ |
@@ -91,6 +91,7 @@ Plano completo da Sprint 2, com os critérios de pronto de cada pacote e a ordem
 | [`classes.md`](../diagramas/sprint-2/classes.md) | US01–US04, US06, US12, US13, US14 |
 | [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) | US07, US08 |
 | [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md) | US09, US10, US11 |
+| [`sprint-3/sequencia-uc01.md`](../diagramas/sprint-3/sequencia-uc01.md) | US01, US02 — login e o contrato 401/403 de todo endpoint protegido |
 | `sprint-4/sequencia-uc05.md` ⬜ | US05 |
 | `sprint-5/sequencia-uc09.md` ⬜ | US09 |
 

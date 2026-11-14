@@ -93,12 +93,14 @@ perfil, com o menu das ações daquele perfil. **Só front-end.**
 | Diagrama de **pacotes** — camadas de `app/` e `api/` | ✅ [`pacotes.md`](../diagramas/sprint-2/pacotes.md) |
 | Diagrama de **atividades** — da abertura do app à tela inicial | ✅ [`atividades-tela-inicial.md`](../diagramas/sprint-2/atividades-tela-inicial.md) |
 | Diagrama de **sequência** — abrir a tela e acionar o menu | ✅ [`sequencia-abrir-tela-inicial.md`](../diagramas/sprint-2/sequencia-abrir-tela-inicial.md) |
-| [TT05](https://github.com/kassiods/ToolRent/issues/26) Pacotes + casca + tela do Administrador — Nailan | ⬜ |
-| [TT06](https://github.com/kassiods/ToolRent/issues/27) Atividades + tela do Atendente, 10 itens — Lincoln | ⬜ |
-| [TT07](https://github.com/kassiods/ToolRent/issues/28) Sequência + tela do Cliente + teste — Victor | ⬜ |
-| Banco de dados no Supabase | ⏸️ **adiado** — não há projeto Supabase do ToolRent |
-| Políticas de RLS | ⏸️ adiado junto com o banco |
-| Dados de demonstração fictícios | ⏸️ adiado junto com o banco |
+| [TT05](https://github.com/kassiods/ToolRent/issues/26) Pacotes + casca + tela do Administrador — Nailan | ✅ PRs #31, #32 |
+| [TT06](https://github.com/kassiods/ToolRent/issues/27) Atividades + tela do Atendente, 10 itens — Lincoln | ✅ PR #33 |
+| [TT07](https://github.com/kassiods/ToolRent/issues/28) Sequência + tela do Cliente + teste — Victor | ✅ PR #34 |
+| Banco de dados no Supabase | ✅ feito na virada para a Sprint 3 (13/11/2026) — migrations `0001` e `0002` aplicadas |
+| Políticas de RLS | 🟡 RLS habilitado sem políticas (nega tudo); políticas por perfil na Sprint 3 |
+| Dados de demonstração fictícios | ⬜ depois das políticas |
+
+> ✅ **Sprint 2 entregue em 13/11/2026** — DoD completa no [plano da sprint](../sprints/sprint-2.md#definition-of-done-da-sprint-2).
 
 **Três diagramas porque eram os três que faltavam** do conjunto do livro *Engenharia de Software
 Moderna* ([ADR 0015](../decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)), e
@@ -120,17 +122,22 @@ Cada integrante leva um diagrama e a tela que ele especifica.
 
 ---
 
-## Sprint 3 — Domínio e autenticação · 10 pontos
+## Sprint 3 — Domínio e autenticação · 10 pontos 🟡 em andamento
 
-| História | Pontos |
-|---|---|
-| US01 — Autenticar-se | 5 |
-| US02 — Gerenciar usuários e perfis | 5 |
+📋 **Plano detalhado, com pacotes, ordem de integração e guardrails: [`../sprints/sprint-3.md`](../sprints/sprint-3.md)**
+
+| História | Pontos | Responsável |
+|---|---|---|
+| US01 — Autenticar-se | 5 | Nailan |
+| US02 — Gerenciar usuários e perfis | 5 | Victor |
 
 | Tarefa técnica | Situação |
 |---|---|
 | [TT01](https://github.com/kassiods/ToolRent/issues/21) Classes de cadastros, catálogo e manutenção — Nailan | ⬜ |
 | [TT02](https://github.com/kassiods/ToolRent/issues/22) Classes de locação ponta a ponta — Lincoln | ⬜ |
+
+> 🗄️ **O banco já está pronto:** projeto Supabase criado e migrations `0001` + `0002` aplicadas
+> em 13/11/2026 — nenhum pacote desta sprint precisa criar infraestrutura.
 
 **Por que as classes entram aqui:** autenticar exige `Usuario` e `PerfilUsuario`. Sem classe de
 domínio não há o que servir nem persistir, então a Sprint 3 precisaria delas de todo jeito.
