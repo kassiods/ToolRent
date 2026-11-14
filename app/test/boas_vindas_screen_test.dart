@@ -23,10 +23,11 @@ void main() {
       expect(find.text('Autenticação e perfis'), findsOneWidget);
     });
 
-    testWidgets('marca a Sprint 0 como concluída', (tester) async {
+    testWidgets('marca as Sprints 0, 1 e 2 como concluídas', (tester) async {
       await pumpTela(tester);
 
-      expect(find.byIcon(Icons.check_circle), findsOneWidget);
+      expect(find.byIcon(Icons.check_circle), findsNWidgets(3));
+      expect(find.byIcon(Icons.radio_button_unchecked), findsOneWidget);
     });
   });
 }

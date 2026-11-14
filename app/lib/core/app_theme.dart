@@ -25,6 +25,7 @@ class AppTheme {
   static const Color cinzaTexto = Color(0xFF0F172A);
   static const Color cinzaSuave = Color(0xFF64748B);
   static const Color fundoClaro = Color(0xFFF8FAFC);
+  static const Color branco = Colors.white;
 
   // ---------------------------------------------------------------
   // Espaçamento — escala de 4 em 4, para manter ritmo visual

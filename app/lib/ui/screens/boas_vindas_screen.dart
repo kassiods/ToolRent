@@ -75,7 +75,7 @@ class _Marca extends StatelessWidget {
           ),
           child: const Icon(
             Icons.handyman_outlined,
-            color: Colors.white,
+            color: AppTheme.branco,
             size: 32,
           ),
         ),
@@ -100,8 +100,8 @@ class _CartaoStatus extends StatelessWidget {
 
   static const _etapas = <({String rotulo, String sprint, bool concluida})>[
     (rotulo: 'Repositório e documentação', sprint: 'Sprint 0', concluida: true),
-    (rotulo: 'Casos de uso e backlog', sprint: 'Sprint 1', concluida: false),
-    (rotulo: 'Modelo de domínio e banco', sprint: 'Sprint 2', concluida: false),
+    (rotulo: 'Casos de uso e backlog', sprint: 'Sprint 1', concluida: true),
+    (rotulo: 'Diagramas e telas iniciais', sprint: 'Sprint 2', concluida: true),
     (rotulo: 'Autenticação e perfis', sprint: 'Sprint 3', concluida: false),
   ];
 

@@ -183,13 +183,13 @@ Quando pedirem apenas análise, **não altere arquivos**.
 
 | Item | Situação |
 |---|---|
-| Sprint | 2 — **pacotes, sequência e atividades + as 3 telas iniciais, só front-end** · [plano](docs/sprints/sprint-2.md) |
+| Sprint | 2 **✅ entregue em 13/11/2026** · [plano](docs/sprints/sprint-2.md) — a próxima é a **Sprint 3: autenticação + classes de domínio** (TT01, TT02, US01, US02) |
 | Documentação | ✅ completa para a entrega atual |
-| App Flutter | 🟡 esqueleto; tela de boas-vindas, sem autenticação |
+| App Flutter | 🟡 seletor de perfil + 3 telas iniciais (Admin, Atendente, Cliente), só front-end, sem autenticação |
 | API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
 | Banco | ⏸️ migration inicial em **rascunho**; não há projeto Supabase — adiado |
-| Telas iniciais | ⬜ diagramas prontos; implementação em TT05 (Nailan), TT06 (Lincoln), TT07 (Victor) |
-| Classes de domínio | ⬜ diagrama pronto; implementação movida para a **Sprint 3** — TT01 e TT02 |
+| Telas iniciais | ✅ implementadas e mergeadas — TT05 (PR #31), TT06 (PR #33), TT07 (PR #34) · `flutter analyze` limpo e `flutter test` verde |
+| Classes de domínio | ⬜ diagrama pronto e mergeado; implementação na **Sprint 3** — TT01 (Nailan) e TT02 (Lincoln) |
 | Diagramas | ✅ os **cinco** do livro: casos de uso · classes · pacotes · sequência · atividades · mais 2 de estados ([ADR 0015](docs/decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)) |
 
 > ⚠️ **A Sprint 2 é front-end.** Nenhuma tela dela chama API, banco ou autenticação. Se alguém
