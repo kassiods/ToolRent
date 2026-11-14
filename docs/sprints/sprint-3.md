@@ -33,7 +33,7 @@ passa pela lista 📐.
 ### 📦 TT01 — Classes de cadastros, catálogo e manutenção
 
 **Responsável:** Nailan · **Issue:** [#21](https://github.com/kassiods/ToolRent/issues/21) · **Branch:** `feat/TT01-dominio-cadastros-e-catalogo`
-**Diagrama:** [`classes.md`](../diagramas/sprint-2/classes.md)
+**Diagrama:** [`classes.md`](../diagramas/sprint-3/classes.md)
 
 5 classes + 3 enums em `api/src/main/java/br/edu/toolrent/api/domain/`: `Usuario`, `Cliente`,
 `Categoria`, `Ferramenta`, `Manutencao`, `PerfilUsuario`, `SituacaoFerramenta`, `EstadoManutencao`.
@@ -46,7 +46,7 @@ Critérios de pronto completos no cartão e na Issue. Pontos críticos: `tarifaD
 ### 📦 TT02 — Classes de locação ponta a ponta
 
 **Responsável:** Lincoln · **Issue:** [#22](https://github.com/kassiods/ToolRent/issues/22) · **Branch:** `feat/TT02-dominio-locacao`
-**Diagramas:** [`classes.md`](../diagramas/sprint-2/classes.md) · [`estados-reserva.md`](../diagramas/sprint-2/estados-reserva.md) · [`estados-locacao.md`](../diagramas/sprint-2/estados-locacao.md)
+**Diagramas:** [`classes.md`](../diagramas/sprint-3/classes.md) · [`estados-reserva.md`](../diagramas/sprint-3/estados-reserva.md) · [`estados-locacao.md`](../diagramas/sprint-3/estados-locacao.md)
 
 5 classes + 2 enums: `Reserva`, `Locacao`, `ItemLocacao`, `Devolucao`, `Pagamento`,
 `EstadoReserva`, `EstadoLocacao`. Pontos críticos: **`ATRASADA` não entra no enum** — é derivado
@@ -137,8 +137,9 @@ no painel. Caminho completo em [`supabase/README.md`](../../supabase/README.md).
    `calcularValor()`, está adiantando escopo: recuse.
 3. **Dinheiro é `BigDecimal`** — nunca `double`/`float` (RN12).
 4. **Migration aplicada não se edita.** Mudança de schema é `0003_*.sql` em diante.
-5. **Diagrama manda.** Divergiu do [`classes.md`](../diagramas/sprint-2/classes.md)? O diagrama
-   muda primeiro, em PR próprio ([ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md)).
+5. **Diagrama manda.** Divergiu do [`classes.md`](../diagramas/sprint-3/classes.md)? O diagrama
+   muda primeiro, em PR próprio ([ADR 0010](../decisoes/0010-diagrama-antes-da-implementacao.md)) —
+   editando a fonte em `sprint-2/` e a cópia em `sprint-3/` no mesmo PR.
 6. **Nunca commite credencial** nem direto na `main`. Uma branch por Issue, PR com revisão de um colega.
 7. `./mvnw clean verify` na API e `flutter analyze` + `flutter test` no app, **verdes antes do PR**.
 
