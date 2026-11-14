@@ -6,6 +6,10 @@ Políticas de acesso por linha, no PostgreSQL.
 
 ⬜ **A escrever na Sprint 3**, junto com a autenticação (US01, US02).
 
+Desde 13/11/2026 o RLS está **habilitado sem políticas** em todas as tabelas
+([`0002_habilita_rls.sql`](../migrations/0002_habilita_rls.sql)): a Data API nega tudo por
+padrão até as políticas desta pasta existirem. A API Java não é afetada.
+
 ## O papel do RLS neste projeto
 
 O RLS é a **última** linha de defesa, não a primeira.

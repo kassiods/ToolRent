@@ -187,7 +187,7 @@ Quando pedirem apenas análise, **não altere arquivos**.
 | Documentação | ✅ completa para a entrega atual |
 | App Flutter | 🟡 seletor de perfil + 3 telas iniciais (Admin, Atendente, Cliente), só front-end, sem autenticação |
 | API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
-| Banco | ⏸️ migration inicial em **rascunho**; não há projeto Supabase — adiado |
+| Banco | 🟢 projeto Supabase **ToolRent** ativo (`xosbuvwwuobmroqfylwu`); migrations `0001` (schema) e `0002` (RLS ligado, sem políticas) aplicadas em 13/11/2026; políticas por perfil pendentes — Sprint 3 |
 | Telas iniciais | ✅ implementadas e mergeadas — TT05 (PR #31), TT06 (PR #33), TT07 (PR #34) · `flutter analyze` limpo e `flutter test` verde |
 | Classes de domínio | ⬜ diagrama pronto e mergeado; implementação na **Sprint 3** — TT01 (Nailan) e TT02 (Lincoln) |
 | Diagramas | ✅ os **cinco** do livro: casos de uso · classes · pacotes · sequência · atividades · mais 2 de estados ([ADR 0015](docs/decisoes/0015-diagramas-conforme-engenharia-de-software-moderna.md)) |
