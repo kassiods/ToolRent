@@ -37,6 +37,7 @@ Aplique as migrations **em ordem numérica**. Pular uma deixa o banco inconsiste
 ```
 supabase/
 ├── migrations/     schema versionado, numerado e aplicado em ordem
+├── seed/           modelos em branco para popular o banco — nunca são migration
 └── policies/       Row Level Security
 ```
 

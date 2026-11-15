@@ -59,7 +59,7 @@ quando o TT01 entrar.
 
 ### 📦 US01 — Autenticar-se no sistema · 5 pontos
 
-**Responsável:** Nailan (depois do TT01) · **Issue:** [#1](https://github.com/kassiods/ToolRent/issues/1) · **Branch:** `feat/US01-autenticar-usuario`
+**Responsável:** Victor (assumiu a US01 quando Nailan saiu dela) · **Issue:** [#1](https://github.com/kassiods/ToolRent/issues/1) · **Branch:** `feat/US01-autenticar-usuario`
 **Diagrama:** [`sequencia-uc01.md`](../diagramas/sprint-3/sequencia-uc01.md) — o fluxo do login e o contrato 401/403
 
 Supabase Auth emite o JWT; a API valida; o app só exibe. Tarefas do backlog: configurar o
@@ -91,7 +91,7 @@ usuários contra dados fictícios locais — sem HTTP, no padrão da Sprint 2.
 ```mermaid
 flowchart LR
     TT01["📦 TT01 · classes de<br/>cadastros — Nailan"] --> TT02["📦 TT02 · classes de<br/>locação — Lincoln"]
-    TT01 --> US01["📦 US01 · autenticação<br/>— Nailan"]
+    TT01 -->     US01["📦 US01 · autenticação<br/>— Victor"]
     US01 --> US02["📦 US02 · gerenciar<br/>usuários — Victor"]
     TT02 --> FIM["✅ Sprint 3 fechada"]
     US02 --> FIM

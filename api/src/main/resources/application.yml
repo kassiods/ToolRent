@@ -32,6 +32,11 @@ server:
     include-message: always
 
 toolrent:
+  supabase:
+    # Segredo compartilhado do Supabase Auth (HS256), usado para validar a
+    # assinatura do JWT. Vem do ambiente (.env), nunca deste arquivo.
+    # O valor parece base64, mas e usado TAL QUAL em UTF-8 — nao decodificar.
+    jwt-secret: ${SUPABASE_JWT_SECRET:}
   # ----------------------------------------------------------
   # Parametros de negocio.
   # Centralizados aqui para que nenhuma taxa apareca literal no
