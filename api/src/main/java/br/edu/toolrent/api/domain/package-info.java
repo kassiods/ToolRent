@@ -1,19 +1,12 @@
 /**
- * Entidades e enums do dominio.
+ * Objetos e enums do dominio implementados na Sprint 3.
  *
- * <p>O enunciado da disciplina limita o dominio a 9-13 classes. As classes
- * previstas (a confirmar no diagrama de classes da Sprint 2) sao: Usuario,
- * Perfil, Cliente, Categoria, Ferramenta, Reserva, Locacao, ItemLocacao,
- * Devolucao, Pagamento e Manutencao.
+ * <p>Este pacote contem {@link Usuario}, {@link Cliente}, {@link Categoria},
+ * {@link Ferramenta}, {@link Manutencao}, {@link PerfilUsuario},
+ * {@link SituacaoFerramenta} e {@link EstadoManutencao}.
  *
- * <p>Classes de configuracao, DTO, service e repository <b>nao</b> contam
- * como classes de dominio.
- *
- * <p>Regras deste pacote:
- * <ul>
- *   <li>Entidade nao contem SQL</li>
- *   <li>Valor monetario usa {@link java.math.BigDecimal}, nunca double (RN12)</li>
- *   <li>Estado usa enum, nunca String solta (RN08)</li>
- * </ul>
+ * <p>Os objetos sao estruturas de dados puras: nao contem SQL, anotacoes de
+ * persistencia, regras de negocio ou calculos. Valores monetarios usam
+ * {@link java.math.BigDecimal}, nunca double ou float.
  */
 package br.edu.toolrent.api.domain;
