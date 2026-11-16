@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -31,17 +32,47 @@ class SupabaseAuthRepository implements AuthRepository {
       return session;
     } on CredencialInvalidaException {
       rethrow;
-    } on AuthException {
+    } on AuthException catch (erro) {
+      _logaErroDeAuth(erro);
+      // URL errada, DNS ou rede: o gotrue lanca AuthRetryableFetchException,
+      // que TAMBEM e AuthException — sem este teste o app mostraria
+      // "e-mail ou senha invalidos" para um problema de conexao.
+      if (erro is AuthRetryableFetchException) {
+        throw const FalhaDeConexaoException();
+      }
+      // Chave de API rejeitada pelo Supabase: e configuracao, nao credencial.
+      if (erro.statusCode == '401' &&
+          erro.message.toLowerCase().contains('api key')) {
+        throw const FalhaDeConexaoException();
+      }
       // Mensagem genérica: não revela se o e-mail existe (critério da US01).
       throw const CredencialInvalidaException();
     } catch (erro) {
+      if (kDebugMode) {
+        debugPrint('Login: erro inesperado ${erro.runtimeType}: $erro');
+      }
       throw const FalhaDeConexaoException();
     }
   }
 
+  /// Diagnóstico real do Supabase em modo debug — tipo da exceção,
+  /// statusCode e code. Chave e token nunca aparecem aqui.
+  void _logaErroDeAuth(AuthException erro) {
+    if (!kDebugMode) return;
+    debugPrint(
+      'Supabase Auth rejeitou: ${erro.runtimeType} '
+      '(statusCode=${erro.statusCode}, code=${erro.code}) — ${erro.message}',
+    );
+  }
+
   Future<SessaoUsuario> _carregarSessaoNaApi(Session session) async {
     final baseUrl = dotenv.maybeGet('API_BASE_URL');
-    if (baseUrl == null) throw const FalhaDeConexaoException();
+    if (baseUrl == null) {
+      if (kDebugMode) {
+        debugPrint('API_BASE_URL ausente do .env — etapa da API pulada.');
+      }
+      throw const FalhaDeConexaoException();
+    }
 
     try {
       final resposta = await http.get(
@@ -53,11 +84,25 @@ class SupabaseAuthRepository implements AuthRepository {
         case 200:
           return _lerSessao(resposta.body);
         case 401:
+          if (kDebugMode) {
+            debugPrint(
+              'API ToolRent rejeitou o token (401): ${resposta.body}',
+            );
+          }
           // Token rejeitado pela API — falha genérica, sem diagnosticar.
           throw const CredencialInvalidaException();
         case 403:
+          if (kDebugMode) {
+            debugPrint('API ToolRent negou o acesso (403): ${resposta.body}');
+          }
           throw _erroDeAcesso(resposta.body);
         default:
+          if (kDebugMode) {
+            debugPrint(
+              'API ToolRent respondeu ${resposta.statusCode}: '
+              '${resposta.body}',
+            );
+          }
           throw const FalhaDeConexaoException();
       }
     } on CredencialInvalidaException {
@@ -69,6 +114,9 @@ class SupabaseAuthRepository implements AuthRepository {
     } on FalhaDeConexaoException {
       rethrow;
     } catch (erro) {
+      if (kDebugMode) {
+        debugPrint('API ToolRent: erro inesperado ${erro.runtimeType}: $erro');
+      }
       throw const FalhaDeConexaoException();
     }
   }
