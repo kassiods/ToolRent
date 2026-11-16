@@ -25,7 +25,7 @@ O RLS existe para o caso de algo escapar — uma consulta mal escrita, um endpoi
 
 | Tabela | Política | Status |
 |---|---|---|
-| `usuario` | Leitura para autenticados; escrita só ADMINISTRADOR; sem delete (RN11) | ✅ [`0003_politicas_usuario.sql`](../migrations/0003_politicas_usuario.sql) — ⬜ aplicar |
+| `usuario` | Leitura para autenticados; escrita só ADMINISTRADOR; sem delete (RN11) | ✅ [`0003_politicas_usuario.sql`](../migrations/0003_politicas_usuario.sql) — ✅ aplicada em 16/11/2026 |
 | `cliente` | O perfil CLIENTE lê apenas o próprio registro | ⬜ |
 | `reserva` | O perfil CLIENTE lê e cria apenas reservas próprias | ⬜ |
 | `locacao` | O perfil CLIENTE lê apenas locações próprias | ⬜ |

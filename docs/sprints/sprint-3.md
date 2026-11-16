@@ -117,9 +117,9 @@ Feita em 13/11/2026 pelo Scrum Master — **ninguém precisa criar nada no Supab
 | Projeto Supabase **ToolRent** (`xosbuvwwuobmroqfylwu`, `us-east-1`) | ✅ criado |
 | [`0001_estrutura_inicial.sql`](../../supabase/migrations/0001_estrutura_inicial.sql) — 10 tabelas, 1:1 com o diagrama de classes | ✅ aplicada |
 | [`0002_habilita_rls.sql`](../../supabase/migrations/0002_habilita_rls.sql) — RLS ligado, sem políticas (nega tudo via Data API) | ✅ aplicada |
-| [`0003_politicas_usuario.sql`](../../supabase/migrations/0003_politicas_usuario.sql) — políticas da tabela `usuario` (US02) | ✅ escrita · ⬜ aplicar no SQL Editor |
+| [`0003_politicas_usuario.sql`](../../supabase/migrations/0003_politicas_usuario.sql) — políticas da tabela `usuario` (US02) | ✅ aplicada em 16/11/2026 (verificada no banco: 3 políticas + função) |
 | Acesso da equipe à organização do Supabase | ✅ convites enviados aos três |
-| Políticas de RLS **por perfil** | 🟡 tabela `usuario` pronta (0003); demais tabelas ⬜ — ver [`policies/README.md`](../../supabase/policies/README.md) |
+| Políticas de RLS **por perfil** | 🟡 tabela `usuario` ✅ (0003 aplicada); demais tabelas ⬜ — ver [`policies/README.md`](../../supabase/policies/README.md) |
 | Dados de demonstração fictícios | ⬜ depois das políticas |
 
 **Credenciais:** URL do projeto e chave publicável (`sb_publishable_…`) vão no `.env` do **app**;
