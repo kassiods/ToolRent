@@ -117,15 +117,18 @@ Feita em 13/11/2026 pelo Scrum Master — **ninguém precisa criar nada no Supab
 | Projeto Supabase **ToolRent** (`xosbuvwwuobmroqfylwu`, `us-east-1`) | ✅ criado |
 | [`0001_estrutura_inicial.sql`](../../supabase/migrations/0001_estrutura_inicial.sql) — 10 tabelas, 1:1 com o diagrama de classes | ✅ aplicada |
 | [`0002_habilita_rls.sql`](../../supabase/migrations/0002_habilita_rls.sql) — RLS ligado, sem políticas (nega tudo via Data API) | ✅ aplicada |
+| [`0003_politicas_usuario.sql`](../../supabase/migrations/0003_politicas_usuario.sql) — políticas da tabela `usuario` (US02) | ✅ escrita · ⬜ aplicar no SQL Editor |
 | Acesso da equipe à organização do Supabase | ✅ convites enviados aos três |
-| Políticas de RLS **por perfil** | ⬜ nesta sprint, junto da US01/US02 — ver [`policies/README.md`](../../supabase/policies/README.md) |
+| Políticas de RLS **por perfil** | 🟡 tabela `usuario` pronta (0003); demais tabelas ⬜ — ver [`policies/README.md`](../../supabase/policies/README.md) |
 | Dados de demonstração fictícios | ⬜ depois das políticas |
 
 **Credenciais:** URL do projeto e chave publicável (`sb_publishable_…`) vão no `.env` do **app**;
-connection string (Session pooler) e a mesma URL vão no `.env` da **API** — pegue tudo no painel
+connection string (Session pooler), a mesma URL e a **secret key** (`sb_secret_…`, só para a US02
+criar login) vão no `.env` da **API** — pegue tudo no painel
 (*Project Settings → API / API Keys* e *Connect*). A API valida o JWT pelo JWKS público
-(`<URL>/auth/v1/.well-known/jwks.json`, ES256): **não há JWT secret nem `service_role` em
-nenhum `.env`**. Caminho completo em [`supabase/README.md`](../../supabase/README.md).
+(`<URL>/auth/v1/.well-known/jwks.json`, ES256): **não há JWT secret em nenhum `.env`**;
+a secret key só existe no `.env` da **API** — jamais no app. Caminho completo em
+[`supabase/README.md`](../../supabase/README.md).
 **Nunca commite `.env`** — o `.env.example` de cada pasta mostra o formato.
 
 ---
