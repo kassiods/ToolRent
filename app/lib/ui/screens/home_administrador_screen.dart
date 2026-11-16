@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
+import '../../data/repositories/usuario_repository.dart';
 import 'em_construcao_screen.dart';
+import 'usuarios_screen.dart';
 import '../widgets/cartao_acao.dart';
 
 class HomeAdministradorScreen extends StatelessWidget {
@@ -20,6 +22,15 @@ class HomeAdministradorScreen extends StatelessWidget {
           nomeUc: nomeUc,
           sprintPrevista: sprintPrevista,
         ),
+      ),
+    );
+  }
+
+  void _abrirUsuarios(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) =>
+            UsuariosScreen(repositorio: ApiUsuarioRepository()),
       ),
     );
   }
@@ -49,12 +60,7 @@ class HomeAdministradorScreen extends StatelessWidget {
                 CartaoAcao(
                   rotulo: 'Usuários e perfis',
                   icone: Icons.manage_accounts_outlined,
-                  aoTocar: () => _abrirCasoDeUso(
-                    context,
-                    codigoUc: 'UC02',
-                    nomeUc: 'Gerenciar usuários e perfis',
-                    sprintPrevista: 'Sprint 3',
-                  ),
+                  aoTocar: () => _abrirUsuarios(context),
                 ),
                 CartaoAcao(
                   rotulo: 'Relatórios',

@@ -30,6 +30,42 @@ public class UsuarioRepository {
              where auth_user_id = :authUserId
             """;
 
+    private static final String SQL_LISTAR = """
+            select id, auth_user_id, nome, email, perfil, ativo, criado_em
+              from usuario
+             order by nome
+            """;
+
+    private static final String SQL_POR_ID = """
+            select id, auth_user_id, nome, email, perfil, ativo, criado_em
+              from usuario
+             where id = :id
+            """;
+
+    private static final String SQL_POR_EMAIL = """
+            select id, auth_user_id, nome, email, perfil, ativo, criado_em
+              from usuario
+             where lower(email) = lower(:email)
+            """;
+
+    private static final String SQL_INSERIR = """
+            insert into usuario (auth_user_id, nome, email, perfil, ativo)
+            values (:authUserId, :nome, :email, :perfil::perfil_usuario, :ativo)
+            returning id, auth_user_id, nome, email, perfil, ativo, criado_em
+            """;
+
+    private static final String SQL_EDITAR = """
+            update usuario
+               set nome = :nome, perfil = :perfil::perfil_usuario
+             where id = :id
+            """;
+
+    private static final String SQL_INATIVAR = """
+            update usuario
+               set ativo = false
+             where id = :id
+            """;
+
     private final NamedParameterJdbcTemplate jdbc;
 
     public UsuarioRepository(NamedParameterJdbcTemplate jdbc) {
@@ -42,6 +78,47 @@ public class UsuarioRepository {
                 Map.of("authUserId", authUserId),
                 new UsuarioRowMapper());
         return encontrados.stream().findFirst();
+    }
+
+    public List<Usuario> listarTodos() {
+        return jdbc.query(SQL_LISTAR, Map.of(), new UsuarioRowMapper());
+    }
+
+    public Optional<Usuario> buscarPorId(UUID id) {
+        List<Usuario> encontrados = jdbc.query(
+                SQL_POR_ID,
+                Map.of("id", id),
+                new UsuarioRowMapper());
+        return encontrados.stream().findFirst();
+    }
+
+    public Optional<Usuario> buscarPorEmail(String email) {
+        List<Usuario> encontrados = jdbc.query(
+                SQL_POR_EMAIL,
+                Map.of("email", email),
+                new UsuarioRowMapper());
+        return encontrados.stream().findFirst();
+    }
+
+    public Usuario inserir(Usuario usuario) {
+        return jdbc.queryForObject(
+                SQL_INSERIR,
+                Map.of(
+                        "authUserId", usuario.getAuthUserId(),
+                        "nome", usuario.getNome(),
+                        "email", usuario.getEmail(),
+                        "perfil", usuario.getPerfil().name(),
+                        "ativo", usuario.isAtivo()),
+                new UsuarioRowMapper());
+    }
+
+    public void editar(UUID id, String nome, PerfilUsuario perfil) {
+        jdbc.update(SQL_EDITAR,
+                Map.of("id", id, "nome", nome, "perfil", perfil.name()));
+    }
+
+    public void inativar(UUID id) {
+        jdbc.update(SQL_INATIVAR, Map.of("id", id));
     }
 
     private static final class UsuarioRowMapper implements RowMapper<Usuario> {

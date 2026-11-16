@@ -2,7 +2,10 @@ package br.edu.toolrent.api.web;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,17 +34,22 @@ import org.springframework.test.web.servlet.MockMvc;
 import br.edu.toolrent.api.config.SecurityConfig;
 import br.edu.toolrent.api.domain.PerfilUsuario;
 import br.edu.toolrent.api.domain.Usuario;
+import br.edu.toolrent.api.service.AutoinativacaoException;
+import br.edu.toolrent.api.service.EmailJaCadastradoException;
+import br.edu.toolrent.api.service.NaoAdministradorException;
 import br.edu.toolrent.api.service.UsuarioInativoException;
+import br.edu.toolrent.api.service.UsuarioNaoEncontradoException;
 import br.edu.toolrent.api.service.UsuarioSemAcessoException;
 import br.edu.toolrent.api.service.UsuarioService;
 
 /**
- * Contrato 401/403 da US01 — o diagrama de sequencia do UC01, parte 2.
+ * Contrato 401/403 da US01 e do CRUD da UC02 (US02) — o diagrama de
+ * sequencia do UC01, parte 2.
  *
  * <p>Exercita a cadeia de seguranca de verdade (filtro Bearer, entry point,
  * service). O {@link JwtDecoder} real busca as chaves no JWKS do Supabase
  * (ES256) em runtime — aqui ele e substituido por um mock: o que se valida
- * e o MAPEAMENTO 401/403 da cadeia, nao a criptografia, que e responsabilidade
+ * e o MAPEAMENTO de status da cadeia, nao a criptografia, que e responsabilidade
  * da biblioteca e do JWKS.
  */
 @WebMvcTest({UsuarioController.class, HealthController.class})
@@ -186,5 +194,149 @@ class UsuarioControllerSegurancaTest {
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO))
                 .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.mensagem").value("Usuário sem acesso ao sistema"));
+    }
+
+    // ---------------------------------------------------------------
+    // UC02 — CRUD de usuarios (US02)
+    // ---------------------------------------------------------------
+
+    @Test
+    @DisplayName("CRUD sem token recebe 401")
+    void crudSemTokenRecebe401() throws Exception {
+        mockMvc.perform(get("/api/usuarios"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @DisplayName("lista de usuarios responde 200 sem senha")
+    void listaDeUsuariosResponde200SemSenha() throws Exception {
+        decoderAceitaTokenValido();
+        given(usuarioService.listar(UUID.fromString(SUB)))
+                .willReturn(List.of(usuarioAtivo()));
+
+        mockMvc.perform(get("/api/usuarios")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].email").value("victor@toolrent.dev"))
+                .andExpect(jsonPath("$[0].senha").doesNotExist());
+    }
+
+    @Test
+    @DisplayName("RN09: nao-administrador na lista recebe 403 com mensagem")
+    void naoAdministradorNaListaRecebe403() throws Exception {
+        decoderAceitaTokenValido();
+        given(usuarioService.listar(UUID.fromString(SUB)))
+                .willThrow(new NaoAdministradorException());
+
+        mockMvc.perform(get("/api/usuarios")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.mensagem")
+                        .value("Apenas administradores podem gerenciar usuários"));
+    }
+
+    @Test
+    @DisplayName("cadastro valido responde 201 e nunca devolve senha")
+    void cadastroValidoResponde201SemSenha() throws Exception {
+        decoderAceitaTokenValido();
+        Usuario criado = new Usuario(UUID.randomUUID(), UUID.randomUUID(),
+                "Novo", "novo@toolrent.dev", PerfilUsuario.CLIENTE,
+                true, OffsetDateTime.now());
+        given(usuarioService.cadastrar(UUID.fromString(SUB), "Novo",
+                "novo@toolrent.dev", PerfilUsuario.CLIENTE, "senha123"))
+                .willReturn(criado);
+
+        mockMvc.perform(post("/api/usuarios")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"nome":"Novo","email":"novo@toolrent.dev",
+                                 "perfil":"CLIENTE","senha":"senha123"}"""))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.nome").value("Novo"))
+                .andExpect(jsonPath("$.senha").doesNotExist())
+                .andExpect(jsonPath("$.ativo").value(true));
+    }
+
+    @Test
+    @DisplayName("cadastro com corpo invalido recebe 400 com mensagem")
+    void cadastroComCorpoInvalidoRecebe400() throws Exception {
+        decoderAceitaTokenValido();
+
+        mockMvc.perform(post("/api/usuarios")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"nome":"","email":"nao-e-email",
+                                 "perfil":null,"senha":"123"}"""))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.mensagem").isString());
+    }
+
+    @Test
+    @DisplayName("RN10: e-mail duplicado recebe 409 com mensagem clara")
+    void emailDuplicadoRecebe409() throws Exception {
+        decoderAceitaTokenValido();
+        given(usuarioService.cadastrar(UUID.fromString(SUB), "Duplicado",
+                "duplicado@toolrent.dev", PerfilUsuario.CLIENTE, "senha123"))
+                .willThrow(new EmailJaCadastradoException());
+
+        mockMvc.perform(post("/api/usuarios")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"nome":"Duplicado","email":"duplicado@toolrent.dev",
+                                 "perfil":"CLIENTE","senha":"senha123"}"""))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.mensagem").value("E-mail já cadastrado no sistema"));
+    }
+
+    @Test
+    @DisplayName("edicao com id inexistente recebe 404")
+    void edicaoComIdInexistenteRecebe404() throws Exception {
+        decoderAceitaTokenValido();
+        UUID inexistente = UUID.randomUUID();
+        given(usuarioService.editar(UUID.fromString(SUB), inexistente,
+                "Nome", PerfilUsuario.ATENDENTE))
+                .willThrow(new UsuarioNaoEncontradoException(inexistente));
+
+        mockMvc.perform(put("/api/usuarios/{id}", inexistente)
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"nome\":\"Nome\",\"perfil\":\"ATENDENTE\"}"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.mensagem").isString());
+    }
+
+    @Test
+    @DisplayName("DELETE inativa: 200 com ativo=false (RN11)")
+    void deleteInativaComAtivoFalso() throws Exception {
+        decoderAceitaTokenValido();
+        Usuario alvo = new Usuario(UUID.randomUUID(), UUID.randomUUID(),
+                "Cliente", "cliente@teste.com", PerfilUsuario.CLIENTE,
+                false, OffsetDateTime.now());
+        given(usuarioService.inativar(UUID.fromString(SUB), alvo.getId()))
+                .willReturn(alvo);
+
+        mockMvc.perform(delete("/api/usuarios/{id}", alvo.getId())
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.ativo").value(false))
+                .andExpect(jsonPath("$.senha").doesNotExist());
+    }
+
+    @Test
+    @DisplayName("autoinativacao recebe 403 com mensagem propria")
+    void autoinativacaoRecebe403() throws Exception {
+        decoderAceitaTokenValido();
+        UUID idDoProprio = UUID.randomUUID();
+        given(usuarioService.inativar(UUID.fromString(SUB), idDoProprio))
+                .willThrow(new AutoinativacaoException());
+
+        mockMvc.perform(delete("/api/usuarios/{id}", idDoProprio)
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.mensagem")
+                        .value("Não é possível inativar a própria conta"));
     }
 }

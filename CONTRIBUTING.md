@@ -161,7 +161,7 @@ git diff        # o que mudou, linha a linha?
 |---|---|
 | `.env` | Local, a partir do `.env.example` |
 | Chave publicável (app) e connection string (API) | No `.env` de cada pasta |
-| Secret key (`sb_secret_…`, antiga `service_role`) | Em lugar nenhum — não é usada por nenhum código e daria acesso total ao banco |
+| Secret key (`sb_secret_…`, antiga `service_role`) | Só no `.env` da API (gitignored) — usada para criar login (US02); **jamais no app** e nunca em log |
 | Token do GitHub | No gerenciador de credenciais |
 | `api/target/`, `app/build/` | Em lugar nenhum — são gerados |
 | Dados reais de pessoas | Em lugar nenhum — use dados fictícios |
