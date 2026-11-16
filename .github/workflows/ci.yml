@@ -40,6 +40,12 @@ jobs:
           channel: stable
           cache: true
 
+      # O .env e asset do flutter_dotenv e obrigatorio para buildar.
+      # O CI nunca tem segredo: usa o exemplo, que so contem placeholders.
+      - name: Preparar .env de teste
+        working-directory: app
+        run: cp .env.example .env
+
       - name: Baixar dependencias
         working-directory: app
         run: flutter pub get

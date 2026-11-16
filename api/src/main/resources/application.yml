@@ -32,6 +32,14 @@ server:
     include-message: always
 
 toolrent:
+  supabase:
+    # URL do projeto — origem do JWKS usado para validar a assinatura do
+    # JWT. Vem do ambiente (.env), nunca deste arquivo.
+    url: ${SUPABASE_URL:}
+    # JWKS publico do Supabase Auth. O projeto usa JWT Signing Keys ECC
+    # (P-256), entao os tokens sao ES256 — o Legacy JWT Secret (HS256)
+    # nao valida estes tokens e nao e mais usado.
+    jwks-uri: ${toolrent.supabase.url}/auth/v1/.well-known/jwks.json
   # ----------------------------------------------------------
   # Parametros de negocio.
   # Centralizados aqui para que nenhuma taxa apareca literal no

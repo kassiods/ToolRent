@@ -185,7 +185,7 @@ Quando pedirem apenas análise, **não altere arquivos**.
 |---|---|
 | Sprint | **3 — domínio e autenticação, em andamento** (TT01 Nailan · TT02 Lincoln · US01 Nailan · US02 Victor) · [plano](docs/sprints/sprint-3.md) — a Sprint 2 foi entregue em 13/11/2026 ([plano](docs/sprints/sprint-2.md)) |
 | Documentação | ✅ completa para a entrega atual |
-| App Flutter | 🟡 seletor de perfil + 3 telas iniciais (Admin, Atendente, Cliente), só front-end, sem autenticação |
+| App Flutter | 🟡 login (e-mail/senha via Supabase Auth) + 3 telas iniciais (Admin, Atendente, Cliente); o perfil decide qual tela abre |
 | API Java | 🟡 esqueleto; só o endpoint de verificação · build verificado |
 | Banco | 🟢 projeto Supabase **ToolRent** ativo (`xosbuvwwuobmroqfylwu`); migrations `0001` (schema) e `0002` (RLS ligado, sem políticas) aplicadas em 13/11/2026; políticas por perfil pendentes — Sprint 3 |
 | Telas iniciais | ✅ implementadas e mergeadas — TT05 (PR #31), TT06 (PR #33), TT07 (PR #34) · `flutter analyze` limpo e `flutter test` verde |

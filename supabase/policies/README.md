@@ -29,4 +29,6 @@ O RLS existe para o caso de algo escapar — uma consulta mal escrita, um endpoi
 | `usuario` | Somente ADMINISTRADOR escreve |
 | `ferramenta`, `categoria` | Leitura liberada a autenticados; escrita por ATENDENTE |
 
-> A chave `service_role`, usada pela API, **ignora todas as políticas de RLS**. É exatamente por isso que ela nunca pode sair do servidor.
+> A secret key (`sb_secret_…`, antiga `service_role`) ignora todas as políticas de RLS — e por isso
+> jamais pode sair do servidor. Hoje ela **não é usada por nenhum código do projeto**: a API valida
+> o JWT pelo JWKS público e consulta o banco com as credenciais normais de conexão.

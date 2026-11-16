@@ -20,15 +20,40 @@ Aplique as migrations **em ordem numérica**. Pular uma deixa o banco inconsiste
 
 ## 3. Pegar as credenciais
 
-| Credencial | Onde | Vai para |
+| Credencial | Onde no painel | Vai para |
 |---|---|---|
-| URL do projeto | Settings → API | `.env` do app e da API |
-| Chave `anon` | Settings → API | `.env` do **app** |
-| Chave `service_role` | Settings → API | `.env` da **API**, jamais do app |
-| Conexão do banco | Settings → Database | `.env` da API |
-| JWT Secret | Settings → API | `.env` da API |
+| URL do projeto | Project Settings → API → Project URL | `.env` do app **e** da API |
+| Chave publicável (`sb_publishable_…`) | Project Settings → API Keys → Publishable key | `.env` do **app** |
+| Connection string do banco (Session pooler) | Connect → Connection string → Session pooler → URI | `.env` da **API** |
 
-> ⛔ **A chave `service_role` ignora todas as políticas de segurança.** Se ela chegar ao app Flutter, qualquer pessoa que abrir o aplicativo terá acesso total ao banco. Ela fica **somente** na API.
+Para o projeto ToolRent (ref `xosbuvwwuobmroqfylwu`, região `us-east-1`), a connection string é:
+
+```
+postgres://postgres.xosbuvwwuobmroqfylwu:[SENHA]@aws-0-us-east-1.pooler.supabase.com:5432/postgres
+```
+
+> ℹ️ **A API não usa nenhuma chave do Supabase.** Ela valida o JWT pelo JWKS público em
+> `<URL>/auth/v1/.well-known/jwks.json` — o projeto usa JWT Signing Keys ECC (P-256), então os
+> tokens são **ES256**; o Legacy JWT Secret (HS256) não valida estes tokens e não é usado.
+> Não existe mais `SUPABASE_JWT_SECRET` nem `SUPABASE_SERVICE_ROLE_KEY` nos `.env.example`.
+
+> ⛔ **A secret key (`sb_secret_…`, antiga `service_role`) ignora todas as políticas de segurança**
+> e **não é usada por nenhum código do projeto hoje**. Não a coloque em nenhum `.env`. Se um dia
+> for necessário usá-la, ela fica só no servidor — jamais no app Flutter.
+
+## 4. Usuários de teste da US01
+
+Três contas já existem no Auth **e** na tabela `usuario` do projeto ToolRent:
+
+| E-mail | Perfil | Serve para testar |
+|---|---|---|
+| `administrador@teste.com` | ADMINISTRADOR | login OK → tela Admin |
+| `atendente@teste.com` | ATENDENTE | login OK → tela Atendente |
+| `cliente@teste.com` | CLIENTE | login OK → tela Cliente |
+
+As senhas são as que foram digitadas na criação de cada usuário no painel — **não estão neste
+repositório** (RN10). Para (re)criar as linhas da tabela ou inativar uma conta, use o modelo em
+branco [`seed/usuario_teste_us01.sql`](seed/usuario_teste_us01.sql).
 
 ---
 
@@ -37,6 +62,7 @@ Aplique as migrations **em ordem numérica**. Pular uma deixa o banco inconsiste
 ```
 supabase/
 ├── migrations/     schema versionado, numerado e aplicado em ordem
+├── seed/           modelos em branco para popular o banco — nunca são migration
 └── policies/       Row Level Security
 ```
 

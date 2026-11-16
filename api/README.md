@@ -10,11 +10,24 @@ Camada de negócio do ToolRent. **Aqui moram todas as regras do sistema.**
 
 ```bash
 cp .env.example .env     # preencha com as credenciais do Supabase
-./mvnw clean install     # Windows: mvnw.cmd clean install
+```
+
+O Spring **não lê o `.env` sozinho** — carregue as variáveis no terminal antes de rodar:
+
+```powershell
+# PowerShell (Windows)
+Get-Content .env | ForEach-Object { $p = $_.Split('=', 2); if ($p.Count -eq 2) { Set-Item "env:$($p[0])" $p[1] } }
 ./mvnw spring-boot:run
 ```
 
-A API sobe em `http://localhost:8080`.
+```bash
+# bash (Linux/macOS)
+set -a; . ./.env; set +a
+./mvnw spring-boot:run
+```
+
+A API sobe em `http://localhost:8080`. Sem `SUPABASE_URL` a API **não sobe de propósito**: o
+JWKS do Supabase Auth é a origem da validação do JWT e não existe JWKS sem URL do projeto.
 
 ```bash
 curl http://localhost:8080/api/health
@@ -80,15 +93,15 @@ Ficam em `src/main/resources/application.yml`, sob `toolrent.calculo`.
 
 ## Estado atual
 
-Sprint 0: esqueleto com o endpoint de verificação.
-
-As dependências de segurança (OAuth2 Resource Server) entram na Sprint 3, junto da US01.
+Sprint 3, US01 em revisão: OAuth2 Resource Server ativo — o `JwtDecoder` valida a assinatura do
+JWT pelo JWKS público do Supabase (`<SUPABASE_URL>/auth/v1/.well-known/jwks.json`, ES256). A API
+**não usa chave nem secret do Supabase**: identidade vem do token; papel/perfil saem da tabela
+`usuario`.
 
 ## Verificação executada
 
-Em 27/10/2026, com JDK 21.0.12 (Temurin) e Maven 3.9.9:
+Em 15/11/2026, com JDK 21 (Temurin):
 
 | Comando | Resultado |
 |---|---|
-| `mvn clean test` | ✅ BUILD SUCCESS · 2 testes, 0 falhas |
-| `./mvnw --batch-mode test` | ✅ exit 0 — o wrapper funciona sem Maven instalado |
+| `./mvnw --batch-mode clean verify` | ✅ BUILD SUCCESS · 13 testes, 0 falhas |

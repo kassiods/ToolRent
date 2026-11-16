@@ -128,7 +128,7 @@ Cada integrante leva um diagrama e a tela que ele especifica.
 
 | História | Pontos | Responsável |
 |---|---|---|
-| US01 — Autenticar-se | 5 | Nailan |
+| US01 — Autenticar-se | 5 | Victor |
 | US02 — Gerenciar usuários e perfis | 5 | Victor |
 
 | Tarefa técnica | Situação |

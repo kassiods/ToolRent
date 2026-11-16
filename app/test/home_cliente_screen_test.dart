@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:toolrent_app/main.dart';
 import 'package:toolrent_app/ui/screens/em_construcao_screen.dart';
 import 'package:toolrent_app/ui/screens/home_cliente_screen.dart';
 import 'package:toolrent_app/ui/widgets/cartao_acao.dart';
@@ -7,10 +7,9 @@ import 'package:toolrent_app/ui/widgets/cartao_acao.dart';
 void main() {
   group('HomeClienteScreen', () {
     Future<void> abrirTelaDoCliente(WidgetTester tester) async {
-      await tester.pumpWidget(const ToolRentApp());
-
-      await tester.tap(find.text('Cliente'));
-      await tester.pumpAndSettle();
+      await tester.pumpWidget(
+        const MaterialApp(home: HomeClienteScreen()),
+      );
     }
 
     testWidgets('exibe os dois itens do menu do Cliente', (tester) async {
