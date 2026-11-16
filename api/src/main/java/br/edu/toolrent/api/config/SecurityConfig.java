@@ -1,10 +1,7 @@
 package br.edu.toolrent.api.config;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-
-import javax.crypto.spec.SecretKeySpec;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -17,7 +14,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -39,9 +35,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
  *   <li>{@code /api/health} e o unico caminho publico</li>
  * </ul>
  *
- * <p>A assinatura do Supabase e HS256 com o <i>JWT secret</i> do projeto. O
- * valor parece base64, mas o Supabase assina com os bytes UTF-8 da propria
- * string — <b>nao decodificar</b> (e como as bibliotecas oficiais tratam).
+ * <p>A assinatura dos tokens e validada pelo <b>JWKS publico</b> do Supabase
+ * Auth ({@code SUPABASE_URL/auth/v1/.well-known/jwks.json}). O projeto usa
+ * JWT Signing Keys ECC (P-256) — logo os tokens sao <b>ES256</b>. O Legacy
+ * JWT Secret (HS256) NAO valida estes tokens e nao e mais configurado.
  */
 @Configuration
 @EnableWebSecurity
@@ -74,24 +71,22 @@ public class SecurityConfig {
     }
 
     /**
-     * Valida a assinatura HS256 do JWT emitido pelo Supabase Auth.
+     * Valida a assinatura ES256 do JWT consultando o JWKS do Supabase Auth.
      *
-     * <p>Usado sem qualquer decodificacao: os bytes do secret em UTF-8 sao a
-     * propria chave de assinatura. Sem segredo configurado a API nao sobe —
-     * falhar cedo é melhor do que rodar sem validar token (RN09).
+     * <p>O decoder busca as chaves publicas no JWKS (EC P-256) em tempo de
+     * requisicao e faz cache — nenhuma chave secreta mora na API. Sem
+     * {@code SUPABASE_URL} a API nao sobe: falhar cedo e melhor do que rodar
+     * sem validar token (RN09).
      */
     @Bean
-    JwtDecoder jwtDecoder(@Value("${toolrent.supabase.jwt-secret}") String segredo) {
-        if (segredo == null || segredo.isBlank()) {
+    JwtDecoder jwtDecoder(@Value("${toolrent.supabase.jwks-uri}") String jwksUri) {
+        if (jwksUri == null || !jwksUri.startsWith("http")) {
             throw new IllegalStateException(
-                    "SUPABASE_JWT_SECRET não configurado. Preencha o .env da API "
-                            + "(ver api/.env.example) antes de subir o servico.");
+                    "SUPABASE_URL não configurado — o JWKS do Supabase Auth não pode "
+                            + "ser montado. Preencha o .env da API (ver api/.env.example) "
+                            + "antes de subir o servico.");
         }
-        SecretKeySpec chave = new SecretKeySpec(
-                segredo.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
-        return NimbusJwtDecoder.withSecretKey(chave)
-                .macAlgorithm(MacAlgorithm.HS256)
-                .build();
+        return NimbusJwtDecoder.withJwkSetUri(jwksUri).build();
     }
 
     /**

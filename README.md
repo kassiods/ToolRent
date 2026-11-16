@@ -270,8 +270,20 @@ Crie um projeto em [supabase.com](https://supabase.com), aplique as migrations d
 
 ```bash
 cd api
-cp .env.example .env          # preencha com as credenciais do SEU projeto Supabase
-./mvnw clean install          # Windows: mvnw.cmd clean install
+cp .env.example .env          # preencha com as credenciais do projeto Supabase
+```
+
+O Spring não lê o `.env` sozinho — carregue no terminal antes de subir:
+
+```powershell
+# PowerShell (Windows)
+Get-Content .env | ForEach-Object { $p = $_.Split('=', 2); if ($p.Count -eq 2) { Set-Item "env:$($p[0])" $p[1] } }
+./mvnw spring-boot:run
+```
+
+```bash
+# bash (Linux/macOS)
+set -a; . ./.env; set +a
 ./mvnw spring-boot:run
 ```
 
@@ -281,7 +293,7 @@ A API sobe em `http://localhost:8080`. Para testar: `curl http://localhost:8080/
 
 ```bash
 cd app
-cp .env.example .env
+cp .env.example .env          # preencha API_BASE_URL, SUPABASE_URL e a chave publicável
 flutter pub get
 flutter run -d chrome          # ou: -d windows / -d android
 ```

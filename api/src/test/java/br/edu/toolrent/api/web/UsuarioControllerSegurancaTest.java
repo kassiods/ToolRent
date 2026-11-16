@@ -1,20 +1,16 @@
 package br.edu.toolrent.api.web;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.time.OffsetDateTime;
-import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
-
-import com.nimbusds.jose.JWSAlgorithm;
-import com.nimbusds.jose.JWSHeader;
-import com.nimbusds.jose.crypto.MACSigner;
-import com.nimbusds.jwt.JWTClaimsSet;
-import com.nimbusds.jwt.SignedJWT;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,6 +20,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.security.oauth2.core.OAuth2Error;
+import org.springframework.security.oauth2.jwt.BadJwtException;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtValidationException;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -37,19 +38,21 @@ import br.edu.toolrent.api.service.UsuarioService;
 /**
  * Contrato 401/403 da US01 — o diagrama de sequencia do UC01, parte 2.
  *
- * <p>Exercita a cadeia de seguranca de verdade com tokens assinados no
- * proprio teste, na mesma chave que o Supabase usaria.
+ * <p>Exercita a cadeia de seguranca de verdade (filtro Bearer, entry point,
+ * service). O {@link JwtDecoder} real busca as chaves no JWKS do Supabase
+ * (ES256) em runtime — aqui ele e substituido por um mock: o que se valida
+ * e o MAPEAMENTO 401/403 da cadeia, nao a criptografia, que e responsabilidade
+ * da biblioteca e do JWKS.
  */
 @WebMvcTest({UsuarioController.class, HealthController.class})
 @Import(SecurityConfig.class)
-@TestPropertySource(properties = "toolrent.supabase.jwt-secret=" + UsuarioControllerSegurancaTest.SEGREDO)
+@TestPropertySource(properties = "toolrent.supabase.url=http://localhost")
 class UsuarioControllerSegurancaTest {
 
-    /** Mesmo formato do JWT secret do Supabase: string UTF-8 de >= 256 bits. */
-    static final String SEGREDO = "ferramentas-toolrent-segredo-de-teste-2026";
-
     private static final String SUB = "22222222-2222-2222-2222-222222222222";
-    private static final String OUTRO_SEGREDO = "outro-segredo-completamente-diferente-01";
+    private static final String TOKEN_VALIDO = "token-valido";
+    private static final String TOKEN_EXPIRADO = "token-expirado";
+    private static final String TOKEN_ASSINATURA_INVALIDA = "token-assinatura-invalida";
 
     @Autowired
     private MockMvc mockMvc;
@@ -57,42 +60,24 @@ class UsuarioControllerSegurancaTest {
     @MockBean
     private UsuarioService usuarioService;
 
+    @MockBean
+    private JwtDecoder jwtDecoder;
+
     // ---------------------------------------------------------------
-    // Tokens
+    // Tokens — o decoder decide; o teste simula a decisao
     // ---------------------------------------------------------------
 
-    private static String assinar(String sub, Date emitidoEm, Date expiraEm,
-                                  String segredo) throws Exception {
-        JWTClaimsSet claims = new JWTClaimsSet.Builder()
-                .subject(sub)
-                .issuer("supabase")
-                .issueTime(emitidoEm)
-                .expirationTime(expiraEm)
-                .build();
-        SignedJWT jwt = new SignedJWT(new JWSHeader(JWSAlgorithm.HS256), claims);
-        jwt.sign(new MACSigner(segredo.getBytes(StandardCharsets.UTF_8)));
-        return jwt.serialize();
+    private static Jwt jwtValido() {
+        return new Jwt(
+                TOKEN_VALIDO,
+                Instant.now().minusSeconds(60),
+                Instant.now().plusSeconds(3600),
+                Map.of("alg", "ES256", "kid", "chave-de-teste"),
+                Map.of("sub", SUB, "iss", "supabase"));
     }
 
-    private static String tokenValido() throws Exception {
-        return assinar(SUB,
-                new Date(System.currentTimeMillis() - 60_000),
-                new Date(System.currentTimeMillis() + 3_600_000),
-                SEGREDO);
-    }
-
-    private static String tokenExpirado() throws Exception {
-        return assinar(SUB,
-                new Date(System.currentTimeMillis() - 7_200_000),
-                new Date(System.currentTimeMillis() - 3_600_000),
-                SEGREDO);
-    }
-
-    private static String tokenDeOutroSegredo() throws Exception {
-        return assinar(SUB,
-                new Date(System.currentTimeMillis() - 60_000),
-                new Date(System.currentTimeMillis() + 3_600_000),
-                OUTRO_SEGREDO);
+    private void decoderAceitaTokenValido() {
+        given(jwtDecoder.decode(TOKEN_VALIDO)).willReturn(jwtValido());
     }
 
     private static Usuario usuarioAtivo() {
@@ -123,6 +108,9 @@ class UsuarioControllerSegurancaTest {
     @Test
     @DisplayName("valor que nao e JWT recebe 401")
     void valorQueNaoEJwtRecebe401() throws Exception {
+        given(jwtDecoder.decode("nao-e-um-jwt"))
+                .willThrow(new BadJwtException("Malformed token"));
+
         mockMvc.perform(get("/api/usuarios/me")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer nao-e-um-jwt"))
                 .andExpect(status().isUnauthorized());
@@ -131,33 +119,41 @@ class UsuarioControllerSegurancaTest {
     @Test
     @DisplayName("token expirado recebe 401")
     void tokenExpiradoRecebe401() throws Exception {
+        given(jwtDecoder.decode(TOKEN_EXPIRADO))
+                .willThrow(new JwtValidationException("JWT expired",
+                        List.of(new OAuth2Error("invalid_token", "exp", null))));
+
         mockMvc.perform(get("/api/usuarios/me")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + tokenExpirado()))
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_EXPIRADO))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
-    @DisplayName("token assinado com outro segredo recebe 401")
+    @DisplayName("token com assinatura invalida recebe 401")
     void tokenAssinaturaInvalidaRecebe401() throws Exception {
+        given(jwtDecoder.decode(TOKEN_ASSINATURA_INVALIDA))
+                .willThrow(new BadJwtException("Failed to validate signature"));
+
         mockMvc.perform(get("/api/usuarios/me")
                         .header(HttpHeaders.AUTHORIZATION,
-                                "Bearer " + tokenDeOutroSegredo()))
+                                "Bearer " + TOKEN_ASSINATURA_INVALIDA))
                 .andExpect(status().isUnauthorized());
     }
 
     // ---------------------------------------------------------------
-    // 403 — autenticado mas sem acesso
+    // 200 / 403 — autenticado, decisao do service
     // ---------------------------------------------------------------
 
     @Test
     @DisplayName("usuario ativo recebe 200 com o perfil e sem senha")
     void usuarioAtivoRecebe200ComPerfilSemSenha() throws Exception {
+        decoderAceitaTokenValido();
         given(usuarioService.carregarSessao(UUID.fromString(SUB)))
                 .willReturn(usuarioAtivo());
 
         mockMvc.perform(get("/api/usuarios/me")
                         .header(HttpHeaders.AUTHORIZATION,
-                                "Bearer " + tokenValido())
+                                "Bearer " + TOKEN_VALIDO)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.email").value("victor@toolrent.dev"))
@@ -168,12 +164,12 @@ class UsuarioControllerSegurancaTest {
     @Test
     @DisplayName("usuario inativo recebe 403 com mensagem especifica")
     void usuarioInativoRecebe403ComMensagemEspecifica() throws Exception {
+        decoderAceitaTokenValido();
         given(usuarioService.carregarSessao(UUID.fromString(SUB)))
                 .willThrow(new UsuarioInativoException());
 
         mockMvc.perform(get("/api/usuarios/me")
-                        .header(HttpHeaders.AUTHORIZATION,
-                                "Bearer " + tokenValido()))
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO))
                 .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.mensagem")
                         .value("Conta inativa: contate o administrador do sistema"));
@@ -182,12 +178,12 @@ class UsuarioControllerSegurancaTest {
     @Test
     @DisplayName("token valido sem linha de usuario recebe 403")
     void tokenSemLinhaDeUsuarioRecebe403() throws Exception {
+        decoderAceitaTokenValido();
         given(usuarioService.carregarSessao(UUID.fromString(SUB)))
                 .willThrow(new UsuarioSemAcessoException());
 
         mockMvc.perform(get("/api/usuarios/me")
-                        .header(HttpHeaders.AUTHORIZATION,
-                                "Bearer " + tokenValido()))
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + TOKEN_VALIDO))
                 .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.mensagem").value("Usuário sem acesso ao sistema"));
     }

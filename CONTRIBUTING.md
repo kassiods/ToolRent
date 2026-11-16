@@ -160,8 +160,8 @@ git diff        # o que mudou, linha a linha?
 | Item | Onde deveria estar |
 |---|---|
 | `.env` | Local, a partir do `.env.example` |
-| Chave do Supabase | No `.env` |
-| `service_role` key | No `.env` da API, **jamais** no app |
+| Chave publicável (app) e connection string (API) | No `.env` de cada pasta |
+| Secret key (`sb_secret_…`, antiga `service_role`) | Em lugar nenhum — não é usada por nenhum código e daria acesso total ao banco |
 | Token do GitHub | No gerenciador de credenciais |
 | `api/target/`, `app/build/` | Em lugar nenhum — são gerados |
 | Dados reais de pessoas | Em lugar nenhum — use dados fictícios |

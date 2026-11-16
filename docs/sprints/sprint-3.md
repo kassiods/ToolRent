@@ -121,9 +121,11 @@ Feita em 13/11/2026 pelo Scrum Master — **ninguém precisa criar nada no Supab
 | Políticas de RLS **por perfil** | ⬜ nesta sprint, junto da US01/US02 — ver [`policies/README.md`](../../supabase/policies/README.md) |
 | Dados de demonstração fictícios | ⬜ depois das políticas |
 
-**Credenciais:** URL do projeto e chave publicável vão no `.env` do **app**; `service_role`,
-connection string e JWT secret vão **só** no `.env` da **API** — pegue tudo em *Settings → API*
-no painel. Caminho completo em [`supabase/README.md`](../../supabase/README.md).
+**Credenciais:** URL do projeto e chave publicável (`sb_publishable_…`) vão no `.env` do **app**;
+connection string (Session pooler) e a mesma URL vão no `.env` da **API** — pegue tudo no painel
+(*Project Settings → API / API Keys* e *Connect*). A API valida o JWT pelo JWKS público
+(`<URL>/auth/v1/.well-known/jwks.json`, ES256): **não há JWT secret nem `service_role` em
+nenhum `.env`**. Caminho completo em [`supabase/README.md`](../../supabase/README.md).
 **Nunca commite `.env`** — o `.env.example` de cada pasta mostra o formato.
 
 ---
