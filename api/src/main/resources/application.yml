@@ -40,6 +40,10 @@ toolrent:
     # (P-256), entao os tokens sao ES256 — o Legacy JWT Secret (HS256)
     # nao valida estes tokens e nao e mais usado.
     jwks-uri: ${toolrent.supabase.url}/auth/v1/.well-known/jwks.json
+    # Secret key (sb_secret_…, antiga service_role) — usada APENAS para
+    # criar login no Supabase Auth no cadastro da US02. Nunca no app e
+    # nunca em log. Ver arquivos-de-ia e CONTRIBUTING > Seguranca.
+    secret-key: ${SUPABASE_SECRET_KEY:}
   # ----------------------------------------------------------
   # Parametros de negocio.
   # Centralizados aqui para que nenhuma taxa apareca literal no
