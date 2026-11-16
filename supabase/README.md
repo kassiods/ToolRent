@@ -38,8 +38,9 @@ postgres://postgres.xosbuvwwuobmroqfylwu:[SENHA]@aws-0-us-east-1.pooler.supabase
 > Não existe mais `SUPABASE_JWT_SECRET` nem `SUPABASE_SERVICE_ROLE_KEY` nos `.env.example`.
 
 > ⛔ **A secret key (`sb_secret_…`, antiga `service_role`) ignora todas as políticas de segurança**
-> e **não é usada por nenhum código do projeto hoje**. Não a coloque em nenhum `.env`. Se um dia
-> for necessário usá-la, ela fica só no servidor — jamais no app Flutter.
+> e dá acesso total ao banco. Desde a US02 ela é usada **pela API Java** para criar login no
+> Supabase Auth (Admin API) — e por isso fica **exclusivamente no `.env` da API** (`SUPABASE_SECRET_KEY`),
+> nunca no app Flutter e nunca em log. Se vazar: revogue no painel, não apenas apague.
 
 ## 4. Usuários de teste da US01
 
