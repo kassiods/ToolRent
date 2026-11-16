@@ -5,6 +5,8 @@ import java.util.List;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.jose.jws.SignatureAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -44,6 +47,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
+
     @Bean
     SecurityFilterChain cadeiaDeSeguranca(HttpSecurity http) throws Exception {
         http
@@ -56,9 +61,12 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(resourceServer -> resourceServer
                         .jwt(jwt -> {})
-                        .authenticationEntryPoint((requisicao, resposta, excecao) ->
-                                escreverJson(resposta, HttpServletResponse.SC_UNAUTHORIZED,
-                                        "Não autenticado: informe um token válido"))
+                        .authenticationEntryPoint((requisicao, resposta, excecao) -> {
+                            log.debug("401 em {}: {}", requisicao.getRequestURI(),
+                                    excecao.toString(), excecao);
+                            escreverJson(resposta, HttpServletResponse.SC_UNAUTHORIZED,
+                                    "Não autenticado: informe um token válido");
+                        })
                         .accessDeniedHandler((requisicao, resposta, excecao) ->
                                 escreverJson(resposta, HttpServletResponse.SC_FORBIDDEN,
                                         "Você não tem permissão para esta ação")))
@@ -86,7 +94,11 @@ public class SecurityConfig {
                             + "ser montado. Preencha o .env da API (ver api/.env.example) "
                             + "antes de subir o servico.");
         }
-        return NimbusJwtDecoder.withJwkSetUri(jwksUri).build();
+        // Sem esta linha o builder valida SO RS256 (padrao do Spring Security) e
+        // todo token ES256 do Supabase e rejeitado com "no matching key(s)".
+        return NimbusJwtDecoder.withJwkSetUri(jwksUri)
+                .jwsAlgorithm(SignatureAlgorithm.ES256)
+                .build();
     }
 
     /**
