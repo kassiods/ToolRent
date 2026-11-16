@@ -106,7 +106,7 @@ public class SecurityConfig {
      * roda em localhost. Fora disso (desktop, mobile) CORS nao se aplica.
      */
     @Bean
-    CorsConfigurationSource fonteDeCors() {
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuracao = new CorsConfiguration();
         configuracao.setAllowedOriginPatterns(
                 List.of("http://localhost:*", "http://127.0.0.1:*"));
