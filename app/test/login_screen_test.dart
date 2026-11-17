@@ -165,5 +165,39 @@ void main() {
       expect(find.text('Informe o e-mail.'), findsOneWidget);
       expect(find.text('Informe a senha.'), findsOneWidget);
     });
+
+    testWidgets('sair volta ao login e permite entrar com outro perfil', (
+      tester,
+    ) async {
+      final repositorio = FakeAuthRepository(
+        aoEntrar: (email, _) async => email == 'ana@toolrent.com'
+            ? _sessao(PerfilUsuario.atendente)
+            : _sessao(PerfilUsuario.administrador),
+      );
+      await pumpLogin(tester, repositorio);
+
+      await preencherEEntrar(tester);
+      expect(find.byType(HomeAtendenteScreen), findsOneWidget);
+
+      await tester.tap(find.byTooltip('Sair'));
+      await tester.pumpAndSettle();
+
+      expect(repositorio.chamadasSair, 1);
+      expect(find.byType(HomeAtendenteScreen), findsNothing);
+      expect(find.byType(LoginScreen), findsOneWidget);
+      expect(find.widgetWithText(FilledButton, 'Entrar'), findsOneWidget);
+
+      await tester.enterText(
+        find.byType(TextFormField).first,
+        'outra@toolrent.com',
+      );
+      await tester.enterText(find.byType(TextFormField).last, 'outra-senha');
+      await tester.tap(find.byKey(const Key('login-entrar')));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(HomeAdministradorScreen), findsOneWidget);
+      expect(find.byType(HomeAtendenteScreen), findsNothing);
+      expect(repositorio.chamadas, 2);
+    });
   });
 }
