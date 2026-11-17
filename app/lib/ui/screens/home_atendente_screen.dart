@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
+import '../../data/repositories/auth_repository.dart';
+import '../widgets/botao_sair.dart';
 import '../widgets/cartao_acao.dart';
 import 'em_construcao_screen.dart';
 
@@ -10,7 +12,9 @@ import 'em_construcao_screen.dart';
 /// Nesta sprint, as ações apenas abrem a tela de espera do respectivo UC.
 /// UC12 faz parte de UC09 e UC11 e não possui ação independente.
 class HomeAtendenteScreen extends StatelessWidget {
-  const HomeAtendenteScreen({super.key});
+  const HomeAtendenteScreen({super.key, required this.authRepository});
+
+  final AuthRepository authRepository;
 
   void _abrirCasoDeUso(
     BuildContext context, {
@@ -99,13 +103,7 @@ class HomeAtendenteScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Atendente'),
-        actions: [
-          IconButton(
-            tooltip: 'Trocar de perfil',
-            icon: const Icon(Icons.switch_account_outlined),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-        ],
+        actions: [BotaoSair(authRepository: authRepository)],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(AppTheme.espacoLg),

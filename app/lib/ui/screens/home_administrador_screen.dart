@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
+import '../../data/repositories/auth_repository.dart';
 import '../../data/repositories/usuario_repository.dart';
 import 'em_construcao_screen.dart';
 import 'usuarios_screen.dart';
+import '../widgets/botao_sair.dart';
 import '../widgets/cartao_acao.dart';
 
 class HomeAdministradorScreen extends StatelessWidget {
-  const HomeAdministradorScreen({super.key});
+  const HomeAdministradorScreen({super.key, required this.authRepository});
+
+  final AuthRepository authRepository;
 
   void _abrirCasoDeUso(
     BuildContext context, {
@@ -38,7 +42,10 @@ class HomeAdministradorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Administrador')),
+      appBar: AppBar(
+        title: const Text('Administrador'),
+        actions: [BotaoSair(authRepository: authRepository)],
+      ),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppTheme.espacoLg),

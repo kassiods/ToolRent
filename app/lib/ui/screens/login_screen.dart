@@ -70,9 +70,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _abrirHome(PerfilUsuario perfil) {
     final Widget tela = switch (perfil) {
-      PerfilUsuario.administrador => const HomeAdministradorScreen(),
-      PerfilUsuario.atendente => const HomeAtendenteScreen(),
-      PerfilUsuario.cliente => const HomeClienteScreen(),
+      PerfilUsuario.administrador => HomeAdministradorScreen(
+        authRepository: widget.authRepository,
+      ),
+      PerfilUsuario.atendente => HomeAtendenteScreen(
+        authRepository: widget.authRepository,
+      ),
+      PerfilUsuario.cliente => HomeClienteScreen(
+        authRepository: widget.authRepository,
+      ),
     };
 
     Navigator.of(context).pushReplacement(

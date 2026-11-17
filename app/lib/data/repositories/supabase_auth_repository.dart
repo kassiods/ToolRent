@@ -21,6 +21,20 @@ class SupabaseAuthRepository implements AuthRepository {
     return _carregarSessaoNaApi(session);
   }
 
+  @override
+  Future<void> sair() async {
+    try {
+      await Supabase.instance.client.auth.signOut();
+    } catch (erro) {
+      // O SDK do Supabase remove a sessão local ANTES de chamar o servidor:
+      // se a rede falhar, o usuário já está deslogado no dispositivo. O
+      // logout nunca prende quem pediu para sair — loga em debug e segue.
+      if (kDebugMode) {
+        debugPrint('Logout: erro ${erro.runtimeType}: $erro');
+      }
+    }
+  }
+
   Future<Session> _autenticarNoSupabase(String email, String senha) async {
     try {
       final resposta = await Supabase.instance.client.auth.signInWithPassword(

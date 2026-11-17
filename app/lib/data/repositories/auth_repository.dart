@@ -10,6 +10,11 @@ abstract class AuthRepository {
   /// Lança [CredencialInvalidaException], [ContaInativaException],
   /// [UsuarioSemAcessoException] ou [FalhaDeConexaoException].
   Future<SessaoUsuario> entrar(String email, String senha);
+
+  /// Encerra a sessão atual no Supabase Auth (logout — diagrama de atividades
+  /// "toca em trocar de perfil"). A sessão local é sempre removida, mesmo
+  /// quando a rede falha; por isso não propaga exceção.
+  Future<void> sair();
 }
 
 /// Credencial rejeitada pelo Supabase Auth.

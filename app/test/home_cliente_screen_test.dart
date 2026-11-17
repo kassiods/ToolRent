@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:toolrent_app/ui/screens/em_construcao_screen.dart';
 import 'package:toolrent_app/ui/screens/home_cliente_screen.dart';
+import 'package:toolrent_app/ui/screens/login_screen.dart';
 import 'package:toolrent_app/ui/widgets/cartao_acao.dart';
+
+import 'support/fake_auth_repository.dart';
 
 void main() {
   group('HomeClienteScreen', () {
-    Future<void> abrirTelaDoCliente(WidgetTester tester) async {
+    Future<FakeAuthRepository> abrirTelaDoCliente(WidgetTester tester) async {
+      final repositorio = FakeAuthRepository();
       await tester.pumpWidget(
-        const MaterialApp(home: HomeClienteScreen()),
+        MaterialApp(home: HomeClienteScreen(authRepository: repositorio)),
       );
+      return repositorio;
     }
 
     testWidgets('exibe os dois itens do menu do Cliente', (tester) async {
@@ -64,6 +69,20 @@ void main() {
 
       expect(find.byType(HomeClienteScreen), findsOneWidget);
       expect(find.text('Área do Cliente'), findsOneWidget);
+    });
+
+    testWidgets('tocar em Sair desloga e volta para a tela de login', (
+      tester,
+    ) async {
+      final repositorio = await abrirTelaDoCliente(tester);
+
+      await tester.tap(find.byTooltip('Sair'));
+      await tester.pumpAndSettle();
+
+      expect(repositorio.chamadasSair, 1);
+      expect(find.byType(HomeClienteScreen), findsNothing);
+      expect(find.byType(LoginScreen), findsOneWidget);
+      expect(find.widgetWithText(FilledButton, 'Entrar'), findsOneWidget);
     });
   });
 }

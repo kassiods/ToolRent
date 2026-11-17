@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
+import '../../data/repositories/auth_repository.dart';
+import '../widgets/botao_sair.dart';
 import '../widgets/cartao_acao.dart';
 import 'em_construcao_screen.dart';
 
@@ -10,7 +12,9 @@ import 'em_construcao_screen.dart';
 /// Nesta sprint, as ações apenas abrem a tela de espera do respectivo UC.
 /// O Cliente tem exatamente dois casos de uso: UC06 e UC07.
 class HomeClienteScreen extends StatelessWidget {
-  const HomeClienteScreen({super.key});
+  const HomeClienteScreen({super.key, required this.authRepository});
+
+  final AuthRepository authRepository;
 
   void _abrirCasoDeUso(
     BuildContext context, {
@@ -32,7 +36,10 @@ class HomeClienteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cliente')),
+      appBar: AppBar(
+        title: const Text('Cliente'),
+        actions: [BotaoSair(authRepository: authRepository)],
+      ),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppTheme.espacoLg),
